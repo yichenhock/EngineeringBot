@@ -47,12 +47,12 @@ async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
     # Load data
-    try: 
-        with open(path+"data.txt") as json_file: 
+    if os.path.exists(path):
+        with open(path+"data.txt", "r") as json_file: 
             data = json.load(json_file)
-    except: 
+    else:
         data = {}
-
+    print(data)
 
 @bot.command(name='cribs', help='Link to Cam Cribs')
 async def cribs(ctx):
