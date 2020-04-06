@@ -139,7 +139,7 @@ async def lab(ctx):
 
     save_data()
 
-    await ctx.send("You have collected `1` :stdc: !")
+    await ctx.send("You have collected `1` <:stdc:696823503663530115>!")
 
 @bot.command(name='potato',help='Collect potato')
 async def potato(ctx): 
