@@ -6,6 +6,7 @@ import random
 import discord
 import json
 import datetime
+import time
 import re
 
 from discord.utils import get
@@ -46,8 +47,11 @@ async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
 
     # Load data
-    with open("data.txt") as json_file:
-        data = json.load(json_file)
+    try: 
+        with open(path+"data.txt") as json_file: 
+            data = json.load(json_file)
+    except: 
+        data = {}
 
 
 @bot.command(name='cribs', help='Link to Cam Cribs')
@@ -118,7 +122,6 @@ async def on_message(message):
             r = []
             f = os.path.splitext(filename)[0]
             words = re.findall(r'\w+', message.content)
-            #words = set(message.content.split(" "))
             for word in words: 
                 if word.lower() == f:
                     with open(path+"random_responses/"+filename, "r") as a_file:
@@ -128,15 +131,24 @@ async def on_message(message):
                 
     await bot.process_commands(message)
 
+@bot.command(name='lab',help='Do a lab for standard credit')
+async def lab(ctx): 
 
-@bot.command(name='potato',help='Hot Potato (not yet configured)')
-async def potato(ctx): 
-
-    potatoes = get_data(ctx.author.id, "potatoes", default_val=0)
-    add_data(ctx.author, "potatoes", potatoes+1)
+    stdc = get_data(ctx.author.id, "stdc", default_val=0)
+    add_data(ctx.author.id, "stdc", stdc+1)
 
     save_data()
 
-    await ctx.send("🥔")
+    await ctx.send("You have collected `1` :stdc: !")
+
+@bot.command(name='potato',help='Collect potato')
+async def potato(ctx): 
+
+    potatoes = get_data(ctx.author.id, "potatoes", default_val=0)
+    add_data(ctx.author.id, "potatoes", potatoes+1)
+
+    save_data()
+
+    await ctx.send("You have collected `1` 🥔!")
 
 bot.run(TOKEN)
