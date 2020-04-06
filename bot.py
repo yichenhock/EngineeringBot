@@ -1,5 +1,7 @@
-# bot.py
+# python3 EngineeringBot/bot.py
+
 import os
+import glob
 import random
 import discord
 import json
@@ -8,6 +10,9 @@ import datetime
 from discord.utils import get
 from discord.ext import commands
 from dotenv import load_dotenv
+
+# same path modules
+import question
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -24,6 +29,7 @@ async def cribs(ctx):
 
 @bot.command(name='hey', help='Wassup')
 async def hey(ctx):
+    await ctx.message.add_reaction("🍆")
     await ctx.send("What's up son")
 
 #@bot.command(name='advice',help='')
@@ -44,10 +50,33 @@ def txt2emoji(txt):
 
 @bot.command(name="bigcaps",help="BIGCAPS, like really big")
 async def bigCaps(ctx, *args):
-    await ctx.send("  ".join([txt2emoji(word) for word in args]))
+    await ctx.send("    ".join([txt2emoji(word) for word in args]))
 
+@bot.command(name="nsfw",help="You know it :^)")
+async def nsfw(ctx):
+    images = []
+    for filename in os.listdir(r"./EngineeringBot/nsfw"):
+        if (filename.endswith(".jpg")) or (filename.endswith(".png")):
+            images.append(filename)
+    image = random.choice(images)
+    file = discord.File("./EngineeringBot/nsfw/"+image, filename=image)
+    embed = discord.Embed()
+    embed.set_image(url="attachment://"+image)
+    await ctx.send(file=file,embed=embed)
+
+@bot.command(name="hmu",help="When you need someone to spice up your life, I'm here for it;)")
+async def hmu(ctx):
+    hmu_txt = []
+    with open("./EngineeringBot/hmu.txt", "r") as a_file:
+        for line in a_file:
+            hmu_txt.append(line.strip())
+    await ctx.message.add_reaction("💦")
+    await ctx.send(random.choice(hmu_txt))
+
+"""
 @bot.command(name='potato',help='Hot Potato (not yet configured)')
 async def potato(ctx): 
     pass
+"""
 
 bot.run(TOKEN)
