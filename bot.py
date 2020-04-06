@@ -22,7 +22,23 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='dad ',case_insensitive=True)
 
-data = []
+data = {}
+
+def add_data(player_id, data_key, value):
+    """Add or insert a data entry into a player's data."""
+    if not player_id in data:
+        data[player_id] = {}
+    data[player_id][data_key] = value
+
+def get_data(player_id, data_key, default_val=None):
+    """Get a data entry from a specific player."""
+    if not player_id in data:
+        return default_val
+    return data[player_id].get(data_key, default_val)
+
+def save_data():
+    with open(path+'data.txt', 'w') as outfile:
+        json.dump(data, outfile)
 
 @bot.event
 async def on_ready():
@@ -115,9 +131,11 @@ async def on_message(message):
 
 @bot.command(name='potato',help='Hot Potato (not yet configured)')
 async def potato(ctx): 
-    data = [ctx.author.id, 3]
-    with open(path+'data.txt', 'w') as outfile:
-        json.dump(data, outfile)
+
+    potatoes = get_data(ctx.author.id, "potatoes", default_val=0)
+    add_data(ctx.author, "potatoes", potatoes+1)
+
+    save_data()
 
     await ctx.send("🥔")
 
