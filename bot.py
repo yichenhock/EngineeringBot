@@ -6,6 +6,7 @@ import random
 import discord
 import json
 import datetime
+import re
 
 from discord.utils import get
 from discord.ext import commands
@@ -14,14 +15,24 @@ from dotenv import load_dotenv
 # same path modules
 import question
 
+path = "./EngineeringBot/"
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
-bot = commands.Bot(command_prefix='dad ')
+bot = commands.Bot(command_prefix='dad ',case_insensitive=True)
+
+data = []
 
 @bot.event
 async def on_ready():
+    global data
     print(f'{bot.user.name} has connected to Discord!')
+
+    # Load data
+    with open("data.txt") as json_file:
+        data = json.load(json_file)
+
 
 @bot.command(name='cribs', help='Link to Cam Cribs')
 async def cribs(ctx):
@@ -73,10 +84,41 @@ async def hmu(ctx):
     await ctx.message.add_reaction("💦")
     await ctx.send(random.choice(hmu_txt))
 
-"""
+@bot.command(name="i'm", help="Uh huh")
+async def im(ctx, *msg):
+    await ctx.send("Hi "+ " ".join(msg) +" I'm dad")
+
+@bot.command(name="complex", help="Makes your sentence complex")
+async def cmplx(ctx,*msg):
+    await ctx.send(" ".join([word.replace("i", "j") for word in msg]))
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+
+    else:
+        for filename in os.listdir(path+"random_responses"):
+            r = []
+            f = os.path.splitext(filename)[0]
+            words = re.findall(r'\w+', message.content)
+            #words = set(message.content.split(" "))
+            for word in words: 
+                if word.lower() == f:
+                    with open(path+"random_responses/"+filename, "r") as a_file:
+                        for line in a_file:
+                            r.append(line.strip())
+                    await message.channel.send(random.choice(r))
+                
+    await bot.process_commands(message)
+
+
 @bot.command(name='potato',help='Hot Potato (not yet configured)')
 async def potato(ctx): 
-    pass
-"""
+    data = [ctx.author.id, 3]
+    with open(path+'data.txt', 'w') as outfile:
+        json.dump(data, outfile)
+
+    await ctx.send("🥔")
 
 bot.run(TOKEN)

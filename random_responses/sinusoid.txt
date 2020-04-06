@@ -1,0 +1,8 @@
+sin t, sin 2t, t, sin 3t, sin 4t, sin 5t, sin 6t, sin 7t, sin 8t, it would just repeat!
+A little taster
+The fourier series has to be your fourier series
+Here we have the sum of sinusoids
+It would just repeat!
+That is the essence... it is illegal Fourier series!
+Bue bue bue a bubu bu bu
+Up down, up down, up down
