@@ -151,4 +151,9 @@ async def potato(ctx):
 
     await ctx.send("You have collected `1` 🥔!")
 
+@bot.event
+async def on_command_error(ctx, error):
+    print(ctx.command.name + " was invoked incorrectly.")
+    print(error)
+
 bot.run(TOKEN)
