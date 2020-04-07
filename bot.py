@@ -32,12 +32,19 @@ async def saveloop():
 
 def add_data(player_id, data_key, value):
     """Add or insert a data entry into a player's data."""
+    player_id = str(player_id)
+    data_key = str(data_key)
+
     if not player_id in data:
         data[player_id] = {}
     data[player_id][data_key] = value
+    print(data)
 
 def get_data(player_id, data_key, default_val=None):
     """Get a data entry from a specific player."""
+    player_id = str(player_id)
+    data_key = str(data_key)
+
     if not player_id in data:
         return default_val
     return data[player_id].get(data_key, default_val)
@@ -55,8 +62,6 @@ async def on_ready():
     if os.path.exists(PATH+"data.txt"):
         with open(PATH+"data.txt", "r") as json_file: 
             data = json.load(json_file)
-    else:
-        data = {}
 
     print(data)
     bot.loop.create_task(saveloop())
@@ -68,19 +73,14 @@ async def cribs(ctx):
 @bot.command(name='lab',help='Do a lab for standard credit')
 async def lab(ctx): 
     stdc = get_data(ctx.author.id, "stdc", default_val=0)
-
     add_data(ctx.author.id, "stdc", stdc+1)
     await ctx.send("You have collected `1` <:stdc:696823503663530115>!")
-    print(stdc+1)
 
 @bot.command(name='potato',help='Collect potato')
 async def potato(ctx): 
-
     potatoes = get_data(ctx.author.id, "potatoes", default_val=0)
-
     add_data(ctx.author.id, "potatoes", potatoes+1)
     await ctx.send("You have collected `1` 🥔!")
-    print(potatoes+1)
 
 @bot.event
 async def on_command_error(ctx, error):
