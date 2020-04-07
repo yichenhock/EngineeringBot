@@ -12,12 +12,12 @@ class HelpCommands(commands.Cog):
         try: 
             if not cog: 
                 """ Lists cogs """
-                halp=discord.Embed(title='Cog Listing and Uncatergorized Commands',
-                               description='Use `'+ prefix +'help *cog*` to find out more about them!\n(BTW, the Cog Name Must Be in Title Case, Just Like this Sentence.)')
+                halp=discord.Embed(title='Command Category Listing and General Commands',
+                               description='Use `'+ prefix +'help *category*` to find out more about them!\n(BTW, the Category Name Must Be in Title Case, Just Like this Sentence.)')
                 cogs_desc = ''
                 for x in self.bot.cogs:
                     cogs_desc += ('{} - {}'.format(x,self.bot.cogs[x].__doc__)+'\n')
-                halp.add_field(name='Cogs',value=cogs_desc[0:len(cogs_desc)-1],inline=False)
+                halp.add_field(name='Categories',value=cogs_desc[0:len(cogs_desc)-1],inline=False)
                 cmds_desc = ''
                 for y in self.bot.walk_commands():
                     if not y.cog_name and not y.hidden:
@@ -38,7 +38,7 @@ class HelpCommands(commands.Cog):
                             found = True
                 if not found:
                     """Reminds you if that cog doesn't exist."""
-                    halp = discord.Embed(title='Error!',description='How do you even use "'+cog[0]+'"?',color=discord.Color.red())
+                    halp = discord.Embed(title='Bruh!',description='How do you even use "'+cog[0]+'"?',color=discord.Color.red())
                 else:
                     await ctx.message.add_reaction(emoji='✉')
                 await ctx.message.author.send('',embed=halp)
