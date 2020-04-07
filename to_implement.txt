@@ -1,5 +1,7 @@
 - leaderboard
 
+- dad leave me alone
+
 - tripos question of the day (dedicated channel, submit vote via emoji reactions, add back log)
 - trivia questions (study with supervisor, customised text)
     > timed questions?
