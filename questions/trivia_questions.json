@@ -1,0 +1,50 @@
+[
+    {
+        "answers": [
+            "list",
+            "of",
+            "strings",
+            "that",
+            "will",
+            "be",
+            "mixed"
+        ],
+        "category": "category name",
+        "difficulty_score": 10,
+        "image_name": "",
+        "question_text": "Add question text here",
+        "question_title": "Title of question"
+    },
+    {
+        "answers": [
+            "list",
+            "of",
+            "strings",
+            "that",
+            "will",
+            "be",
+            "mixed"
+        ],
+        "category": "category name",
+        "difficulty_score": 10,
+        "image_name": "",
+        "question_text": "Add question text here",
+        "question_title": "Title of question"
+    },
+    {
+        "answers": [
+            "list",
+            "of",
+            "strings",
+            "that",
+            "will",
+            "be",
+            "mixed"
+        ],
+        "category": "category name",
+        "difficulty_score": 10,
+        "image_name": "",
+        "question_text": "Add question text here",
+        "question_title": "Title of question"
+    }
+]
