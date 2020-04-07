@@ -21,6 +21,5 @@ def main():
     while True:
         add_question()
 
-
 if __name__ == "__main__":
     main()
