@@ -1,4 +1,26 @@
 import json
+import asyncio
+import os
+import parameters
+
+PATH = parameters.PATH
+
+data = {}
+
+async def saveloop():
+    while True:
+        save_data()
+        await asyncio.sleep(10)
+
+def load_data(bot):
+    # checks if data file exist, if not, writes an empty dict to it
+    if os.path.exists(PATH+"data.txt"):
+        with open(PATH+"data.txt", "r") as json_file: 
+            data = json.load(json_file)
+
+    print(data)
+    bot.loop.create_task(saveloop())
+
 
 def add_data(player_id, data_key, value):
     """Add or insert a data entry into a player's data."""

@@ -14,10 +14,10 @@ from dotenv import load_dotenv
 
 # same path modules
 import question
+from DataLogging import *
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-PATH = ""
 
 bot = commands.Bot(command_prefix='dad ',case_insensitive=True)
 
@@ -25,46 +25,36 @@ bot.remove_command('help')
 
 data = {}
 
-async def saveloop():
-    while True:
-        save_data()
-        await asyncio.sleep(10)
 
-def add_data(player_id, data_key, value):
-    """Add or insert a data entry into a player's data."""
-    player_id = str(player_id)
-    data_key = str(data_key)
+# def add_data(player_id, data_key, value):
+#     """Add or insert a data entry into a player's data."""
+#     player_id = str(player_id)
+#     data_key = str(data_key)
 
-    if not player_id in data:
-        data[player_id] = {}
-    data[player_id][data_key] = value
-    print(data)
+#     if not player_id in data:
+#         data[player_id] = {}
+#     data[player_id][data_key] = value
+#     print(data)
 
-def get_data(player_id, data_key, default_val=None):
-    """Get a data entry from a specific player."""
-    player_id = str(player_id)
-    data_key = str(data_key)
+# def get_data(player_id, data_key, default_val=None):
+#     """Get a data entry from a specific player."""
+#     player_id = str(player_id)
+#     data_key = str(data_key)
 
-    if not player_id in data:
-        return default_val
-    return data[player_id].get(data_key, default_val)
+#     if not player_id in data:
+#         return default_val
+#     return data[player_id].get(data_key, default_val)
 
-def save_data():
-    with open(PATH+'data.txt', 'w') as outfile:
-        json.dump(data, outfile, sort_keys=True, indent=4)
+# def save_data():
+#     with open(PATH+'data.txt', 'w') as outfile:
+#         json.dump(data, outfile, sort_keys=True, indent=4)
 
 @bot.event
 async def on_ready():
     global data
     print(f'{bot.user.name} has connected to Discord!')
+    DataLogging.load_data(bot)
 
-    # checks if data file exist, if not, writes an empty dict to it
-    if os.path.exists(PATH+"data.txt"):
-        with open(PATH+"data.txt", "r") as json_file: 
-            data = json.load(json_file)
-
-    print(data)
-    bot.loop.create_task(saveloop())
 
 @bot.command(name='cribs', help='Link to Cam Cribs')
 async def cribs(ctx):
