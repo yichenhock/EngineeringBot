@@ -19,7 +19,7 @@ def txt2emoji(txt):
             txt_chara[index] = ":question:"
     return "".join(txt_chara)
 
-class MiscCommands(commands.Cog, name="Miscellaneous"):
+class MiscCommands(commands.Cog, name="Misc"):
     def __init__(self,bot):
         self.bot = bot
     

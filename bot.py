@@ -21,6 +21,8 @@ PATH = ""
 
 bot = commands.Bot(command_prefix='dad ',case_insensitive=True)
 
+bot.remove_command('help')
+
 data = {}
 
 async def saveloop():
@@ -94,4 +96,4 @@ if __name__ == '__main__':
             except:
                 print(f'Failed to load extension {extension}.')
 
-    bot.run(TOKEN)
+bot.run(TOKEN)
