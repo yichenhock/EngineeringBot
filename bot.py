@@ -70,11 +70,6 @@ async def on_ready():
 async def cribs(ctx):
     await ctx.send("Cam cribs: https://camcribs.com/")
 
-@bot.command(name='lab',help='Do a lab for standard credit')
-async def lab(ctx): 
-    stdc = get_data(ctx.author.id, "stdc", default_val=0)
-    add_data(ctx.author.id, "stdc", stdc+1)
-    await ctx.send("You have collected `1` <:stdc:696823503663530115>!")
 
 @bot.command(name='potato',help='Collect potato')
 async def potato(ctx): 
