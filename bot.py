@@ -51,7 +51,7 @@ def get_data(player_id, data_key, default_val=None):
 
 def save_data():
     with open(PATH+'data.txt', 'w') as outfile:
-        json.dump(data, outfile)
+        json.dump(data, outfile, sort_keys=True, indent=4)
 
 @bot.event
 async def on_ready():
