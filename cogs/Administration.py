@@ -1,4 +1,5 @@
 from discord.ext import commands
+import parameters
 
 class Administration(commands.Cog):
     def __init__(self,bot):
@@ -6,7 +7,7 @@ class Administration(commands.Cog):
 
     @commands.command()
     async def shutdown(self,ctx):
-        if ctx.message.author.id == 501077051017789451: #replace OWNERID with your user id
+        if ctx.message.author.id in parameters.adminID: #replace OWNERID with your user id
             print("shutdown")
             try:
                 await self.bot.logout()
