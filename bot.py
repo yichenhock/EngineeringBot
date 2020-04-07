@@ -1,13 +1,14 @@
-# python3 EngineeringBot/bot.py
+# python3 bot.py
 
 import os
-import glob
+# import glob
 import random
 import discord
 import json
 import datetime
 import time
 import re
+import asyncio
 
 from discord.utils import get
 from discord.ext import commands
@@ -16,7 +17,8 @@ from dotenv import load_dotenv
 # same path modules
 import question
 
-path = "./EngineeringBot/"
+# path = "./EngineeringBot/"
+path = ""
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -24,6 +26,11 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 bot = commands.Bot(command_prefix='dad ',case_insensitive=True)
 
 data = {}
+
+async def saveloop():
+    while True:
+        save_data()
+        await asyncio.sleep(10)
 
 def add_data(player_id, data_key, value):
     """Add or insert a data entry into a player's data."""
@@ -46,13 +53,15 @@ async def on_ready():
     global data
     print(f'{bot.user.name} has connected to Discord!')
 
-    # Load data
-    if os.path.exists(path):
+    # checks if data file exist, if not, writes an empty dict to it
+    if os.path.exists(path+"data.txt"):
         with open(path+"data.txt", "r") as json_file: 
             data = json.load(json_file)
     else:
         data = {}
+
     print(data)
+    bot.loop.create_task(saveloop())
 
 @bot.command(name='cribs', help='Link to Cam Cribs')
 async def cribs(ctx):
@@ -86,7 +95,7 @@ async def bigCaps(ctx, *args):
 @bot.command(name="nsfw",help="You know it :^)")
 async def nsfw(ctx):
     images = []
-    for filename in os.listdir(r"./EngineeringBot/nsfw"):
+    for filename in os.listdir(path+"nsfw"):
         if (filename.endswith(".jpg")) or (filename.endswith(".png")):
             images.append(filename)
     image = random.choice(images)
@@ -98,7 +107,7 @@ async def nsfw(ctx):
 @bot.command(name="hmu",help="When you need someone to spice up your life, I'm here for it;)")
 async def hmu(ctx):
     hmu_txt = []
-    with open("./EngineeringBot/hmu.txt", "r") as a_file:
+    with open(path+"hmu.txt", "r") as a_file:
         for line in a_file:
             hmu_txt.append(line.strip())
     await ctx.message.add_reaction("💦")
@@ -114,6 +123,7 @@ async def cmplx(ctx,*msg):
 
 @bot.event
 async def on_message(message):
+
     if message.author == bot.user:
         return
 
@@ -128,27 +138,22 @@ async def on_message(message):
                         for line in a_file:
                             r.append(line.strip())
                     await message.channel.send(random.choice(r))
-                
+
     await bot.process_commands(message)
 
 @bot.command(name='lab',help='Do a lab for standard credit')
 async def lab(ctx): 
-
     stdc = get_data(ctx.author.id, "stdc", default_val=0)
+
     add_data(ctx.author.id, "stdc", stdc+1)
-
-    save_data()
-
     await ctx.send("You have collected `1` <:stdc:696823503663530115>!")
 
 @bot.command(name='potato',help='Collect potato')
 async def potato(ctx): 
 
     potatoes = get_data(ctx.author.id, "potatoes", default_val=0)
+
     add_data(ctx.author.id, "potatoes", potatoes+1)
-
-    save_data()
-
     await ctx.send("You have collected `1` 🥔!")
 
 @bot.event
@@ -156,4 +161,21 @@ async def on_command_error(ctx, error):
     print(ctx.command.name + " was invoked incorrectly.")
     print(error)
 
-bot.run(TOKEN)
+if __name__ == '__main__':
+    """
+    for extension in [f.replace('.py', '') for f in listdir(cogs_dir) if isfile(join(cogs_dir, f))]:
+        try:
+            bot.load_extension(cogs_dir + "." + extension)
+        except (d.ClientException, ModuleNotFoundError):
+            print(f'Failed to load extension {extension}.')
+            traceback.print_exc()
+    """
+    for extension in os.listdir(path+"cogs"):
+        if (extension.endswith(".py")):
+            try: 
+                bot.load_extension("cogs."+extension.replace('.py', ''))
+                print(f'Loaded extension {extension}.')
+            except:
+                print(f'Failed to load extension {extension}.')
+
+    bot.run(TOKEN)

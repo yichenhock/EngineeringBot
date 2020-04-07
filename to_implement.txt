@@ -1,0 +1,71 @@
+- leaderboard
+
+- tripos question of the day (dedicated channel, submit vote via emoji reactions, add back log)
+- trivia questions (study with supervisor, customised text)
+    > timed questions?
+
+- shop/trade via DMs, coin system
+- use items/inventory system
+- different types of labs: (events)
+    > sdp, fold pennies without repercussions
+    > iep
+    > drawing
+    > take a shot every time a lecturer says something
+
+- cooldown times
+- discord cogs in order to categorise commands
+- channel message restrictions
+- levels/EXP - how many questions you did correctly
+- levels unlock functions/"personal lecturer" (ranked by popularity)
+- go to lectures - like pls work, get bonuses
+- get an amount of sc depending on lecturer level
+- get a random kit kat chonky when doing an electricity question, same with potato
+- give items to other people
+- machine an engineer penny (random event?)
+- random tips
+    > buy egyptian slaves to improve your standard credit in structures
+- use item during lecture
+- sell 
+- fold pennies (there is a chance that you will be caught, and then you lose standard credit)
+
+- add a role ("infected")
+- people who are infected who give items to another play pass it on
+- infection is lifted after 12hrs
+- if you own a face mask then you won't be infected
+- lose standard credit if you get infected
+- if you do commands like go to lecture, you aren't staying at home so you infect others who have been to lecture recently 
+
+shop: 
+- boosters: 
+    - kit kat chonky (boost elec *1.05, summed)
+    - potato (boost mechanics *1.05, summed)
+    - egyptian slave (boost structures)
+    - eigenvector (boost maths)
+
+- drawing set $$$ 
+- calculator (CU approved) $$$ (unlocks a command for dad to calculate things)
+- lego man (give them to people)
+- cafe sandwich (offer to lecturer to get bonus sc)
+- pennies
+- anti-depressants (yourself, and for Tucker only (when given to him, he says thanks and retires))
+- anti-happinessants (just in case you need a reminder that you are studying engineering)
+- crib
+
+- anti bacterial keyboards (reduce chance of random infection)
+- hand sanitiser $ stops infection
+- face mask (reduce chance of infection from other people)
+
+Ranked lecturers: 
+
+Allwood (structures)
+Tore (mechanics)
+Atkins (thermofluids)
+Prager (lent maths)
+Joyce (em)
+Udrea (power)
+Longley (Dim anal)
+Wilkinson (Elec)
+Hasan (digital)
+Langley (Mech vib)
+Tucker (Fast maths) - i just had a revelation that i shouldn't be here
+Shercliff is your dad (materials)
