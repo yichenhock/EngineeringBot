@@ -16,6 +16,9 @@ from dotenv import load_dotenv
 import question
 from DataLogging import load_data, add_data, get_data, save_data
 
+import parameters
+PATH = parameters.PATH
+
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 
@@ -25,7 +28,6 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-    global data
     print(f'{bot.user.name} has connected to Discord!')
     load_data(bot)
 
