@@ -14,7 +14,7 @@ def add_question():
 
 
 def save_file(data, filename):
-    with open(QUESTION_PATH+filename+".txt", "w") as f:
+    with open(QUESTION_PATH+filename+".json", "w") as f:
         json.dump(data, f, sort_keys=True, indent=4)
 
 def main():
