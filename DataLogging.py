@@ -17,8 +17,9 @@ def load_data(bot):
     if os.path.exists(PATH+"data.txt"):
         with open(PATH+"data.txt", "r") as json_file: 
             data = json.load(json_file)
-
-    print(data)
+    else:
+        data = {}
+    # print(data)
     bot.loop.create_task(saveloop())
 
 
