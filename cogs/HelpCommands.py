@@ -26,9 +26,26 @@ class HelpCommands(commands.Cog):
                 await ctx.message.add_reaction(emoji='✉')
                 await ctx.message.author.send('',embed=halp)
             else: 
-                pass
+                """Command listing within a cog."""
+                found = False
+                for x in self.bot.cogs:
+                    for y in cog:
+                        if x == y:
+                            halp=discord.Embed(title=cog[0]+' Command Listing',description=self.bot.cogs[cog[0]].__doc__)
+                            for c in self.bot.get_cog(y).get_commands():
+                                if not c.hidden:
+                                    halp.add_field(name=c.name,value=c.help,inline=False)
+                            found = True
+                if not found:
+                    """Reminds you if that cog doesn't exist."""
+                    halp = discord.Embed(title='Error!',description='How do you even use "'+cog[0]+'"?',color=discord.Color.red())
+                else:
+                    await ctx.message.add_reaction(emoji='✉')
+                await ctx.message.author.send('',embed=halp)
         except:
-            await ctx.send("Yes, you need help.")
+            await ctx.send("Excuse me, I can't send embeds.")
+        
+        await ctx.send("Yes, you need help.")
 
 def setup(bot):
     bot.add_cog(HelpCommands(bot))
