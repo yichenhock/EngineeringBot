@@ -1,0 +1,26 @@
+[
+    {
+        "cost": 100,
+        "description": "Item description",
+        "emoji": "",
+        "name": "Item name"
+    },
+    {
+        "cost": 100,
+        "description": "Item description",
+        "emoji": "",
+        "name": "Item name"
+    },
+    {
+        "cost": 100,
+        "description": "Item description",
+        "emoji": "",
+        "name": "Item name"
+    },
+    {
+        "cost": 100,
+        "description": "Item description",
+        "emoji": "",
+        "name": "Item name"
+    }
+]

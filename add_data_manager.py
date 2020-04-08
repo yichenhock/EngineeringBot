@@ -3,13 +3,24 @@ import os
 
 DATA_PATH = "data/"
 
+class DataAdder:
+    def __init__(self, desc, filename, data_generator):
+        self.desc = desc
+        self.filename = filename
+        self.data_generator = data_generator
+    def add_data(self):
+        fp = DATA_PATH+self.filename+".json"
+        data_list = load_file(fp, [])
+        data_list.append(self.data_generator())
+        save_file(data_list, fp)
+
 def get_lecturer_data_dict():
     data = {
         "name": "Lecturer name here",
         "subject": "Subject here",
         "category": "Category here",
         "trivia_messages": ["I'll say one of these things randomly before giving you a trivia question.", "Can you do this trivia question?"],
-        "level": "2"
+        "level": 2
     }
     return data
 
@@ -24,11 +35,14 @@ def get_question_data_dict():
     }
     return data
 
-def add_dict_to_list_in_file(dict, name):
-    fp = DATA_PATH+name
-    data_list = load_file(fp, [])
-    data_list.append(dict)
-    save_file(data_list, fp)
+def get_shopitem_data_dict():
+    data = {
+        "name" : "Item name",
+        "emoji" : "",
+        "cost" : 100,
+        "description" : "Item description"
+    }
+    return data
 
 def get_len_of_list_in_file(name):
     fp = DATA_PATH+name
@@ -49,16 +63,22 @@ def save_file(data, filename):
 
 def main():
     while True:
-        option = input("(a) add trivia\n(b) add main (tripos) question\n(c) Add lecturer   \n(Pick a letter): ")
-        if option == "a":
-            add_dict_to_list_in_file(get_question_data_dict(), "trivia_questions.json")
-            print("Question added. There are now {} trivia questions.".format(get_len_of_list_in_file("trivia_questions.json")))
-        if option == "b":
-            add_dict_to_list_in_file(get_question_data_dict(), "main_questions.json")
-            print("Question added. There are now {} main questions.".format(get_len_of_list_in_file("main_questions.json")))
-        if option == "c":
-            add_dict_to_list_in_file(get_lecturer_data_dict(), "lecturers.json")
-            print("Lecturer added. There are now {} lecturers.".format(get_len_of_list_in_file("lecturers.json")))
+
+        options = [
+            DataAdder("Add trivia", "trivia_questions", get_question_data_dict),
+            DataAdder("Add main (tripos) questions", "main_questions", get_question_data_dict), 
+            DataAdder("Add lecturer", "lecturers", get_lecturer_data_dict), 
+            DataAdder("Add shop item", "shop_items", get_shopitem_data_dict),
+        ]
+        for i, option in enumerate(options):
+            print("{}) {}".format(i, option.desc))
+        option = int(input("(Pick a number): "))
+        if isinstance(option, int):
+            if option >= 0 and option < len(options):
+                options[option].add_data()
+                print("Operation completed")
+
+        print("\n")
 
 if __name__ == "__main__":
     main()
