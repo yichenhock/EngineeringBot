@@ -13,7 +13,8 @@ class HelpCommands(commands.Cog):
             if not cog: 
                 """ Lists cogs """
                 halp=discord.Embed(title='Command Category Listing and General Commands',
-                               description='Use `'+ prefix +'help *category*` to find out more about them!\n(BTW, the Category Name Must Be in Title Case, Just Like this Sentence.)')
+                               description='Use `'+ prefix +'help *category*` to find out more about them!\n(BTW, the Category Name Must Be in Title Case, Just Like this Sentence.)',
+                               colour=discord.Color.gold())
                 cogs_desc = ''
                 for x in self.bot.cogs:
                     cogs_desc += ('{}'.format(x)+'\n') #self.bot.cogs[x].__doc__

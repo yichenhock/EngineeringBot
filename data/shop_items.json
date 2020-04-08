@@ -12,7 +12,7 @@
         "name": "Potato"
     },
     {
-        "cost": 5,
+        "cost": 4,
         "description": "Try to collect all 600!",
         "emoji": "<:slave:697519485204299808>",
         "name": "Egyptian slave"
@@ -24,9 +24,15 @@
         "name": "Eigenvector"
     },
     {
-        "cost": 2,
+        "cost": 10,
         "description": "The ingredient for engineering pennies.",
-        "emoji": "",
+        "emoji": "<:penny:697534600599175198>",
         "name": "Penny"
+    },
+    {
+        "cost": 7000,
+        "description": "The perfect piece of kit that you don't need.",
+        "emoji": "<:engi_compass:697551030887645255>",
+        "name": "Drawing Kit"
     }
 ]

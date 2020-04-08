@@ -22,3 +22,10 @@ def import_items():
 
         for i in items_data:
             items.append(ShopItem(i))
+
+def get_by_name(name):
+    global items
+    for i in items:
+        if i.name.lower() == name.lower():
+            return i
+    return None
