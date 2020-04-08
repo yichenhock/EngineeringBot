@@ -1,7 +1,7 @@
 from discord.ext import commands
 from DataLogging import load_data, add_data, get_data, save_data
 
-class StudyCommands(commands.Cog):
+class StudyCommands(commands.Cog,name="Study"):
     def __init__(self,bot):
         self.bot = bot
 
