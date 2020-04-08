@@ -1,13 +1,13 @@
-Kit kat chunky,80,boosts
+Kit kat chunky,80
 Potato,69
 Egyptian slave,5
 Eigenvector,42
 Drawing set,2000
 Calculator,2500
 Cafe sandwich,100
-Pennies,2
-Anti-depressants,1000
-Anti-happinessants,750
-DPO anti bacterial keyboards,2500
+Penny,2
+Anti-depressant,1000
+Anti-happinessant,750
+DPO anti bacterial keyboard,2500
 Hand sanitiser,3000
 Face mask,1500
