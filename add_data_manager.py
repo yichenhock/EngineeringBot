@@ -1,3 +1,6 @@
+"""This is purely a utility file for adding entries to the .json files in the data folder. Don't call any functions from here."""
+
+
 import json
 import os
 
