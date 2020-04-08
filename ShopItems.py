@@ -12,6 +12,7 @@ class ShopItem():
         self.cost = item_dict["cost"]
         self.emoji = item_dict["emoji"]
         self.description = item_dict["description"]
+        self.aliases = item_dict["aliases"]
 
 def import_items():
     global items
@@ -26,6 +27,6 @@ def import_items():
 def get_by_name(name):
     global items
     for i in items:
-        if i.name.lower() == name.lower():
+        if name.lower() == i.name.lower() or name.lower() in i.aliases:
             return i
     return None

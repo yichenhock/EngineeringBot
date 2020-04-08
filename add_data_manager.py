@@ -40,7 +40,8 @@ def get_shopitem_data_dict():
         "name" : "Item name",
         "emoji" : "",
         "cost" : 100,
-        "description" : "Item description"
+        "description" : "Item description",
+        "aliases": ["name1","name2","name3"]
     }
     return data
 

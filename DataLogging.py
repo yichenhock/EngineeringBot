@@ -1,11 +1,8 @@
 import json
 import asyncio
 import os
-import parameters
 
-PATH = parameters.PATH
-
-DATA_PATH = PATH+"data/"
+DATA_PATH = "data/"
 
 data = {}
 
@@ -15,6 +12,7 @@ async def saveloop():
         await asyncio.sleep(10)
 
 def load_data(bot):
+    global data
     # checks if data file exist, if not, writes an empty dict to it
     if os.path.exists(DATA_PATH+"data.json"):
         with open(DATA_PATH+"data.json", "r") as json_file: 
