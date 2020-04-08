@@ -56,16 +56,19 @@ shop:
 - face mask (reduce chance of infection from other people)
 
 Ranked lecturers: 
+Depending on your level (which you raise by gaining xp), you will have a different lecturer when you go to lectures.
+Your lecturer will also be your supervisor and will say something to you when you do trivia questions.
 
-Allwood (structures)
-Tore (mechanics)
-Atkins (thermofluids)
-Prager (lent maths)
-Joyce (em)
-Udrea (power)
-Longley (Dim anal)
-Wilkinson (Elec)
-Hasan (digital)
-Langley (Mech vib)
-Tucker (Fast maths) - i just had a revelation that i shouldn't be here
-Shercliff is your dad (materials)
+LVL 12: Allwood (structures)
+LVL 11: Tore (mechanics)
+LVL 10: Atkins (thermofluids)
+LVL 9: Prager (lent maths)
+LVL 8: Joyce (em)
+LVL 7: Udrea (power)
+LVL 6: Longley (Dim anal)
+LVL 5: Wilkinson (Elec)
+LVL 4: Hasan (digital)
+LVL 3: Langley (Mech vib)
+LVL 2: Tucker (Fast maths) 
+  - when you have antidepressants and go to a lecture, you give them to him, he thanks you and says "i just had a revelation that i shouldn't be here" and you level up instantly
+LVL 1: Shercliff is your dad (materials)
