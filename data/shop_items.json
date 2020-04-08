@@ -1,26 +1,32 @@
 [
     {
-        "cost": 100,
-        "description": "Item description",
-        "emoji": "",
-        "name": "Item name"
+        "cost": 150,
+        "description": "Throw these to your friends if they have been good!",
+        "emoji": "<:chunky:696810911029264485>",
+        "name": "Kit kat chunky"
     },
     {
         "cost": 100,
-        "description": "Item description",
-        "emoji": "",
-        "name": "Item name"
+        "description": "This bad boy can model so many impulses.",
+        "emoji": "<:fbd_potato:696828105368535062>",
+        "name": "Potato"
     },
     {
-        "cost": 100,
-        "description": "Item description",
-        "emoji": "",
-        "name": "Item name"
+        "cost": 5,
+        "description": "Try to collect all 600!",
+        "emoji": "<:slave:697519485204299808>",
+        "name": "Egyptian slave"
     },
     {
-        "cost": 100,
-        "description": "Item description",
+        "cost": 40,
+        "description": "Does what it says on the tin.",
+        "emoji": "<:eigenvector:697128636175876156>",
+        "name": "Eigenvector"
+    },
+    {
+        "cost": 2,
+        "description": "The ingredient for engineering pennies.",
         "emoji": "",
-        "name": "Item name"
+        "name": "Penny"
     }
 ]

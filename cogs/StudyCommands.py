@@ -7,14 +7,14 @@ class StudyCommands(commands.Cog,name="Study"):
 
     @commands.command(name='lab',help="Do a lab for standard credit <:stdc:696823503663530115>.")
     async def lab(self,ctx): 
-        stdc = get_data(ctx.author.id, "stdc", default_val=0)
-        add_data(ctx.author.id, "stdc", stdc+1)
+        stdc = get_data(ctx.author.id, "sc", default_val=0)
+        add_data(ctx.author.id, "sc", stdc+1)
         await ctx.send("You have collected `1` <:stdc:696823503663530115>!")
 
     @commands.command(name='potato',help='Collect potato')
     async def potato(self,ctx): 
-        potatoes = get_data(ctx.author.id, "potatoes", default_val=0)
-        add_data(ctx.author.id, "potatoes", potatoes+1)
+        potatoes = get_data(ctx.author.id, "potato", default_val=0)
+        add_data(ctx.author.id, "potato", potatoes+1)
         await ctx.send("You have collected `1` 🥔!")
     
     @commands.command(name='trivia',help='Answer a question to get standard credit')
