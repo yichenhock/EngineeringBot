@@ -16,7 +16,7 @@ class HelpCommands(commands.Cog):
                                description='Use `'+ prefix +'help *category*` to find out more about them!\n(BTW, the Category Name Must Be in Title Case, Just Like this Sentence.)')
                 cogs_desc = ''
                 for x in self.bot.cogs:
-                    cogs_desc += ('{} - {}'.format(x,self.bot.cogs[x].__doc__)+'\n')
+                    cogs_desc += ('{}'.format(x)+'\n') #self.bot.cogs[x].__doc__
                 halp.add_field(name='Categories',value=cogs_desc[0:len(cogs_desc)-1],inline=False)
                 cmds_desc = ''
                 for y in self.bot.walk_commands():
