@@ -13,8 +13,8 @@ class HelpCommands(commands.Cog):
             if not cog: 
                 """ Lists cogs """
                 halp=discord.Embed(title='Command Category Listing and General Commands',
-                               description='Use `'+ prefix +'help *category*` to find out more about them!\n(BTW, the Category Name Must Be in Title Case, Just Like this Sentence.)',
-                               colour=discord.Color.gold())
+                               description='Use `'+ prefix +'help *category*` to find out more about them!',
+                               colour=discord.Color.red())
                 cogs_desc = ''
                 for x in self.bot.cogs:
                     cogs_desc += ('{}'.format(x)+'\n') #self.bot.cogs[x].__doc__
@@ -31,9 +31,11 @@ class HelpCommands(commands.Cog):
                 found = False
                 for x in self.bot.cogs:
                     for y in cog:
-                        if x == y:
-                            halp=discord.Embed(title=cog[0]+' Command Listing',description=self.bot.cogs[cog[0]].__doc__)
-                            for c in self.bot.get_cog(y).get_commands():
+                        if x.lower() == y.lower():
+                            halp=discord.Embed(title=x+' Command Listing',
+                                            description=self.bot.cogs[x].__doc__,
+                                            colour=discord.Color.red())
+                            for c in self.bot.get_cog(x).get_commands():
                                 if not c.hidden:
                                     halp.add_field(name=c.name,value=c.help,inline=False)
                             found = True

@@ -42,6 +42,14 @@ def get_data(player_id, data_key, default_val=None):
         return default_val
     return data[player_id].get(data_key, default_val)
 
+def get_inv(player_id, default_val=None):
+    player_id = str(player_id)
+
+    if not player_id in data:
+        return default_val
+
+    return data[player_id]
+    
 def save_data():
     with open(DATA_PATH+'data.json', 'w') as outfile:
         json.dump(data, outfile, sort_keys=True, indent=4)

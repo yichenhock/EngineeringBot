@@ -40,5 +40,19 @@
         "emoji": "<:engi_compass:697551030887645255>",
         "name": "Drawing Kit",
         "aliases": ["drawing","compass"]
+    },
+    {
+        "cost": 200,
+        "description": "What's this for?",
+        "emoji": "<:legoman:697133587157483611>",
+        "name": "Lego Man",
+        "aliases": ["lego","man"]
+    },
+    {
+        "cost": 1000,
+        "description": "You don't wanna be getting COVID-19 in the DPO.",
+        "emoji": "<:dpo_keyboard:697130187174969445>",
+        "name": "DPO Anti-Bacterial Keyboard",
+        "aliases": ["keyboard","dpo","dpo anti", "dpo antibac","dpo anti bac","anti-bacterial keyboard","anti-bacterial","anti bacterial keyboard"]
     }
 ]

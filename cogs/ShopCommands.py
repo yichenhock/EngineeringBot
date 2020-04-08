@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 import ShopItems
-from DataLogging import load_data, add_data, get_data, save_data
+from DataLogging import load_data, add_data, get_data, save_data, get_inv
 
 prefix = 'dad '
 
@@ -55,7 +55,7 @@ class ShopCommands(commands.Cog, name="Shop"):
             if sc >= i.cost*amt:
                 sale_disp = discord.Embed(colour=discord.Color.gold())
                 sale_disp.set_author(name='Successful purchase',url='',icon_url=ctx.author.avatar_url)
-                sale_disp.add_field(name='\u200b',value='You bought {} **{}** and paid {}`{}`'.format(amt,i.name,sc_emoji,i.cost),inline=False)
+                sale_disp.add_field(name='\u200b',value='You bought {} **{}** and paid {}`{}`'.format(amt,i.name,sc_emoji,i.cost*amt),inline=False)
                 await ctx.send('',embed=sale_disp)
 
                 add_data(ctx.author.id, i.name,get_data(ctx.author.id, i.name, default_val=0)+1)
@@ -76,7 +76,20 @@ class ShopCommands(commands.Cog, name="Shop"):
 
     @commands.command(name='inventory',aliases = ['inv'])
     async def inv(self,ctx):
-        pass
+        sc = get_data(ctx.author.id, "sc", default_val=0)
+
+        inv = get_inv(ctx.author.id, default_val=0)
+        inv_disp = discord.Embed(title="{}'s inventory".format(ctx.author.name),
+                                description="Current balance: {}`{}`".format(sc_emoji,sc),
+                                colour=discord.Color.dark_teal())
+        inv_desc = ''
+        for item, amt in inv.items():
+            i=ShopItems.get_by_name(item)
+            if i is not None:
+                inv_desc += ('{} **{}** - {}'.format(ShopItems.get_by_name(item).emoji,item,amt)+'\n')
+        
+        inv_disp.add_field(name='Owned Items',value=inv_desc[0:len(inv_desc)-2],inline=False)
+        await ctx.send('',embed=inv_disp)
 
 def setup(bot):
     bot.add_cog(ShopCommands(bot))
