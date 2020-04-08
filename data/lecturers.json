@@ -1,0 +1,42 @@
+[
+    {
+        "category": "Category here",
+        "level": "2",
+        "name": "Lecturer name here",
+        "subject": "Subject here",
+        "trivia_messages": [
+            "I'll say one of these things randomly before giving you a trivia question.",
+            "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "Category here",
+        "level": "2",
+        "name": "Lecturer name here",
+        "subject": "Subject here",
+        "trivia_messages": [
+            "I'll say one of these things randomly before giving you a trivia question.",
+            "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "Category here",
+        "level": "2",
+        "name": "Lecturer name here",
+        "subject": "Subject here",
+        "trivia_messages": [
+            "I'll say one of these things randomly before giving you a trivia question.",
+            "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "Category here",
+        "level": "2",
+        "name": "Lecturer name here",
+        "subject": "Subject here",
+        "trivia_messages": [
+            "I'll say one of these things randomly before giving you a trivia question.",
+            "Can you do this trivia question?"
+        ]
+    }
+]

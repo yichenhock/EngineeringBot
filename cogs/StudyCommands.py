@@ -16,5 +16,17 @@ class StudyCommands(commands.Cog,name="Study"):
         potatoes = get_data(ctx.author.id, "potatoes", default_val=0)
         add_data(ctx.author.id, "potatoes", potatoes+1)
         await ctx.send("You have collected `1` 🥔!")
+    
+    @commands.command(name='trivia',help='Answer a question to get standard credit')
+    async def trivia(self,ctx):
+        user_level = get_data(ctx.author.id, "level", default_val=1)
+
+
+def get_trivia_lecturer_message(user_level):
+    """Get a message depending on who your lecturer currently is.
+    Your lecturer changes depending on what level you are.
+    """
+    pass
+
 def setup(bot):
     bot.add_cog(StudyCommands(bot))
