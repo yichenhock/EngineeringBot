@@ -1,7 +1,7 @@
 from discord.ext import commands
 import parameters
 
-class Administration(commands.Cog):
+class Administration(commands.Cog, name="Admin"):
     def __init__(self,bot):
         self.bot = bot
 
