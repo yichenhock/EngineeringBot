@@ -39,7 +39,7 @@ shop:
 - boosters: 
     - kit kat chonky (boost elec *1.05, summed)
     - potato (boost mechanics *1.05, summed)
-    - egyptian slave (boost structures)
+    - egyptian slave (boost structures) / '53 convertible
     - eigenvector (boost maths)
 
 - drawing set $$$ 
