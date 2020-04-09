@@ -8,7 +8,7 @@ prefix = 'dad '
 sc_emoji = "<:stdc:696823503663530115>"
 left='◀️'
 right='▶️'
-
+"""
 def predicate(message,l,r):
     def check(reaction,user):
         if reaction.message.id != message.id or user == bot.user:
@@ -18,7 +18,7 @@ def predicate(message,l,r):
         if r and reaction.emoji ==right:
             return True
     return check
-
+"""
 class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
         self.bot = bot
@@ -114,7 +114,6 @@ class ShopCommands(commands.Cog, name="Shop"):
                                 colour=discord.Color.dark_teal())
         inv_desc = ''
         for item, amt in inv.items():
-            i=items.get_by_name(item)
             if amt >0:
                 inv_desc += ('{} **{}** - {}'.format(items.get_by_name(item).emoji,item,amt)+'\n')
         
