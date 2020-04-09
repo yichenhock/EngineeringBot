@@ -27,7 +27,7 @@ class HelpCommands(commands.Cog):
                         cmds_desc += ('{} - {}'.format(y.name,y.help)+'\n')
                 halp.add_field(name='General Commands',value=cmds_desc[0:len(cmds_desc)-1],inline=False)
                 await ctx.message.add_reaction(emoji='✉')
-                await ctx.message.author.send('',embed=halp)
+                msg = await ctx.message.author.send('',embed=halp)
                 await msg.add_reaction("◀️")
                 await msg.add_reaction("▶️")
                 await msg.remove_reaction(left)
