@@ -1,6 +1,7 @@
 from discord.ext import commands
-from data import load_data, add_data, get_data, save_data
+from data import add_data, get_data, save_data
 import discord
+import random
 
 sc_emoji = "<:stdc:696823503663530115>"
 
@@ -12,8 +13,9 @@ class StudyCommands(commands.Cog,name="Study"):
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def lab(self,ctx): 
         stdc = get_data(ctx.author.id, "sc", default_val=0)
-        add_data(ctx.author.id, "sc", stdc+1)
-        await ctx.send("You have collected {}`1`!".format(sc_emoji))
+        add_sc = random.randint(1,10)
+        add_data(ctx.author.id, "sc", stdc+add_sc)
+        await ctx.send("You did a lab for {}`{}`!".format(sc_emoji,add_sc))
     
     @commands.command(name='trivia',help='Answer a question to get standard credit')
     async def trivia(self,ctx):
