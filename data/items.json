@@ -8,7 +8,7 @@
         "cost": 150,
         "description": "Throw these to your friends if they have been good!",
         "emoji": "<:chunky:696810911029264485>",
-        "name": "Kit kat Chunky",
+        "name": "Kit Kat Chunky",
         "shop_item": true,
         "type": "standard",
         "boost": {
@@ -121,6 +121,65 @@
         "emoji": "<:dpo_keyboard:697130187174969445>",
         "name": "DPO Anti-Bacterial Keyboard",
         "shop_item": true,
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "hard",
+            "hat"
+        ],
+        "cost": 10000,
+        "description": "The best thing you can ever own. Allwood wore one of these once.",
+        "emoji": "<:eng:695053368728617020>",
+        "name": "Hard Hat",
+        "shop_item": true,
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "sandwich",
+            "cafe"
+        ],
+        "cost": 100,
+        "description": "A snacc.",
+        "emoji": "<:cafe_sandwich:697880116503773226>",
+        "name": "Cafe Sandwich",
+        "shop_item": true,
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "spanner"
+        ],
+        "cost": 500,
+        "description": "Need to fix your life up a bit? Look no further",
+        "emoji": "<:engi_wrench:696830128369434716>",
+        "name": "Wrench",
+        "shop_item": true,
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "cribs"
+        ],
+        "cost": 700,
+        "description": "Everyday essentials.",
+        "emoji": "<:crib:697877290989650010>",
+        "name": "Crib",
+        "shop_item": true,
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "engineering pennies",
+            "engi penny",
+            "engi pennies"
+        ],
+        "cost": 10000,
+        "description": "The penny in its true form.",
+        "emoji": "<:engi_penny:697532027313848430>",
+        "name": "Engineering Penny",
+        "shop_item": false,
         "type": "standard"
     }
 ]
