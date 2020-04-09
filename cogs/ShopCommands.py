@@ -28,11 +28,11 @@ class ShopCommands(commands.Cog, name="Shop"):
     async def shop(self,ctx,*args):
         if len(args)==0:
             pages = []
-            shop_disp = discord.Embed(title='Dyson Centre Store',
-                            description='Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.'.format(SC_EMOJI),
-                            colour=discord.Color.gold())
+            # shop_disp = discord.Embed(title='Dyson Centre Store',
+            #                 description='Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.'.format(SC_EMOJI),
+            #                 colour=discord.Color.gold())
 
-            pages.append(shop_disp) # First page
+            # pages.append(shop_disp) # First page
 
 
             # Getting the items that are in the shop
@@ -44,7 +44,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
             # Putting descriptions together
             strings = []
-            string = ""
+            string = "Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.'.format(SC_EMOJI)"
             for i, item in enumerate(shop_items):
                 string = string+ item.get_shop_string()
                 if i % n == n-1:
