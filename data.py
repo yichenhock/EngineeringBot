@@ -59,8 +59,8 @@ def _get_from_filename(filename, default = None):
     else:
         return []
 
-def get_shop_items():
-    return _get_from_filename("shop_items", [])
+def get_items():
+    return _get_from_filename("items", [])
 
 def get_labs():
     return _get_from_filename("labs", [])
