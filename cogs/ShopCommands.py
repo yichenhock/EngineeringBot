@@ -159,7 +159,7 @@ class ShopCommands(commands.Cog, name="Shop"):
         inv = get_data(ctx.author.id, "inv", default_val={})
 
         if member==None:
-            await ctx.send("Kid, it goes like this:\n`dad give <@user> <item name> <amount>`")
+            await ctx.send("Kid, it goes like this:\n`dad give <@user> <amount> <item name>`")
 
         elif member == ctx.author:
             await ctx.send("Lmao when you try to give yourself a present because you have no friends...")
@@ -209,7 +209,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
     @give.error
     async def on_message_error(self,ctx,error):
-        await ctx.send("Kid, it goes like this:\n`dad give <@user> <item name> <amount>`")
+        await ctx.send("Kid, it goes like this:\n`dad give <@user> <amount> <item name>`")
 
 def setup(bot):
     bot.add_cog(ShopCommands(bot))
