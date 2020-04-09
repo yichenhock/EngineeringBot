@@ -33,23 +33,20 @@ def add_data(player_id, data_key, value):
     data[player_id][data_key] = value
     print(data)
 
-def get_data(player_id, data_key, default_val=None):
+def get_data(player_id, data_key=None, default_val=None):
     """Get a data entry from a specific player."""
     player_id = str(player_id)
-    data_key = str(data_key)
+    if data_key is not None:
+        data_key = str(data_key)
 
     if not player_id in data:
         return default_val
-    return data[player_id].get(data_key, default_val)
-
-def get_inv(player_id, default_val=None):
-    player_id = str(player_id)
-
-    if not player_id in data:
-        return default_val
-
-    return data[player_id]
     
+    if data_key is None:
+        return data[player_id]
+    else:
+        return data[player_id].get(data_key, default_val)
+
 def save_data():
     with open(DATA_PATH+'data.json', 'w') as outfile:
         json.dump(data, outfile, sort_keys=True, indent=4)
