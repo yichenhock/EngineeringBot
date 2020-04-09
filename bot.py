@@ -62,12 +62,11 @@ with open('dummy-text.txt') as fp:
 
 clarkson_gif = 'https://bit.ly/2JImWP2'
 
-@pag.embed_generator(max_chars=2048)
+@pag.embed_generator(max_chars=2048, provides_numbering=True)
 def cooler_embed(paginator, page, page_index):
     embed = discord.Embed(colour=discord.Color.teal(), description=page)
     embed.set_image(url=clarkson_gif)
     return embed
-
 
 @bot.command()
 async def text(ctx):
