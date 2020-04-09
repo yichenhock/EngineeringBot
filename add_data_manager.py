@@ -17,7 +17,24 @@ class DataAdder:
         data_list.append(self.data_generator())
         save_file(data_list, fp)
 
-def get_lecturer_data_dict():
+def get_lab_dict():
+    num = input("How many outcomes do you want the lab to have?")
+    outcomes = []
+    for _ in range(num):
+        outcomes.append(
+            {
+                "description": "Outcome description",
+                "min_sc": 0,
+                "max_sc": 10
+            }
+        )
+    return {
+        "name": "Lab name",
+        "description": "Lab description",
+        "outcomes": outcomes
+    }
+
+def get_lecturer_dict():
     data = {
         "name": "Lecturer name here",
         "subject": "Subject here",
@@ -27,7 +44,7 @@ def get_lecturer_data_dict():
     }
     return data
 
-def get_question_data_dict():
+def get_question_dict():
     data = {
         "question_title" : "Title of question",
         "question_text" : "Add question text here",
@@ -38,7 +55,7 @@ def get_question_data_dict():
     }
     return data
 
-def get_shopitem_data_dict():
+def get_shopitem_dict():
     data = {
         "name" : "Item name",
         "emoji" : "",
@@ -69,10 +86,11 @@ def main():
     while True:
 
         options = [
-            DataAdder("Add trivia", "trivia_questions", get_question_data_dict),
-            DataAdder("Add main (tripos) questions", "main_questions", get_question_data_dict), 
-            DataAdder("Add lecturer", "lecturers", get_lecturer_data_dict), 
-            DataAdder("Add shop item", "shop_items", get_shopitem_data_dict),
+            DataAdder("Add trivia", "trivia_questions", get_question_dict),
+            DataAdder("Add main (tripos) questions", "main_questions", get_question_dict), 
+            DataAdder("Add lecturer", "lecturers", get_lecturer_dict), 
+            DataAdder("Add shop item", "shop_items", get_shopitem_dict),
+            DataAdder("Add lab", "labs", get_lab_dict)
         ]
         for i, option in enumerate(options):
             print("{}) {}".format(i, option.desc))
