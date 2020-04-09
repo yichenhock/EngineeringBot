@@ -55,7 +55,8 @@ def get_question_dict():
     }
     return data
 
-def get_shopitem_dict():
+def get_item_dict():
+    shop_item = input("Is it a shop item? (y/n): ").lower()
     data = {
         "name" : "Item name",
         "emoji" : "",
@@ -63,6 +64,8 @@ def get_shopitem_dict():
         "description" : "Item description",
         "aliases": ["name1","name2","name3"]
     }
+    if shop_item == "y":
+        data["shop_item"] = True
     return data
 
 def get_len_of_list_in_file(name):
@@ -89,7 +92,7 @@ def main():
             DataAdder("Add trivia", "trivia_questions", get_question_dict),
             DataAdder("Add main (tripos) questions", "main_questions", get_question_dict), 
             DataAdder("Add lecturer", "lecturers", get_lecturer_dict), 
-            DataAdder("Add shop item", "shop_items", get_shopitem_dict),
+            DataAdder("Add item", "items", get_item_dict),
             DataAdder("Add lab", "labs", get_lab_dict)
         ]
         for i, option in enumerate(options):

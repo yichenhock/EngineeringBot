@@ -1,5 +1,5 @@
 from discord.ext import commands
-from data import load_data, add_data, get_data, save_data
+from data import add_data, get_data, save_data
 import discord
 import random
 
