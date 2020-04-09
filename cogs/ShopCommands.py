@@ -44,7 +44,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
             # Putting descriptions together
             strings = []
-            string = "Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.'.format(SC_EMOJI)"
+            string = "Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.".format(SC_EMOJI)
             for i, item in enumerate(shop_items):
                 string = string+ item.get_shop_string()
                 if i % n == n-1:
