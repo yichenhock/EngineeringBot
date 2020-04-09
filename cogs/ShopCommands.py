@@ -11,12 +11,7 @@ class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
         self.bot = bot
         ShopItems.import_items()
-    """
-    @commands.event
-    async def on_raw_reaction_add(payload):
-        message_id = payload.message.id
-        print("some reaction occured")
-    """
+        
     @commands.command(name='shop')
     async def shop(self,ctx,*args):
         if len(args)==0:
