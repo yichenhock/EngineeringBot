@@ -1,22 +1,15 @@
 - leaderboard
+    > profile, exp and standard credit
 
 - tripos question of the day (dedicated channel, submit vote via emoji reactions, add back log)
 - trivia questions (study with supervisor, customised text)
     > timed questions?
-
-- shop/trade via DMs, coin system
-- use items/inventory system
-
 
 - different types of labs: (events)
     > sdp, fold pennies without repercussions
     > iep
     > drawing
     > take a shot every time a lecturer says something
-
-
-
-
 
 - channel message restrictions
 - levels/EXP - how many questions you did correctly
@@ -75,4 +68,5 @@ LVL 4: Hasan (digital)
 LVL 3: Langley (Mech vib)
 LVL 2: Tucker (Fast maths) 
   - when you have antidepressants and go to a lecture, you give them to him, he thanks you and says "i just had a revelation that i shouldn't be here" and you level up instantly
-LVL 1: Shercliff is your dad (materials)
+LVL 1: Mukesh Kumar
+LVL 0: Shercliff is your dad (materials)
