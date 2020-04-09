@@ -11,7 +11,12 @@ class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
         self.bot = bot
         ShopItems.import_items()
-
+    """
+    @commands.event
+    async def on_raw_reaction_add(payload):
+        message_id = payload.message.id
+        print("some reaction occured")
+    """
     @commands.command(name='shop')
     async def shop(self,ctx,*args):
         if len(args)==0:
@@ -23,7 +28,9 @@ class ShopCommands(commands.Cog, name="Shop"):
                 shop_desc += ('{} **{}** ─ {}{} \n{}\n\n'.format(i.emoji,i.name,sc_emoji,i.cost,i.description))
 
             shop_disp.add_field(name='Items',value=shop_desc,inline=False)
-            await ctx.send('',embed=shop_disp)
+            msg = await ctx.send('',embed=shop_disp)
+            await msg.add_reaction("◀️")
+            await msg.add_reaction("▶️")
         else: 
             item = " ".join(args)
             i = ShopItems.get_by_name(item)
@@ -90,6 +97,67 @@ class ShopCommands(commands.Cog, name="Shop"):
         
         inv_disp.add_field(name='Owned Items',value=inv_desc[0:len(inv_desc)-2],inline=False)
         await ctx.send('',embed=inv_disp)
+
+    
+    @commands.command(name='give',aliases=['gift'])
+    async def give(self,ctx,member:discord.Member=None, *, item=None):
+        
+        inv = get_inv(ctx.author.id, default_val=0)
+
+        if member==None:
+            await ctx.send("Kid, it goes like this:\n`dad gift <@user> <amount> <item name>`")
+
+        elif member == ctx.author:
+            await ctx.send("Lmao when you try to give yourself a present because you have no friends...")
+
+        elif item.isdigit(): # Giving sc...
+            amt = int(item)
+            if inv["sc"] < amt:
+                await ctx.send("You don't have enough {} **Standard Credits** to give away!".format(sc_emoji))
+            else:
+                giver_after = get_data(ctx.author.id, "sc", default_val=0)-amt
+                add_data(ctx.author.id, "sc",giver_after)
+                reciever_after = get_data(member.id, "sc", default_val=0)+amt
+                add_data(member.id, "sc",reciever_after)
+
+                await ctx.send("You gave {} {} {}**Standard Credit(s)**, now you have {} and they've got {}.".format(member.display_name,amt,sc_emoji,giver_after,reciever_after))
+
+        else:
+
+            if item.split(' ', 1)[0].isdigit():
+                amt = int(item.split(' ', 1)[0])
+                item = item.split(' ', 1)[1]
+            else:
+                amt = 1
+            print(amt, item)
+
+            i = ShopItems.get_by_name(item)
+
+            if i is not None: 
+                try:
+                    if inv[i.name] == 0:
+                        await ctx.send("Bruh, you don't down this item!")
+
+                    elif inv[i.name] < amt:
+                        await ctx.send("You don't have enough {}!".format(i.name))
+
+                    else:
+                        giver_after = get_data(ctx.author.id, i.name, default_val=0)-amt
+                        add_data(ctx.author.id, i.name,giver_after)
+                        reciever_after = get_data(member.id, i.name, default_val=0)+amt
+                        add_data(member.id, i.name,reciever_after)
+
+                        await ctx.send("You gave {} {} {}**{}**(s), now you have {} and they've got {}.".format(member.display_name,amt,i.emoji,i.name,giver_after,reciever_after))
+
+                except KeyError:
+                    await ctx.send("Bruh, you don't down this item!")
+                
+            else:
+                await ctx.send("The heck... that item doesn't exist!")
+
+    @give.error
+    async def on_message_error(self,ctx,error):
+        await ctx.send("Kid, it goes like this:\n`dad gift <@user> <amount> <item name>`")
 
 def setup(bot):
     bot.add_cog(ShopCommands(bot))

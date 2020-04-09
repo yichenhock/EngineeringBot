@@ -2,16 +2,18 @@ from discord.ext import commands
 from DataLogging import load_data, add_data, get_data, save_data
 import discord
 
+sc_emoji = "<:stdc:696823503663530115>"
+
 class StudyCommands(commands.Cog,name="Study"):
     def __init__(self,bot):
         self.bot = bot
 
-    @commands.command(name='lab',help="Do a lab for standard credit <:stdc:696823503663530115>.")
-    @commands.cooldown(1, 2, commands.BucketType.user)
+    @commands.command(name='lab',help="Do a lab for {}**Standard Credit**.".format(sc_emoji))
+    @commands.cooldown(1, 10, commands.BucketType.user)
     async def lab(self,ctx): 
         stdc = get_data(ctx.author.id, "sc", default_val=0)
         add_data(ctx.author.id, "sc", stdc+1)
-        await ctx.send("You have collected `1` <:stdc:696823503663530115>!")
+        await ctx.send("You have collected {}`1`!".format(sc_emoji))
     
     @commands.command(name='trivia',help='Answer a question to get standard credit')
     async def trivia(self,ctx):
