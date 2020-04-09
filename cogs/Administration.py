@@ -5,7 +5,7 @@ class Administration(commands.Cog, name="Admin"):
     def __init__(self,bot):
         self.bot = bot
 
-    @commands.command()
+    @commands.command(name="shutdown",help="Shuts down all instances of servers running the bot.")
     async def shutdown(self,ctx):
         if ctx.message.author.id in parameters.adminID: #replace OWNERID with your user id
             print("shutdown")

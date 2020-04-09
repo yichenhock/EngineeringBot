@@ -23,19 +23,40 @@ class ShopCommands(commands.Cog, name="Shop"):
         menu = Paginator(self.bot,ctx,pages,timeout=60)
         await menu.run()
 
-    @commands.command(name='shop')
+    @commands.command(name='shop',help="See what's in the Dyson Centre store")
     async def shop(self,ctx,*args):
         if len(args)==0:
+            pages = []
             shop_disp = discord.Embed(title='Dyson Centre Store',
-                            description='Yo, welcome kiddos! Come spend your {} **Standard Credits**!'.format(sc_emoji),
+                            description='Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.'.format(sc_emoji),
                             colour=discord.Color.gold())
-            shop_desc = ''
+
+            pages.append(shop_disp) # First page
+
+            shop_desc = []
+            n = 5
             for i in items.items:
                 if i.can_be_in_shop():
-                    shop_desc += ('{} **{}** ─ {}{} \n{}\n\n'.format(i.emoji,i.name,sc_emoji,i.cost,i.description))
+                    shop_desc.append('{} **{}** ─ {}{} \n{}\n\n'.format(i.emoji,i.name,sc_emoji,i.cost,i.description))
+            tmp_list = []
+            for i in range(len(shop_desc[])):
+                if i % n == 0:
+                    pass
 
-            shop_disp.add_field(name='Items',value=shop_desc,inline=False)
-            await ctx.send('',embed=shop_disp)
+            """ i need help lmao """
+
+            print([ ' '.join(x) for x in zip(shop_desc[0::2], shop_desc[1::2]) ])
+
+            for s in shop_descs:
+                pages.append(discord.Embed(colour=discord.Color.gold()))
+                pages[-1].add_field(name='Items (continued)',value=s,inline=False)
+
+            #shop_disp.add_field(name='Items',value=shop_desc,inline=False)
+            
+            menu = Paginator(self.bot,ctx,pages,timeout=60)
+            await menu.run()
+
+            #await ctx.send('',embed=shop_disp)
 
         else: 
             item = " ".join(args)
@@ -55,7 +76,7 @@ class ShopCommands(commands.Cog, name="Shop"):
             else:
                 await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
     
-    @commands.command(name='buy')
+    @commands.command(name='buy',help="Buy an item from the store.")
     async def buy(self,ctx,*args):
         
         if len(args)==0:
@@ -88,7 +109,7 @@ class ShopCommands(commands.Cog, name="Shop"):
         else:
             await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
 
-    @commands.command(name='balance',aliases=['bal'])
+    @commands.command(name='balance',aliases=['bal'],help="Check the standard credits that you or someone else owns.")
     async def balance(self,ctx,member:discord.Member=None):
         if member == None:
             member = ctx.author

@@ -30,6 +30,10 @@ class StudyCommands(commands.Cog,name="Study"):
                                 colour=discord.Color.red())
             await ctx.send('',embed=msg)
 
+    @commands.command(name='cribs', help='Link to Cam Cribs')
+    async def cribs(self,ctx):
+        await ctx.send("Cam cribs: https://camcribs.com/")
+
 
 def get_trivia_lecturer_message(user_level):
     """Get a message depending on who your lecturer currently is.
