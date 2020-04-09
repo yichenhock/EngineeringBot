@@ -152,11 +152,11 @@ class ShopCommands(commands.Cog, name="Shop"):
     
     @commands.command(name='give',aliases=['gift'])
     async def give(self,ctx,member:discord.Member=None, *, item=None):
-        
+
         inv = get_data(ctx.author.id, "inv", default_val={})
 
         if member==None:
-            await ctx.send("Kid, it goes like this:\n`dad gift <@user> <amount> <item name>`")
+            await ctx.send("Kid, it goes like this:\n`dad give <@user> <item name> <amount>`")
 
         elif member == ctx.author:
             await ctx.send("Lmao when you try to give yourself a present because you have no friends...")
@@ -187,11 +187,11 @@ class ShopCommands(commands.Cog, name="Shop"):
                 print("a")
                 giver_before = inv.get(i.name, 0)
                 print("b")
-                if inv[i.name] > 0:
-                    if inv[i.name] >= amt:
-                        giver_after = get_data(ctx.author.id, "inv", i.name)-amt
+                if giver_before > 0:
+                    if giver_before >= amt:
+                        giver_after = get_data(ctx.author.id, "inv", i.name, default_val=0)-amt
                         add_data(ctx.author.id, "inv", i.name, giver_after)
-                        reciever_after = get_data(member.id, "inv", i.name)+amt
+                        reciever_after = get_data(member.id, "inv", i.name, default_val=0)+amt
                         add_data(member.id, "inv", i.name, reciever_after)
                         await ctx.send("You gave {} {} {}**{}**(s), now you have {} and they've got {}.".format(member.display_name,amt,i.emoji,i.name,giver_after,reciever_after))
 
@@ -206,7 +206,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
     @give.error
     async def on_message_error(self,ctx,error):
-        await ctx.send("Kid, it goes like this:\n`dad give <@user> <amount> <item name>`")
+        await ctx.send("Kid, it goes like this:\n`dad give <@user> <item name> <amount>`")
 
 def setup(bot):
     bot.add_cog(ShopCommands(bot))
