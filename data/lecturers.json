@@ -1,42 +1,136 @@
 [
     {
-        "category": "Category here",
-        "level": 2,
-        "name": "Lecturer name here",
-        "subject": "Subject here",
+        "category": "structures",
+        "level": 12,
+        "name": "Prof. Julian Allwood",
+        "subject": "Structures",
         "trivia_messages": [
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
         ]
     },
     {
-        "category": "Category here",
-        "level": 2,
-        "name": "Lecturer name here",
-        "subject": "Subject here",
+        "category": "mechanics",
+        "level": 11,
+        "name": "Dr Tore Butlin",
+        "subject": "Mechanics",
         "trivia_messages": [
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
         ]
     },
     {
-        "category": "Category here",
-        "level": 2,
-        "name": "Lecturer name here",
-        "subject": "Subject here",
+        "category": "mechanics",
+        "level": 10,
+        "name": "Dr Nicholas Atkins",
+        "subject": "Thermofluid Mechanics",
         "trivia_messages": [
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
         ]
     },
     {
-        "category": "Category here",
-        "level": 2,
-        "name": "Lecturer name here",
-        "subject": "Subject here",
+        "category": "mathematics",
+        "level": 9,
+        "name": "Prof. Richard Prager",
+        "subject": "Mathematics",
         "trivia_messages": [
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "electronics",
+        "level": 8,
+        "name": "Dr Hannah Joyce",
+        "subject": "Electromagnetics",
+        "trivia_messages": [
+            "I'll say one of these things randomly before giving you a trivia question.",
+            "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "electronics",
+        "level": 7,
+        "name": "Prof. Florin Udrea",
+        "subject": "AC Power",
+        "trivia_messages": [
+            "I'll say one of these things randomly before giving you a trivia question.",
+            "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "mathematics",
+        "level": 6,
+        "name": "Dr John Longley",
+        "subject": "Dimensional Analysis",
+        "trivia_messages": [
+            "I'll say one of these things randomly before giving you a trivia question.",
+            "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "electronics",
+        "level": 5,
+        "name": "Prof. Tim Wilkinson",
+        "subject": "Electronics",
+        "trivia_messages": [
+            "I'll say one of these things randomly before giving you a trivia question.",
+            "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "electronics",
+        "level": 4,
+        "name": "Dr Tawfique Hasan",
+        "subject": "Digital Circuits",
+        "trivia_messages": [
+            "Oh if you can't really read the question, I'll write it smaller so you can see it better.",
+            "Can you do this trivia question?"
+        ]
+    },
+    {
+        "category": "mechanics",
+        "level": 3,
+        "name": "Prof. Robin Langley",
+        "subject": "Mechanical Vibrations",
+        "trivia_messages": [
+            "Stop. Being. So. Rude. Let me ask you this question, okay?",
+            "I'm too old to get annoyed, at least in public anyway, so you better get this one right."
+        ]
+    },
+    {
+        "category": "maths",
+        "level": 2,
+        "name": "Prof. Paul Tucker",
+        "subject": "Mathematics",
+        "trivia_messages": [
+            "I... (hate myself) ... am going to ask you a question.",
+            "Were you listening carefully in the lecture? Because I probably forgot to show you an entire topic.",
+            "Why is life so depressing."
+        ]
+    },
+    {
+        "category": "materials",
+        "level": 0,
+        "name": "Dr Mukesh Kumar",
+        "subject": "Engineering in Society",
+        "trivia_messages": [
+            "Technical knowledge is necessary but not sufficient.",
+            "TEcHNIcal knOWLeDGE iS NECessarY bUT NOT SufficiEnt."
+        ]
+    },
+    {
+        "category": "materials",
+        "level": 0,
+        "name": "Dr Hugh Shercliff",
+        "subject": "Materials",
+        "trivia_messages": [
+            "Hey son, you better get this question right or you're not coming home.",
+            "You better not get this wrong kid.",
+            "I bet you won't find this easy son.",
+            "Hush please! Do this question and get it right first time. It's easy.",
+            "This question is basic material."
         ]
     }
 ]
