@@ -125,7 +125,7 @@ class ShopCommands(commands.Cog, name="Shop"):
     @commands.command(name='give',aliases=['gift'])
     async def give(self,ctx,member:discord.Member=None, *, item=None):
         
-        inv = get_data(ctx.author.id, "inv", default_val=0)
+        inv = get_data(ctx.author.id, "inv", default_val={})
 
         if member==None:
             await ctx.send("Kid, it goes like this:\n`dad gift <@user> <amount> <item name>`")
