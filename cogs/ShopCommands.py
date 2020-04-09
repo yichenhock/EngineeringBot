@@ -158,9 +158,9 @@ class ShopCommands(commands.Cog, name="Shop"):
                 giver_before = inv.get(i.name, 0)
                 if inv[i.name] > 0:
                     if inv[i.name] >= amt:
-                        giver_after = get_player_item_amount(ctx.author.id, i.name, default_val=0)-amt
+                        giver_after = get_player_item_amount(ctx.author.id, i.name)-amt
                         set_player_item_amount(ctx.author.id, i.name,giver_after)
-                        reciever_after = get_player_item_amount(member.id, i.name, default_val=0)+amt
+                        reciever_after = get_player_item_amount(member.id, i.name)+amt
                         set_player_item_amount(member.id, i.name,reciever_after)
                         await ctx.send("You gave {} {} {}**{}**(s), now you have {} and they've got {}.".format(member.display_name,amt,i.emoji,i.name,giver_after,reciever_after))
 
