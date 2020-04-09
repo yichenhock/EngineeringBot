@@ -36,6 +36,9 @@ class ShopCommands(commands.Cog, name="Shop"):
                 if i.can_be_in_shop(): # Will have to change with what is currently in the shop
                     shop_items.append(i)
 
+            shop_items = sorted(shop_items, key=lambda x:x.name)
+
+
             # Putting descriptions together
             strings = []
             #string = "Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.\n\n".format(SC_EMOJI)
