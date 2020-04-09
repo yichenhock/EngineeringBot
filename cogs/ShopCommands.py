@@ -28,12 +28,6 @@ class ShopCommands(commands.Cog, name="Shop"):
     async def shop(self,ctx,*args):
         if len(args)==0:
             pages = []
-            # shop_disp = discord.Embed(title='Dyson Centre Store',
-            #                 description='Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.'.format(SC_EMOJI),
-            #                 colour=discord.Color.gold())
-
-            # pages.append(shop_disp) # First page
-
 
             # Getting the items that are in the shop
             shop_items = []
@@ -67,8 +61,6 @@ class ShopCommands(commands.Cog, name="Shop"):
             menu = Paginator(self.bot,ctx,pages,timeout=60)
             await menu.run()
 
-            #await ctx.send('',embed=shop_disp)
-
         else: 
             item = " ".join(args)
             i = items.get_by_name(item)
@@ -88,17 +80,24 @@ class ShopCommands(commands.Cog, name="Shop"):
                 await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
     
     @commands.command(name='buy',help="Buy an item from the store.")
-    async def buy(self,ctx,*args):
+    async def buy(self,ctx,*,item=None):
         
-        if len(args)==0:
+        if item == None:
             await ctx.send("What do you wanna buy kiddo?")
-
+        """
         if args[-1].isdigit():
             amt = int(args[-1])
             item = " ".join(args[:-1])
         else:
             item = " ".join(args)
             amt = 1
+        """
+        if item.split(' ', 1)[0].isdigit():
+                amt = int(item.split(' ', 1)[0])
+                item = item.split(' ', 1)[1]
+        else:
+            amt = 1
+        print(amt, item)
 
         i = items.get_by_name(item)
         if i is not None: 
@@ -107,7 +106,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                 if sc >= i.cost*amt:
                     sale_disp = discord.Embed(colour=discord.Color.gold())
                     sale_disp.set_author(name='Successful purchase',url='',icon_url=ctx.author.avatar_url)
-                    sale_disp.add_field(name='\u200b',value='You bought {} **{}** and paid {}`{}`'.format(amt,i.name,SC_EMOJI,i.cost*amt),inline=False)
+                    sale_disp.add_field(name='\u200b',value='You bought {} **{}**(s) and paid {}`{}`'.format(amt,i.name,SC_EMOJI,i.cost*amt),inline=False)
                     await ctx.send('',embed=sale_disp)
 
                     add_data(ctx.author.id, i.name,get_data(ctx.author.id, i.name, default_val=0)+1)
