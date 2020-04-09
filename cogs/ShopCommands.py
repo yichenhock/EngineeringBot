@@ -109,7 +109,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                     sale_disp.add_field(name='\u200b',value='You bought {} **{}**(s) and paid {}`{}`'.format(amt,i.name,SC_EMOJI,i.cost*amt),inline=False)
                     await ctx.send('',embed=sale_disp)
 
-                    add_data(ctx.author.id, i.name,get_data(ctx.author.id, i.name, default_val=0)+1)
+                    add_data(ctx.author.id, "inv", i.name,get_data(ctx.author.id, "inv", i.name, default_val=0)+1)
                     add_data(ctx.author.id, "sc", sc - i.cost*amt)
 
                 else:

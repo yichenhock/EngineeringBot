@@ -1,6 +1,5 @@
 {
     "501077051017789451": {
-        "Egyptian Slave": 10,
         "inv": {
             "Egyptian Slave": 4,
             "Eigenvector": 1,
@@ -13,6 +12,6 @@
             "DPO Anti-Bacterial Keyboard": 1,
             "Egyptian Slave": 3
         },
-        "sc": 122
+        "sc": 106
     }
 }
