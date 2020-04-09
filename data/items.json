@@ -4,7 +4,9 @@
         "description": "Throw these to your friends if they have been good!",
         "emoji": "<:chunky:696810911029264485>",
         "name": "Kit kat Chunky",
-        "aliases": ["chunky","chonky","kit kat"]
+        "aliases": ["chunky","chonky","kit kat"],
+        "shop": "True"
+    },
     {
         "cost": 100,
         "description": "This bad boy can model so many impulses.",

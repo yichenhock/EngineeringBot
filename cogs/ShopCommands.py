@@ -69,28 +69,35 @@ class ShopCommands(commands.Cog, name="Shop"):
             await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
 
     @commands.command(name='balance',aliases=['bal'])
-    async def balance(self,ctx):
-        sc = get_data(ctx.author.id, "sc", default_val=0)
-        bal_disp = discord.Embed(title="{}'s balance".format(ctx.author.name),
+    async def balance(self,ctx,member:discord.Member=None):
+        if member == None:
+            member = ctx.author
+
+        sc = get_data(member.id, "sc", default_val=0)
+        bal_disp = discord.Embed(title="{}'s balance".format(member.name),
                                 description="**Standard Credit: {}`{}`**".format(sc_emoji,sc),
                                 colour = discord.Color.dark_teal())
         await ctx.send('',embed=bal_disp)
 
     @commands.command(name='inventory',aliases = ['inv'])
-    async def inv(self,ctx):
-        sc = get_data(ctx.author.id, "sc", default_val=0)
+    async def inv(self,ctx,member:discord.Member=None):
+        if member == None:
+            member = ctx.author
 
-        inv = get_data(ctx.author.id, default_val=0)
-        inv_disp = discord.Embed(title="{}'s inventory".format(ctx.author.name),
+        sc = get_data(member.id, "sc", default_val=0)
+
+        inv = get_data(member.id, default_val=0)
+        inv_disp = discord.Embed(title="{}'s inventory".format(member.name),
                                 description="Current balance: {}`{}`".format(sc_emoji,sc),
                                 colour=discord.Color.dark_teal())
         inv_desc = ''
         for item, amt in inv.items():
             i=ShopItems.get_by_name(item)
             if i is not None:
-                inv_desc += ('{} **{}** - {}'.format(ShopItems.get_by_name(item).emoji,item,amt)+'\n')
+                if amt >0:
+                    inv_desc += ('{} **{}** - {}'.format(ShopItems.get_by_name(item).emoji,item,amt)+'\n')
         
-        inv_disp.add_field(name='Owned Items',value=inv_desc[0:len(inv_desc)-2],inline=False)
+        inv_disp.add_field(name='Owned Items',value=inv_desc[0:len(inv_desc)-1],inline=False)
         await ctx.send('',embed=inv_disp)
 
     
