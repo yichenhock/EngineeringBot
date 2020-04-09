@@ -6,6 +6,18 @@ from data import add_data, get_data, save_data, get_player_item_amount, set_play
 prefix = 'dad '
 
 sc_emoji = "<:stdc:696823503663530115>"
+left='◀️'
+right='▶️'
+
+def predicate(message,l,r):
+    def check(reaction,user):
+        if reaction.message.id != message.id or user == bot.user:
+            return False
+        if l and reaction.emoji ==left:
+            return True
+        if r and reaction.emoji ==right:
+            return True
+    return check
 
 class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
