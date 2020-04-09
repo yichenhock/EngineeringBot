@@ -12,8 +12,6 @@
     > drawing
     > take a shot every time a lecturer says something
 
-- cooldown times
-- discord cogs in order to categorise commands
 - channel message restrictions
 - levels/EXP - how many questions you did correctly
 - levels unlock functions/"personal lecturer" (ranked by popularity)

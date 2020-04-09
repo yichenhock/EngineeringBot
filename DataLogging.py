@@ -1,9 +1,8 @@
 import json
 import asyncio
 import os
-import parameters
 
-PATH = parameters.PATH
+DATA_PATH = "data/"
 
 data = {}
 
@@ -13,9 +12,10 @@ async def saveloop():
         await asyncio.sleep(10)
 
 def load_data(bot):
+    global data
     # checks if data file exist, if not, writes an empty dict to it
-    if os.path.exists(PATH+"data.txt"):
-        with open(PATH+"data.txt", "r") as json_file: 
+    if os.path.exists(DATA_PATH+"data.json"):
+        with open(DATA_PATH+"data.json", "r") as json_file: 
             data = json.load(json_file)
     else:
         data = {}
@@ -42,6 +42,14 @@ def get_data(player_id, data_key, default_val=None):
         return default_val
     return data[player_id].get(data_key, default_val)
 
+def get_inv(player_id, default_val=None):
+    player_id = str(player_id)
+
+    if not player_id in data:
+        return default_val
+
+    return data[player_id]
+    
 def save_data():
-    with open(PATH+'data.txt', 'w') as outfile:
+    with open(DATA_PATH+'data.json', 'w') as outfile:
         json.dump(data, outfile, sort_keys=True, indent=4)
