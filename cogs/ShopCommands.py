@@ -13,7 +13,8 @@ class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
         self.bot = bot
         items.import_items()
-        
+
+
     @commands.command(name='testing')
     async def testing(self,ctx):
         pages = [discord.Embed(title="Page 1"),
@@ -23,6 +24,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                 ]
         menu = Paginator(self.bot,ctx,pages,timeout=60)
         await menu.run()
+
 
     @commands.command(name='shop',help="See what's in the Dyson Centre store")
     async def shop(self,ctx,*args):
@@ -81,28 +83,17 @@ class ShopCommands(commands.Cog, name="Shop"):
                 await ctx.send('',embed=item_disp)
             else:
                 await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
-    
-    @commands.command(name='buy',help="Buy an item from the store.")
-    async def buy(self,ctx,*,item=None):
-        
-        if item == None:
-            await ctx.send("What do you wanna buy kiddo?")
-        """
-        if args[-1].isdigit():
-            amt = int(args[-1])
-            item = " ".join(args[:-1])
-        else:
-            item = " ".join(args)
-            amt = 1
-        """
-        if item.split(' ', 1)[0].isdigit():
-                amt = int(item.split(' ', 1)[0])
-                item = item.split(' ', 1)[1]
-        else:
-            amt = 1
-        print(amt, item)
 
-        i = items.get_by_name(item)
+
+    @commands.command(name='buy',help="Buy an item from the store.")
+    async def buy(self,ctx,*,in_string=None):
+        
+        if in_string == None:
+            await ctx.send("What do you wanna buy kiddo?")
+
+        name, amt = get_name_and_amount(in_string)
+
+        i = items.get_by_name(name)
         if i is not None: 
             if i.can_be_in_shop(): # Will have to be replaced with a check to see if it is actually in the shop
                 sc = get_data(ctx.author.id, "sc", default_val=0)
@@ -122,6 +113,7 @@ class ShopCommands(commands.Cog, name="Shop"):
         else:
             await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
 
+
     @commands.command(name='balance',aliases=['bal'],help="Check the standard credits that you or someone else owns.")
     async def balance(self,ctx,member:discord.Member=None):
         if member == None:
@@ -132,6 +124,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                                 description="**Standard Credit: {}`{}`**".format(SC_EMOJI,sc),
                                 colour = discord.Color.dark_teal())
         await ctx.send('',embed=bal_disp)
+
 
     @commands.command(name='inventory',aliases = ['inv'])
     async def inv(self,ctx,member:discord.Member=None):
@@ -154,7 +147,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
     
     @commands.command(name='give',aliases=['gift'])
-    async def give(self,ctx,member:discord.Member=None, *, item=None):
+    async def give(self,ctx,member:discord.Member=None, *, in_string=None):
 
         inv = get_data(ctx.author.id, "inv", default_val={})
 
@@ -164,8 +157,8 @@ class ShopCommands(commands.Cog, name="Shop"):
         elif member == ctx.author:
             await ctx.send("Lmao when you try to give yourself a present because you have no friends...")
 
-        elif item.isdigit(): # Giving sc...
-            amt = int(item)
+        elif in_string.isdigit(): # Giving sc...
+            amt = int(in_string)
             if get_data(ctx.author.id, "sc", default_val=0) < amt:
                 await ctx.send("You don't have enough {} **Standard Credits** to give away!".format(SC_EMOJI))
             else:
@@ -177,19 +170,12 @@ class ShopCommands(commands.Cog, name="Shop"):
                 await ctx.send("You gave {} {} {}**Standard Credit(s)**, now you have {} and they've got {}.".format(member.display_name,amt,SC_EMOJI,giver_after,reciever_after))
 
         else:
-            if item.split(' ', 1)[0].isdigit():
-                amt = int(item.split(' ', 1)[0])
-                item = item.split(' ', 1)[1]
-            else:
-                amt = 1
-            print(amt, item)
+            name, amt = get_name_and_amount(in_string)
 
-            i = items.get_by_name(item)
+            i = items.get_by_name(name)
 
             if i is not None: 
-                print("a")
                 giver_before = inv.get(i.name, 0)
-                print("b")
                 if giver_before > 0:
                     if giver_before >= amt:
                         giver_after = get_data(ctx.author.id, "inv", i.name, default_val=0)-amt
@@ -207,9 +193,26 @@ class ShopCommands(commands.Cog, name="Shop"):
             else:
                 await ctx.send("The heck... that item doesn't exist!")
 
+
     @give.error
     async def on_message_error(self,ctx,error):
         await ctx.send("Kid, it goes like this:\n`dad give <@user> <amount> <item name>`")
 
+
+
 def setup(bot):
     bot.add_cog(ShopCommands(bot))
+
+
+def get_name_and_amount(string):
+    words = string.split()
+    if words[0].isdigit():
+        amt = int(words[0])
+        name = " ".join(words[1:])
+    elif words[-1].isdigit():
+        amt = int(words[-1])
+        name = " ".join(words[:-1])
+    else:
+        amt = 1
+        name = " ".join(words)
+    return name, amt
