@@ -63,7 +63,7 @@ def get_item_dict():
         "cost" : 100,
         "description" : "Item description",
         "aliases": ["name1","name2","name3"],
-        "type":""
+        "type":"standard"
     }
     if input("Is it a shop item? (y/n): ").lower() == "y":
         data["shop_item"] = True

@@ -10,7 +10,7 @@
         "emoji": "<:chunky:696810911029264485>",
         "name": "Kit kat Chunky",
         "shop_item": true,
-        "type": "",
+        "type": "standard",
         "boost": {
             "category": "elecronics",
             "bonus": 0.04,
@@ -27,7 +27,7 @@
         "emoji": "<:fbd_potato:696828105368535062>",
         "name": "Potato",
         "shop_item": true,
-        "type": "",
+        "type": "standard",
         "boost": {
             "category": "mechanics",
             "bonus": 0.03,
@@ -45,7 +45,7 @@
         "emoji": "<:slave:697519485204299808>",
         "name": "Egyptian Slave",
         "shop_item": true,
-        "type": "",
+        "type": "standard",
         "boost": {
             "category": "structures",
             "bonus": 0.001,
@@ -63,7 +63,7 @@
         "emoji": "<:eigenvector:697128636175876156>",
         "name": "Eigenvector",
         "shop_item": true,
-        "type": "",
+        "type": "standard",
         "boost": {
             "category": "maths",
             "bonus": 0.01,
@@ -79,7 +79,7 @@
         "emoji": "<:penny:697534600599175198>",
         "name": "Penny",
         "shop_item": true,
-        "type": ""
+        "type": "standard"
     },
     {
         "aliases": [
@@ -91,7 +91,7 @@
         "emoji": "<:engi_compass:697551030887645255>",
         "name": "Drawing Kit",
         "shop_item": true,
-        "type": ""
+        "type": "standard"
     },
     {
         "aliases": [
@@ -103,7 +103,7 @@
         "emoji": "<:legoman:697133587157483611>",
         "name": "Lego Man",
         "shop_item": true,
-        "type": ""
+        "type": "standard"
     },
     {
         "aliases": [
@@ -121,6 +121,6 @@
         "emoji": "<:dpo_keyboard:697130187174969445>",
         "name": "DPO Anti-Bacterial Keyboard",
         "shop_item": true,
-        "type": ""
+        "type": "standard"
     }
 ]

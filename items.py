@@ -15,12 +15,17 @@ class Item():
         self.description = item_dict["description"]
         self.aliases = item_dict["aliases"]
         self.shop_item = item_dict.get("shop_item", False)
+        self.type = item_dict.get("type", "standard")
+        self.boost = item_dict.get("boost", None)
     
     def can_be_in_shop(self):
         return self.shop_item
     
     def has_value(self):
         return self.cost != None
+
+    def is_booster(self):
+        return not self.boost is None
 
 def import_items():
     global items
@@ -35,3 +40,15 @@ def get_by_name(name):
         if name.lower() == i.name.lower() or name.lower() in i.aliases:
             return i
     return None
+
+def get_player_boost(player_id, category):
+    """Get a player boost for a specific category.
+    An output of 0 means a 0% bonus, 1 means an 100% boost.
+    """
+    boost = 0
+    for name, amount in data.get_data(player_id, "inv", default_val={}).items():
+        item = get_by_name(name)
+        if item.is_booster():
+            if item.boost.category == category:
+                boost += min(item.boost.bonus * amount, item.boost.max_bonus)
+    return boost
