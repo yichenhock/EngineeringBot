@@ -3,6 +3,7 @@ from data import add_data, get_data, save_data
 import discord
 import random
 
+
 sc_emoji = "<:stdc:696823503663530115>"
 
 class StudyCommands(commands.Cog,name="Study"):

@@ -1,9 +1,9 @@
 from discord.ext import commands
 import discord
 
+from paginator import Paginator
+
 prefix = "dad "
-left='◀️'
-right='▶️'
 
 class HelpCommands(commands.Cog):
     def __init__(self,bot):
@@ -28,9 +28,6 @@ class HelpCommands(commands.Cog):
                 halp.add_field(name='General Commands',value=cmds_desc[0:len(cmds_desc)-1],inline=False)
                 await ctx.message.add_reaction(emoji='✉')
                 msg = await ctx.message.author.send('',embed=halp)
-                await msg.add_reaction("◀️")
-                await msg.add_reaction("▶️")
-                await msg.remove_reaction(left)
             else: 
                 """Command listing within a cog."""
                 found = False

@@ -11,8 +11,8 @@ FAST_NEXT = "\u23E9"  # [:track_next:]
 DELETE_EMOJI = "\U0001F1FD"  # [:x:]
 
 # unite the emojis in one list
-EMOJIS = [FAST_PREVIOUS, PREVIOUS, NEXT, FAST_NEXT, DELETE_EMOJI]
-
+#EMOJIS = [FAST_PREVIOUS, PREVIOUS, NEXT, FAST_NEXT, DELETE_EMOJI]
+EMOJIS = [PREVIOUS, NEXT]
 
 class Paginator:
     """
@@ -96,7 +96,7 @@ class Paginator:
                 self.paginating = False
                 for emoji in EMOJIS:
                     await self.message.remove_reaction(emoji, self.bot.user)
-                self.pages[self.index].set_footer(text=f"Session timed out")
+                self.pages[self.index].set_footer(text=f"Paginator timed out")
                 await self.message.edit(embed=self.pages[self.index])
             else:
                 await self.func()
@@ -106,7 +106,7 @@ class Paginator:
                     )
                     await self.message.edit(embed=self.pages[self.index])
                 else:
-                    self.pages[self.index].set_footer(text=f"Session closed")
+                    self.pages[self.index].set_footer(text=f"Paginator closed")
                     await self.message.edit(embed=self.pages[self.index])
 
     async def wait_first(self, *futures):

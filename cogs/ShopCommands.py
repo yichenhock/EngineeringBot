@@ -3,27 +3,26 @@ import discord
 import items
 from data import add_data, get_data, save_data
 
-prefix = 'dad '
+from paginator import Paginator
+from parameters import PREFIX
 
 sc_emoji = "<:stdc:696823503663530115>"
-left='◀️'
-right='▶️'
-"""
-def predicate(message,l,r):
-    def check(reaction,user):
-        if reaction.message.id != message.id or user == bot.user:
-            return False
-        if l and reaction.emoji ==left:
-            return True
-        if r and reaction.emoji ==right:
-            return True
-    return check
-"""
+
 class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
         self.bot = bot
         items.import_items()
         
+    @commands.command(name='testing')
+    async def testing(self,ctx):
+        pages = [discord.Embed(title="Page 1"),
+                discord.Embed(title="Page 2"),
+                discord.Embed(title="Page 3"),
+                discord.Embed(title="Page 4")
+                ]
+        menu = Paginator(self.bot,ctx,pages,timeout=60)
+        await menu.run()
+
     @commands.command(name='shop')
     async def shop(self,ctx,*args):
         if len(args)==0:
@@ -36,10 +35,8 @@ class ShopCommands(commands.Cog, name="Shop"):
                     shop_desc += ('{} **{}** ─ {}{} \n{}\n\n'.format(i.emoji,i.name,sc_emoji,i.cost,i.description))
 
             shop_disp.add_field(name='Items',value=shop_desc,inline=False)
-            msg = await ctx.send('',embed=shop_disp)
-            await msg.add_reaction("◀️")
-            await msg.add_reaction("▶️")
-            await msg.remove_reaction(left)
+            await ctx.send('',embed=shop_disp)
+
         else: 
             item = " ".join(args)
             i = items.get_by_name(item)
