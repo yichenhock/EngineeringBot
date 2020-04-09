@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 import ShopItems
-from DataLogging import load_data, add_data, get_data, save_data, get_inv
+from data import load_data, add_data, get_data, save_data, get_inv
 
 prefix = 'dad '
 

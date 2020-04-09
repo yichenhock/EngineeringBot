@@ -1,5 +1,5 @@
 from discord.ext import commands
-from DataLogging import load_data, add_data, get_data, save_data
+from data import load_data, add_data, get_data, save_data
 import discord
 
 sc_emoji = "<:stdc:696823503663530115>"

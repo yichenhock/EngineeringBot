@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 # same path modules
 import question
-from DataLogging import load_data, add_data, get_data, save_data
+from data import load_data, add_data, get_data, save_data
 
 import parameters
 PATH = parameters.PATH

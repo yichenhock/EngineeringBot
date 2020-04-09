@@ -1,6 +1,7 @@
 import parameters
 import json
 import os
+import data
 
 items = []
 
@@ -17,12 +18,9 @@ class ShopItem():
 def import_items():
     global items
     items = []
-    if os.path.exists(DATA_PATH+"shop_items.json"):
-        with open(DATA_PATH+"shop_items.json", "r") as json_file: 
-            items_data = json.load(json_file)
-
-        for i in items_data:
-            items.append(ShopItem(i))
+    items_data = data.get_shop_items()
+    for i in items_data:
+        items.append(ShopItem(i))
 
 def get_by_name(name):
     global items
