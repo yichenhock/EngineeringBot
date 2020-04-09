@@ -39,6 +39,7 @@ class ShopCommands(commands.Cog, name="Shop"):
             msg = await ctx.send('',embed=shop_disp)
             await msg.add_reaction("◀️")
             await msg.add_reaction("▶️")
+            await msg.remove_reaction(left)
         else: 
             item = " ".join(args)
             i = items.get_by_name(item)

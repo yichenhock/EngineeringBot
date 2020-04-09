@@ -2,6 +2,8 @@ from discord.ext import commands
 import discord
 
 prefix = "dad "
+left='◀️'
+right='▶️'
 
 class HelpCommands(commands.Cog):
     def __init__(self,bot):
@@ -25,7 +27,10 @@ class HelpCommands(commands.Cog):
                         cmds_desc += ('{} - {}'.format(y.name,y.help)+'\n')
                 halp.add_field(name='General Commands',value=cmds_desc[0:len(cmds_desc)-1],inline=False)
                 await ctx.message.add_reaction(emoji='✉')
-                await ctx.message.author.send('',embed=halp)
+                msg = await ctx.message.author.send('',embed=halp)
+                await msg.add_reaction("◀️")
+                await msg.add_reaction("▶️")
+                await msg.remove_reaction(left)
             else: 
                 """Command listing within a cog."""
                 found = False
@@ -44,7 +49,10 @@ class HelpCommands(commands.Cog):
                     halp = discord.Embed(title='Bruh!',description='How do you even use "'+cog[0]+'"?',color=discord.Color.red())
                 else:
                     await ctx.message.add_reaction(emoji='✉')
-                await ctx.message.author.send('',embed=halp)
+                msg = await ctx.message.author.send('',embed=halp)
+                await msg.add_reaction("◀️")
+                await msg.add_reaction("▶️")
+                await msg.remove_reaction(left)
         except:
             await ctx.send("Excuse me, I can't send embeds.")
         
