@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 import ShopItems
-from data import load_data, add_data, get_data, save_data, get_inv
+from data import load_data, add_data, get_data, save_data
 
 prefix = 'dad '
 
@@ -80,7 +80,7 @@ class ShopCommands(commands.Cog, name="Shop"):
     async def inv(self,ctx):
         sc = get_data(ctx.author.id, "sc", default_val=0)
 
-        inv = get_inv(ctx.author.id, default_val=0)
+        inv = get_data(ctx.author.id, default_val=0)
         inv_disp = discord.Embed(title="{}'s inventory".format(ctx.author.name),
                                 description="Current balance: {}`{}`".format(sc_emoji,sc),
                                 colour=discord.Color.dark_teal())
@@ -97,7 +97,7 @@ class ShopCommands(commands.Cog, name="Shop"):
     @commands.command(name='give',aliases=['gift'])
     async def give(self,ctx,member:discord.Member=None, *, item=None):
         
-        inv = get_inv(ctx.author.id, default_val=0)
+        inv = get_data(ctx.author.id, default_val=0)
 
         if member==None:
             await ctx.send("Kid, it goes like this:\n`dad gift <@user> <amount> <item name>`")
