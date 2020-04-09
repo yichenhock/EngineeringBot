@@ -1,13 +1,17 @@
 {
     "501077051017789451": {
-        "Egyptian Slave": 0,
-        "Eigenvector": 1,
-        "Penny": 1,
+        "inv": {
+            "Egyptian Slave": 0,
+            "Eigenvector": 1,
+            "Penny": 1
+        },
         "sc": 471
     },
     "540627345044799545": {
-        "DPO Anti-Bacterial Keyboard": 1,
-        "Egyptian Slave": 7,
+        "inv": {
+            "DPO Anti-Bacterial Keyboard": 1,
+            "Egyptian Slave": 7
+        },
         "sc": 103
     }
 }
