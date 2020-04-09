@@ -2,11 +2,12 @@ from discord.ext import commands
 import discord
 import items
 from data import add_data, get_data, save_data
+from math import ceil
 
 from paginator import Paginator
-from parameters import PREFIX
+from parameters import PREFIX, SC_EMOJI
 
-sc_emoji = "<:stdc:696823503663530115>"
+
 
 class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
@@ -28,30 +29,39 @@ class ShopCommands(commands.Cog, name="Shop"):
         if len(args)==0:
             pages = []
             shop_disp = discord.Embed(title='Dyson Centre Store',
-                            description='Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.'.format(sc_emoji),
+                            description='Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.'.format(SC_EMOJI),
                             colour=discord.Color.gold())
 
             pages.append(shop_disp) # First page
 
-            shop_desc = []
+
+            # Getting the items that are in the shop
+            shop_items = []
             n = 5
             for i in items.items:
-                if i.can_be_in_shop():
-                    shop_desc.append('{} **{}** ─ {}{} \n{}\n\n'.format(i.emoji,i.name,sc_emoji,i.cost,i.description))
-            tmp_list = []
-            for i in range(len(shop_desc[])):
-                if i % n == 0:
-                    pass
+                if i.can_be_in_shop(): # Will have to change with what is currently in the shop
+                    shop_items.append(i)
+            
+            # Getting how many pages there will be
+            pages = ceil(len(shop_items) / n) # ceil rounds up
 
-            """ i need help lmao """
+            # Putting descriptions together
+            strings = []
+            string = ""
+            for i, item in enumerate(shop_items):
+                string += item.get_shop_string()
+                if i % n == n-1:
+                    strings.append(string)
+                    string = ""
 
-            print([ ' '.join(x) for x in zip(shop_desc[0::2], shop_desc[1::2]) ])
+            if string:
+                strings.append(string)
 
-            for s in shop_descs:
+            for s in strings:
                 pages.append(discord.Embed(colour=discord.Color.gold()))
-                pages[-1].add_field(name='Items (continued)',value=s,inline=False)
+                #pages[-1].add_field(name='Items (continued)',value=s,inline=False)
 
-            #shop_disp.add_field(name='Items',value=shop_desc,inline=False)
+                pages[-1].add_field(name='Items',value=s,inline=False)
             
             menu = Paginator(self.bot,ctx,pages,timeout=60)
             await menu.run()
@@ -63,11 +73,11 @@ class ShopCommands(commands.Cog, name="Shop"):
             i = items.get_by_name(item)
             if i is not None:
                 if i.can_be_in_shop(): # If has shop_item in data
-                    desc = '**COST: {} {}**'.format(sc_emoji,i.cost)
+                    desc = '**COST: {} {}**'.format(SC_EMOJI,i.cost)
                 else:
                     desc = "Can't be bought in the shop"
                     if i.has_value(): # If has cost in its data
-                        desc = "Can't be bought in the shop\n**Value: {} {}**".format(sc_emoji,i.cost)
+                        desc = "Can't be bought in the shop\n**Value: {} {}**".format(SC_EMOJI,i.cost)
                 item_disp = discord.Embed(title=i.emoji+" "+i.name,
                                     description=desc,
                                     colour=discord.Colour.gold())
@@ -96,14 +106,14 @@ class ShopCommands(commands.Cog, name="Shop"):
                 if sc >= i.cost*amt:
                     sale_disp = discord.Embed(colour=discord.Color.gold())
                     sale_disp.set_author(name='Successful purchase',url='',icon_url=ctx.author.avatar_url)
-                    sale_disp.add_field(name='\u200b',value='You bought {} **{}** and paid {}`{}`'.format(amt,i.name,sc_emoji,i.cost*amt),inline=False)
+                    sale_disp.add_field(name='\u200b',value='You bought {} **{}** and paid {}`{}`'.format(amt,i.name,SC_EMOJI,i.cost*amt),inline=False)
                     await ctx.send('',embed=sale_disp)
 
                     add_data(ctx.author.id, i.name,get_data(ctx.author.id, i.name, default_val=0)+1)
                     add_data(ctx.author.id, "sc", sc - i.cost*amt)
 
                 else:
-                    await ctx.send("You don't have enough money for this son, go do your work for {} **Standard Credits**.".format(sc_emoji))
+                    await ctx.send("You don't have enough money for this son, go do your work for {} **Standard Credits**.".format(SC_EMOJI))
             else:
                 await ctx.send("Kid that's not in stock right now... and I say you shouldn't be wasting your money on random pidge-podge like this son.")
         else:
@@ -116,7 +126,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
         sc = get_data(member.id, "sc", default_val=0)
         bal_disp = discord.Embed(title="{}'s balance".format(member.name),
-                                description="**Standard Credit: {}`{}`**".format(sc_emoji,sc),
+                                description="**Standard Credit: {}`{}`**".format(SC_EMOJI,sc),
                                 colour = discord.Color.dark_teal())
         await ctx.send('',embed=bal_disp)
 
@@ -129,7 +139,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
         inv = get_data(member.id, "inv", default_val=0)
         inv_disp = discord.Embed(title="{}'s inventory".format(member.name),
-                                description="Current balance: {}`{}`".format(sc_emoji,sc),
+                                description="Current balance: {}`{}`".format(SC_EMOJI,sc),
                                 colour=discord.Color.dark_teal())
         inv_desc = ''
         for item, amt in inv.items():
@@ -154,14 +164,14 @@ class ShopCommands(commands.Cog, name="Shop"):
         elif item.isdigit(): # Giving sc...
             amt = int(item)
             if get_data(ctx.author.id, "sc", default_val=0) < amt:
-                await ctx.send("You don't have enough {} **Standard Credits** to give away!".format(sc_emoji))
+                await ctx.send("You don't have enough {} **Standard Credits** to give away!".format(SC_EMOJI))
             else:
                 giver_after = get_data(ctx.author.id, "sc", default_val=0)-amt
                 add_data(ctx.author.id, "sc",giver_after)
                 reciever_after = get_data(member.id, "sc", default_val=0)+amt
                 add_data(member.id, "sc",reciever_after)
 
-                await ctx.send("You gave {} {} {}**Standard Credit(s)**, now you have {} and they've got {}.".format(member.display_name,amt,sc_emoji,giver_after,reciever_after))
+                await ctx.send("You gave {} {} {}**Standard Credit(s)**, now you have {} and they've got {}.".format(member.display_name,amt,SC_EMOJI,giver_after,reciever_after))
 
         else:
             if item.split(' ', 1)[0].isdigit():

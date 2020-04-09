@@ -22,10 +22,13 @@ class Item():
         return self.shop_item
     
     def has_value(self):
-        return self.cost != None
+        return not self.cost is None
 
     def is_booster(self):
         return not self.boost is None
+    
+    def get_shop_string(self):
+        return '{} **{}** ─ {}{} \n{}\n\n'.format(self.emoji,self.name,parameters.SC_EMOJI,self.cost,self.description)
 
 def import_items():
     global items
