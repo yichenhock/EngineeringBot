@@ -41,15 +41,12 @@ class ShopCommands(commands.Cog, name="Shop"):
             for i in items.items:
                 if i.can_be_in_shop(): # Will have to change with what is currently in the shop
                     shop_items.append(i)
-            
-            # Getting how many pages there will be
-            pages = ceil(len(shop_items) / n) # ceil rounds up
 
             # Putting descriptions together
             strings = []
             string = ""
             for i, item in enumerate(shop_items):
-                string += item.get_shop_string()
+                string = string+ item.get_shop_string()
                 if i % n == n-1:
                     strings.append(string)
                     string = ""
