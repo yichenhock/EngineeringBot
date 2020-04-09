@@ -73,3 +73,11 @@ def get_main_questions():
 
 def get_trivia_questions():
     return _get_from_filename("trivia_questions", [])
+
+def get_player_item_amount(id, item_name):
+    return get_data(id, "inv", {}).get(item_name, 0)
+
+def set_player_item_amount(id, item_name, amount):
+    inv = get_data(id, "inv", {})
+    inv[item_name] = amount
+    add_data(id, "inv", inv)
