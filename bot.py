@@ -60,9 +60,19 @@ async def on_ready():
 with open('dummy-text.txt') as fp:
     dummy_text = fp.read()
 
+clarkson_gif = 'https://bit.ly/2JImWP2'
+
+@pag.embed_generator(max_chars=2048)
+def cooler_embed(paginator, page, page_index):
+    embed = discord.Embed(colour=discord.Color.teal(), description=page)
+    embed.set_image(url=clarkson_gif)
+    return embed
+
+
 @bot.command()
 async def text(ctx):
-    nav = pag.EmbedNavigatorFactory(max_lines=10)
+    
+    nav = pag.EmbedNavigatorFactory(factory=cooler_embed, max_lines=10)
 
     # Insert the dummy text into our factory.
     nav += dummy_text
