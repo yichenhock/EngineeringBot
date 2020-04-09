@@ -1,7 +1,7 @@
 from discord.ext import commands
 import discord
 import items
-from data import add_data, get_data, save_data, get_player_item_amount, set_player_item_amount
+from data import add_data, get_data, save_data
 
 prefix = 'dad '
 
@@ -155,13 +155,15 @@ class ShopCommands(commands.Cog, name="Shop"):
             i = items.get_by_name(item)
 
             if i is not None: 
+                print("a")
                 giver_before = inv.get(i.name, 0)
+                print("b")
                 if inv[i.name] > 0:
                     if inv[i.name] >= amt:
-                        giver_after = get_player_item_amount(ctx.author.id, i.name)-amt
-                        set_player_item_amount(ctx.author.id, i.name,giver_after)
-                        reciever_after = get_player_item_amount(member.id, i.name)+amt
-                        set_player_item_amount(member.id, i.name,reciever_after)
+                        giver_after = get_data(ctx.author.id, "inv", i.name)-amt
+                        add_data(ctx.author.id, "inv", i.name, giver_after)
+                        reciever_after = get_data(member.id, "inv", i.name)+amt
+                        add_data(member.id, "inv", i.name, reciever_after)
                         await ctx.send("You gave {} {} {}**{}**(s), now you have {} and they've got {}.".format(member.display_name,amt,i.emoji,i.name,giver_after,reciever_after))
 
                     else:
@@ -175,7 +177,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
     @give.error
     async def on_message_error(self,ctx,error):
-        await ctx.send("Kid, it goes like this:\n`dad gift <@user> <amount> <item name>`")
+        await ctx.send("Kid, it goes like this:\n`dad give <@user> <amount> <item name>`")
 
 def setup(bot):
     bot.add_cog(ShopCommands(bot))

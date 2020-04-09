@@ -23,29 +23,36 @@ def load_data(bot):
     bot.loop.create_task(saveloop())
 
 
-def add_data(player_id, data_key, value):
-    """Add or insert a data entry into a player's data."""
-    player_id = str(player_id)
-    data_key = str(data_key)
+def add_data(*keys):
+    """Add or insert a data entry."""
 
-    if not player_id in data:
-        data[player_id] = {}
-    data[player_id][data_key] = value
-    print(data)
+    keys, value = keys[:-1], keys[-1]
 
-def get_data(player_id, data_key=None, default_val=None):
-    """Get a data entry from a specific player."""
-    player_id = str(player_id)
-    if data_key is not None:
-        data_key = str(data_key)
+    current_dict = data
+    for key in keys[:-1]:
+        key = str(key)
+        if not key in current_dict:
+            current_dict[key] = {}
+        current_dict = current_dict[key]
 
-    if not player_id in data:
-        return default_val
+    key = str(keys[-1])
+    if isinstance(current_dict, dict):
+        current_dict[key] = value
+
+def get_data(*keys, default_val=None):
+    """Get a data entry."""
+    current_dict = data
+    for key in keys[:-1]:
+        key = str(key)
+        if not key in current_dict:
+            return default_val
+        current_dict = current_dict[key]
     
-    if data_key is None:
-        return data[player_id]
+    key = str(keys[-1])
+    if isinstance(current_dict, dict):
+        return current_dict.get(key, default_val)
     else:
-        return data[player_id].get(data_key, default_val)
+        return default_val
 
 def save_data():
     with open(DATA_PATH+'data.json', 'w') as outfile:
@@ -73,11 +80,3 @@ def get_main_questions():
 
 def get_trivia_questions():
     return _get_from_filename("trivia_questions", [])
-
-def get_player_item_amount(p_id, item_name):
-    return get_data(p_id, "inv", {}).get(item_name, 0)
-
-def set_player_item_amount(p_id, item_name, amount):
-    inv = get_data(p_id, "inv", {})
-    inv[item_name] = amount
-    add_data(p_id, "inv", inv)
