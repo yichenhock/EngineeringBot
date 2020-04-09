@@ -44,7 +44,8 @@ class ShopCommands(commands.Cog, name="Shop"):
 
             # Putting descriptions together
             strings = []
-            string = "Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.\n\n".format(SC_EMOJI)
+            #string = "Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.\n\n".format(SC_EMOJI)
+            string = ''
             for i, item in enumerate(shop_items):
                 string = string+ item.get_shop_string()
                 if i % n == n-1:
@@ -55,11 +56,14 @@ class ShopCommands(commands.Cog, name="Shop"):
                 strings.append(string)
 
             for s in strings:
-                pages.append(discord.Embed(colour=discord.Color.gold()))
-                #pages[-1].add_field(name='Items (continued)',value=s,inline=False)
-
+                if pages == []:
+                    pages.append(discord.Embed(title='Dyson Centre Store',
+                                description="Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.\n\n".format(SC_EMOJI),
+                                colour=discord.Color.gold()))
+                else:
+                    pages.append(discord.Embed(colour=discord.Color.gold()))
                 pages[-1].add_field(name='Items',value=s,inline=False)
-            
+
             menu = Paginator(self.bot,ctx,pages,timeout=60)
             await menu.run()
 

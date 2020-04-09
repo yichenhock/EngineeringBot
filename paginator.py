@@ -48,17 +48,19 @@ class Paginator:
         """Move to the next page."""
         if self.index != len(self.pages) - 1:
             self.index += 1
+        await self.message.remove_reaction(NEXT, self.ctx.author)
 
     async def prev(self):
         """Move to the previous page."""
         if self.index != 0:
             self.index -= 1
+        await self.message.remove_reaction(PREVIOUS, self.ctx.author)
 
     async def delete(self):
         """Delete the emojis. Session is terminated."""
         self.paginating = False
         for emoji in EMOJIS:
-            await self.message.remove_reaction(emoji, self.bot.user)
+            await self.message.remove_reaction(emoji, self.ctx.user)
 
     def check(self, reaction, user):
         """Checks:
