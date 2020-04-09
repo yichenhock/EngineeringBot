@@ -18,19 +18,19 @@ class DataAdder:
         save_file(data_list, fp)
 
 def get_lab_dict():
-    num = input("How many outcomes do you want the lab to have?")
+    num = int(input("How many outcomes do you want the lab to have?"))
     outcomes = []
     for _ in range(num):
         outcomes.append(
             {
-                "description": "Outcome description",
+                "description": "Description",
                 "min_sc": 0,
                 "max_sc": 10
             }
         )
     return {
-        "name": "Lab name",
-        "description": "Lab description",
+        "name": "Name",
+        "description": "Description",
         "outcomes": outcomes
     }
 
