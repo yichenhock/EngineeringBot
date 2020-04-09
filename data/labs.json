@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Lego Mindstorms",
+        "description": "Andrew Gee says this is the best lab you'll ever do in Engineering!",
+        "total": 12,
+        "good": ["Wow your totally original never-seen-before lego project completely blew the demonstrator's mind's away!"],
+        "poor":["Your gear box broke apart mid-operation and hit the demonstrator in the eye!"],
+        "aliases": ["lego","mindstorm","mindstorms"]
+    },
+    {
+        "name": "Structural Design Project (sdp)",
+        "description": "Andrew Gee says this is the best lab you'll ever do in Engineering!",
+        "total": 12,
+        "good": ["Wow your totally original never-seen-before lego project completely blew the demonstrator's mind's away!"],
+        "poor":["Your gear box broke apart mid-operation and hit the demonstrator in the eye!"],
+        "aliases": ["sdp","structural design project","structural design"]
+    }
+]

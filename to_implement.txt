@@ -6,11 +6,17 @@
 
 - shop/trade via DMs, coin system
 - use items/inventory system
+
+
 - different types of labs: (events)
     > sdp, fold pennies without repercussions
     > iep
     > drawing
     > take a shot every time a lecturer says something
+
+
+
+
 
 - channel message restrictions
 - levels/EXP - how many questions you did correctly
