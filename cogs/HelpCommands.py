@@ -25,6 +25,7 @@ class HelpCommands(commands.Cog,name="Help"):
                 print(cmds_desc)
                 if cmds_desc !='':
                     halp.add_field(name='General Commands',value=cmds_desc[0:len(cmds_desc)-1],inline=False)
+                await ctx.message.add_reaction(emoji='✉')
                 await ctx.message.author.send(embed=halp)
             else: 
                 """Command listing within a cog."""
