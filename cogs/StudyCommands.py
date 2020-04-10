@@ -1,5 +1,6 @@
 from discord.ext import commands
 from data import add_data, get_data, save_data
+from constants import XP_INCREASE_PER_LEVEL, XP_TO_LEVEL_UP
 import discord
 import random
 
@@ -43,3 +44,15 @@ def get_trivia_lecturer_message(user_level):
 
 def setup(bot):
     bot.add_cog(StudyCommands(bot))
+
+def give_xp(p_id, amount):
+    level = get_data(p_id, "level", 0)
+    current_xp = get_data(p_id, "xp", 0)
+    new_xp = current_xp + amount
+    xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
+    if new_xp >= xp_required:
+        new_xp -= xp_required
+        level += 1
+        # Levelled up!
+    add_data(p_id, "level", level)
+    add_data(p_id, "xp". new_xp)
