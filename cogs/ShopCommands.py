@@ -5,7 +5,7 @@ from data import add_data, get_data, save_data
 from math import ceil
 
 from paginator import Paginator
-from parameters import PREFIX, SC_EMOJI
+from constants import PREFIX, SC_EMOJI
 
 
 

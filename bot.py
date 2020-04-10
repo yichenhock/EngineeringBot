@@ -15,10 +15,10 @@ from dotenv import load_dotenv
 # same path modules
 import question
 from data import load_data, add_data, get_data, save_data
-from parameters import PREFIX
+from constants import PREFIX
 
-import parameters
-PATH = parameters.PATH
+import constants
+PATH = constants.PATH
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')

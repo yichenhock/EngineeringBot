@@ -4,8 +4,8 @@ from discord.ext import commands
 import os
 import re
 
-import parameters
-PATH = parameters.PATH
+import constants
+PATH = constants.PATH
 
 class ChatCommands(commands.Cog, name= "Chat"):
     def __init__(self,bot):

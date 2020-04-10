@@ -1,4 +1,4 @@
-import parameters
+import constants
 import json
 import os
 import data
@@ -28,7 +28,7 @@ class Item():
         return not self.boost is None
     
     def get_shop_string(self):
-        return '{} **{}** ─ {}{} \n{}\n\n'.format(self.emoji,self.name,parameters.SC_EMOJI,self.cost,self.description)
+        return '{} **{}** ─ {}{} \n{}\n\n'.format(self.emoji,self.name,constants.SC_EMOJI,self.cost,self.description)
 
 def import_items():
     global items

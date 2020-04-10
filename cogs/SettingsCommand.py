@@ -3,8 +3,8 @@ import os
 import random 
 import re
 
-import parameters
-PATH = parameters.PATH
+import constants
+PATH = constants.PATH
 
 class SettingsCommands(commands.Cog, name="Settings"):
     def __init__(self,bot):
