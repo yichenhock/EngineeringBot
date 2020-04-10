@@ -103,7 +103,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                     sale_disp.add_field(name='\u200b',value='You bought {} **{}**(s) and paid {}`{}`'.format(amt,i.name,SC_EMOJI,i.cost*amt),inline=False)
                     await ctx.send('',embed=sale_disp)
 
-                    add_data(ctx.author.id, "inv", i.name,get_data(ctx.author.id, "inv", i.name, default_val=0)+1)
+                    add_data(ctx.author.id, "inv", i.name,get_data(ctx.author.id, "inv", i.name, default_val=0)+amt)
                     add_data(ctx.author.id, "sc", sc - i.cost*amt)
 
                 else:
@@ -133,7 +133,8 @@ class ShopCommands(commands.Cog, name="Shop"):
 
         sc = get_data(member.id, "sc", default_val=0)
 
-        inv = get_data(member.id, "inv", default_val=0)
+        inv = get_data(member.id, "inv", default_val={})
+
         inv_disp = discord.Embed(title="{}'s inventory".format(member.name),
                                 description="Current balance: {}`{}`".format(SC_EMOJI,sc),
                                 colour=discord.Color.dark_teal())
@@ -142,6 +143,9 @@ class ShopCommands(commands.Cog, name="Shop"):
             if amt >0:
                 inv_desc += ('{} **{}** - {}'.format(items.get_by_name(item).emoji,item,amt)+'\n')
         
+        if inv_desc == '':
+            inv_desc = "{} doesn't own anything! ".format(member.name)
+
         inv_disp.add_field(name='Owned Items',value=inv_desc[0:len(inv_desc)-1],inline=False)
         await ctx.send('',embed=inv_disp)
 

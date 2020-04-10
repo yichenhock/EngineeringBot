@@ -152,7 +152,7 @@
             "spanner"
         ],
         "cost": 500,
-        "description": "Need to fix your life up a bit? Look no further",
+        "description": "Need to fix your life up a bit? Look no further!",
         "emoji": "<:engi_wrench:696830128369434716>",
         "name": "Wrench",
         "shop_item": true,
