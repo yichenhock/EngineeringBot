@@ -111,7 +111,8 @@ class Paginator:
                 self.custom_emojis.append(str(item.emoji))
 
         for emoji in EMOJIS + self.custom_emojis:
-            asyncio.create_task(self.message.add_reaction(emoji))
+            self.bot.loop.create_task(self.message.add_reaction(emoji))
+            #asyncio.create_task(self.message.add_reaction(emoji))
         
         #self.add_page_emojis(self.index)
 
