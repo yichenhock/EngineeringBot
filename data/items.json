@@ -5,15 +5,15 @@
             "chonky",
             "kit kat"
         ],
-        "cost": 150,
+        "cost": 40,
         "description": "Throw these to your friends if they have been good!",
         "emoji": "<:chunky:696810911029264485>",
         "name": "Kit Kat Chunky",
         "shop_item": true,
-        "type": "standard",
+        "type": "booster",
         "boost": {
             "category": "elecronics",
-            "bonus": 0.04,
+            "bonus": 0.01,
             "max_bonus": 0.6
         }
     },
@@ -22,15 +22,15 @@
             "fbd",
             "potatoes"
         ],
-        "cost": 100,
+        "cost": 80,
         "description": "This bad boy can model so many impulses.",
         "emoji": "<:fbd_potato:696828105368535062>",
         "name": "Potato",
         "shop_item": true,
-        "type": "standard",
+        "type": "booster",
         "boost": {
             "category": "mechanics",
-            "bonus": 0.03,
+            "bonus": 0.02,
             "max_bonus": 0.6
         }
     },
@@ -45,7 +45,7 @@
         "emoji": "<:slave:697519485204299808>",
         "name": "Egyptian Slave",
         "shop_item": true,
-        "type": "standard",
+        "type": "booster",
         "boost": {
             "category": "structures",
             "bonus": 0.001,
@@ -63,7 +63,7 @@
         "emoji": "<:eigenvector:697128636175876156>",
         "name": "Eigenvector",
         "shop_item": true,
-        "type": "standard",
+        "type": "booster",
         "boost": {
             "category": "maths",
             "bonus": 0.01,
@@ -121,7 +121,7 @@
         "emoji": "<:dpo_keyboard:697130187174969445>",
         "name": "DPO Anti-Bacterial Keyboard",
         "shop_item": true,
-        "type": "standard"
+        "type": "utility"
     },
     {
         "aliases": [
@@ -145,7 +145,7 @@
         "emoji": "<:cafe_sandwich:697880116503773226>",
         "name": "Cafe Sandwich",
         "shop_item": true,
-        "type": "standard"
+        "type": "consumable"
     },
     {
         "aliases": [
@@ -175,11 +175,11 @@
             "engi penny",
             "engi pennies"
         ],
-        "cost": 10000,
+        "cost": 80,
         "description": "The penny in its true form.",
         "emoji": "<:engi_penny:697532027313848430>",
         "name": "Engineering Penny",
         "shop_item": false,
-        "type": "standard"
+        "type": "valuable"
     }
 ]
