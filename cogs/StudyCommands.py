@@ -3,7 +3,7 @@ from data import add_data, get_data, save_data
 from constants import XP_INCREASE_PER_LEVEL, XP_TO_LEVEL_UP
 import discord
 import random
-
+import tips
 
 sc_emoji = "<:stdc:696823503663530115>"
 
@@ -17,6 +17,9 @@ class StudyCommands(commands.Cog,name="Study"):
         stdc = get_data(ctx.author.id, "sc", default_val=0)
         add_sc = random.randint(1,10)
         add_data(ctx.author.id, "sc", stdc+add_sc)
+        tip = tips.get_random_tip(0.4)
+        if tip:
+            await ctx.send(tip)
         await ctx.send("You did a lab for {}`{}`!".format(sc_emoji,add_sc))
     
     @commands.command(name='trivia',help='Answer a question to get standard credit')
