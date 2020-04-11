@@ -230,3 +230,10 @@ def get_name_and_amount(string):
         amt = 1
         name = " ".join(words)
     return name, amt
+
+def convert_seconds(seconds):
+    seconds = int(seconds)
+    h = seconds//(60*60)
+    m = (seconds-h*60*60)//60
+    s = seconds-(h*60*60)-(m*60)
+    return h, m, s

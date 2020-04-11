@@ -54,9 +54,11 @@ class Paginator:
         else:
             await self.message.remove_reaction(self.emoji_selected, self.ctx.author)
             for page in self.page_items:
+                i = None
                 for item in page:
                     if str(item.emoji) == self.emoji_selected:
-                        await self.shop_commands.on_item_reacted(self.ctx, item)
+                        i = item
+                await self.shop_commands.on_item_reacted(self.ctx, i)
             
             self.emoji_selected = None
 
