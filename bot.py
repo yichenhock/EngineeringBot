@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 # same path modules
 from data import load_data, add_data, get_data, save_data
-from parameters import PREFIX
+from constants import PREFIX
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
