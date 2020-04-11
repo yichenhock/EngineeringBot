@@ -65,7 +65,7 @@ class ShopCommands(commands.Cog, name="Shop"):
             for s in strings:
                 if pages == []:
                     pages.append(discord.Embed(title='Dyson Centre Store',
-                                description="Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.\n\n".format(SC_EMOJI),
+                                description="Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the **arrow reactors** below to browse the store.\n**Click on an emoji** to buy one of that item, or use\n`dad buy <item> <amount>`".format(SC_EMOJI),
                                 colour=discord.Color.gold()))
                 else:
                     pages.append(discord.Embed(colour=discord.Color.gold()))
