@@ -15,15 +15,18 @@ class ShopCommands(commands.Cog, name="Shop"):
         items.import_items()
 
 
-    @commands.command(name='testing')
-    async def testing(self,ctx):
-        pages = [discord.Embed(title="Page 1"),
-                discord.Embed(title="Page 2"),
-                discord.Embed(title="Page 3"),
-                discord.Embed(title="Page 4")
-                ]
-        menu = Paginator(self.bot,ctx,pages,timeout=60)
-        await menu.run()
+    async def on_item_reacted(self, ctx, item):
+        await self.buy_item(ctx, item, 1)
+
+    # @commands.command(name='testing')
+    # async def testing(self,ctx):
+    #     pages = [discord.Embed(title="Page 1"),
+    #             discord.Embed(title="Page 2"),
+    #             discord.Embed(title="Page 3"),
+    #             discord.Embed(title="Page 4")
+    #             ]
+    #     menu = Paginator(self.bot,ctx,pages,timeout=60)
+    #     await menu.run()
 
 
     @commands.command(name='shop',help="See what's in the Dyson Centre store")
@@ -33,6 +36,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
             # Getting the items that are in the shop
             shop_items = []
+            
             n = 5
             for i in items.items:
                 if i.can_be_in_shop(): # Will have to change with what is currently in the shop
@@ -40,19 +44,23 @@ class ShopCommands(commands.Cog, name="Shop"):
 
             shop_items = sorted(shop_items, key=lambda x:x.name)
 
-
             # Putting descriptions together
             strings = []
-            #string = "Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the arrow reactors below to browse the store.\n\n".format(SC_EMOJI)
             string = ''
+            page_items = []
+            current_page_items = []
             for i, item in enumerate(shop_items):
+                current_page_items.append(item)
                 string = string+ item.get_shop_string()
                 if i % n == n-1:
                     strings.append(string)
                     string = ""
+                    page_items.append(current_page_items)
+                    current_page_items = []
 
             if string:
                 strings.append(string)
+                page_items.append(current_page_items)
 
             for s in strings:
                 if pages == []:
@@ -63,7 +71,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                     pages.append(discord.Embed(colour=discord.Color.gold()))
                 pages[-1].add_field(name='Items',value=s,inline=False)
 
-            menu = Paginator(self.bot,ctx,pages,timeout=60)
+            menu = Paginator(self.bot,ctx,pages, page_items, self, timeout=60)
             await menu.run()
 
         else: 
@@ -94,24 +102,7 @@ class ShopCommands(commands.Cog, name="Shop"):
         name, amt = get_name_and_amount(in_string)
 
         i = items.get_by_name(name)
-        if i is not None: 
-            if i.can_be_in_shop(): # Will have to be replaced with a check to see if it is actually in the shop
-                sc = get_data(ctx.author.id, "sc", default_val=0)
-                if sc >= i.cost*amt:
-                    sale_disp = discord.Embed(colour=discord.Color.gold())
-                    sale_disp.set_author(name='Successful purchase',url='',icon_url=ctx.author.avatar_url)
-                    sale_disp.add_field(name='\u200b',value='You bought {} **{}**(s) and paid {}`{}`'.format(amt,i.name,SC_EMOJI,i.cost*amt),inline=False)
-                    await ctx.send('',embed=sale_disp)
-
-                    add_data(ctx.author.id, "inv", i.name,get_data(ctx.author.id, "inv", i.name, default_val=0)+amt)
-                    add_data(ctx.author.id, "sc", sc - i.cost*amt)
-
-                else:
-                    await ctx.send("You don't have enough money for this son, go do your work for {} **Standard Credits**.".format(SC_EMOJI))
-            else:
-                await ctx.send("Kid that's not in stock right now... and I say you shouldn't be wasting your money on random pidge-podge like this son.")
-        else:
-            await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
+        await self.buy_item(ctx, i, amt)
 
 
     @commands.command(name='balance',aliases=['bal'],help="Check the standard credits that you or someone else owns.")
@@ -198,10 +189,29 @@ class ShopCommands(commands.Cog, name="Shop"):
                 await ctx.send("The heck... that item doesn't exist!")
 
 
+    async def buy_item(self, ctx, item, amt):
+        if item is not None: 
+            if item.can_be_in_shop(): # Will have to be replaced with a check to see if it is actually in the shop
+                sc = get_data(ctx.author.id, "sc", default_val=0)
+                if sc >= item.cost*amt:
+                    sale_disp = discord.Embed(colour=discord.Color.gold())
+                    sale_disp.set_author(name='Successful purchase',url='',icon_url=ctx.author.avatar_url)
+                    sale_disp.add_field(name='\u200b',value='You bought {} **{}**(s) and paid {}`{}`'.format(amt,item.name,SC_EMOJI,item.cost*amt),inline=False)
+                    await ctx.send('',embed=sale_disp)
+
+                    add_data(ctx.author.id, "inv", item.name,get_data(ctx.author.id, "inv", item.name, default_val=0)+amt)
+                    add_data(ctx.author.id, "sc", sc - item.cost*amt)
+
+                else:
+                    await ctx.send("You don't have enough money for this son, go do your work for {} **Standard Credits**.".format(SC_EMOJI))
+            else:
+                await ctx.send("Kid that's not in stock right now... and I say you shouldn't be wasting your money on random pidge-podge like this son.")
+        else:
+            await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
+
     @give.error
     async def on_message_error(self,ctx,error):
         await ctx.send("Kid, it goes like this:\n`dad give <@user> <amount> <item name>`")
-
 
 
 def setup(bot):
