@@ -1,5 +1,5 @@
 from discord.ext import commands
-import parameters
+import constants
 
 class HealthCommands(commands.Cog, name="Health"):
     def __init__(self,bot):
