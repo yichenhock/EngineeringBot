@@ -1,19 +1,53 @@
-from discord.ext import commands
-import discord
-import items
-from data import add_data, get_data, save_data
+import asyncio
+import random
 from math import ceil
+from time import time
 
-from paginator import Paginator
+import discord
+from discord.ext import commands
+
+import items
 from constants import PREFIX, SC_EMOJI
+from data import add_data, get_data, save_data
+from paginator import Paginator
 
-
+SHOP_SIZE = 10
 
 class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
         self.bot = bot
         items.import_items()
+        
 
+        self.stock = None
+        stock_names = get_data("shop", "items", default_val = None)
+        if stock_names:
+            self.stock = [items.get_by_name(name) for name in stock_names]
+        else:
+            self.change_stock()
+        
+        bot.loop.create_task(self.updateloop())
+
+    async def updateloop(self):
+        while True:
+            last_update_day = seconds_to_day(get_data("shop", "last_stock_change", default_val=0))
+            if seconds_to_day(time()) != last_update_day:
+                self.change_stock()
+            await asyncio.sleep(60)
+
+    def change_stock(self):
+        add_data("shop", "last_stock_change", time())
+        # Get all possible items
+        shop_items = [] 
+        for i in items.items:
+            if i.can_be_in_shop():
+                shop_items.append(i)
+
+        # Pick a subset
+        self.stock = random.sample(shop_items, min(SHOP_SIZE,len(shop_items)))  
+        self.stock = sorted(self.stock, key=lambda x:x.name)
+        stock_names = [item.name for item in self.stock]
+        add_data("shop", "items", stock_names)
 
     async def on_item_reacted(self, ctx, item):
         await self.buy_item(ctx, item, 1)
@@ -36,15 +70,12 @@ class ShopCommands(commands.Cog, name="Shop"):
 
             # Getting the items that are in the shop
             shop_items = []
-            
-            n = 5
-            for i in items.items:
-                if i.can_be_in_shop(): # Will have to change with what is currently in the shop
-                    shop_items.append(i)
+            shop_items = self.stock
 
             shop_items = sorted(shop_items, key=lambda x:x.name)
 
             # Putting descriptions together
+            n = 5
             strings = []
             string = ''
             page_items = []
@@ -64,8 +95,10 @@ class ShopCommands(commands.Cog, name="Shop"):
 
             for s in strings:
                 if pages == []:
+                    h, m, _ = get_time_to_shop_refresh()
+                    reset_message = f"*The store will change its stock in {n:02}h {m:02}m*"
                     pages.append(discord.Embed(title='Dyson Centre Store',
-                                description="Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the **arrow reactors** below to browse the store.\n**Click on an emoji** to buy one of that item, or use\n`dad buy <item> <amount>`".format(SC_EMOJI),
+                                description="Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the **arrow reactors** below to browse the store.\n**Click on an emoji** to buy one of that item, or use\n`dad buy <item> <amount>`\n\n".format(SC_EMOJI)+reset_message,
                                 colour=discord.Color.gold()))
                 else:
                     pages.append(discord.Embed(colour=discord.Color.gold()))
@@ -80,10 +113,12 @@ class ShopCommands(commands.Cog, name="Shop"):
             if i is not None:
                 if i.can_be_in_shop(): # If has shop_item in data
                     desc = '**COST: {} {}**'.format(SC_EMOJI,i.cost)
+                    if not i in self.stock:
+                        desc = desc + "\n*Currently not in stock*"
                 else:
-                    desc = "Can't be bought in the shop"
+                    desc = "*Can't be bought in the shop*"
                     if i.has_value(): # If has cost in its data
-                        desc = "Can't be bought in the shop\n**Value: {} {}**".format(SC_EMOJI,i.cost)
+                        desc = "**Value: {} {}**\n*Can't be bought in the shop*".format(SC_EMOJI,i.cost)
                 item_disp = discord.Embed(title=i.emoji+" "+i.name,
                                     description=desc,
                                     colour=discord.Colour.gold())
@@ -191,21 +226,24 @@ class ShopCommands(commands.Cog, name="Shop"):
 
     async def buy_item(self, ctx, item, amt):
         if item is not None: 
-            if item.can_be_in_shop(): # Will have to be replaced with a check to see if it is actually in the shop
-                sc = get_data(ctx.author.id, "sc", default_val=0)
-                if sc >= item.cost*amt:
-                    sale_disp = discord.Embed(colour=discord.Color.gold())
-                    sale_disp.set_author(name='Successful purchase',url='',icon_url=ctx.author.avatar_url)
-                    sale_disp.add_field(name='\u200b',value='You bought {} **{}**(s) and paid {}`{}`'.format(amt,item.name,SC_EMOJI,item.cost*amt),inline=False)
-                    await ctx.send('',embed=sale_disp)
+            if item.can_be_in_shop():
+                if item in self.stock:
+                    sc = get_data(ctx.author.id, "sc", default_val=0)
+                    if sc >= item.cost*amt:
+                        sale_disp = discord.Embed(colour=discord.Color.gold())
+                        sale_disp.set_author(name='Successful purchase',url='',icon_url=ctx.author.avatar_url)
+                        sale_disp.add_field(name='\u200b',value='You bought {} **{}**(s) and paid {}`{}`'.format(amt,item.name,SC_EMOJI,item.cost*amt),inline=False)
+                        await ctx.send('',embed=sale_disp)
 
-                    add_data(ctx.author.id, "inv", item.name,get_data(ctx.author.id, "inv", item.name, default_val=0)+amt)
-                    add_data(ctx.author.id, "sc", sc - item.cost*amt)
+                        add_data(ctx.author.id, "inv", item.name,get_data(ctx.author.id, "inv", item.name, default_val=0)+amt)
+                        add_data(ctx.author.id, "sc", sc - item.cost*amt)
 
+                    else:
+                        await ctx.send("You don't have enough money for this son, go do your work for {} **Standard Credits**.".format(SC_EMOJI))
                 else:
-                    await ctx.send("You don't have enough money for this son, go do your work for {} **Standard Credits**.".format(SC_EMOJI))
+                    await ctx.send("Kid that's not in stock right now... and I say you shouldn't be wasting your money on random pidge-podge like this son.")
             else:
-                await ctx.send("Kid that's not in stock right now... and I say you shouldn't be wasting your money on random pidge-podge like this son.")
+                await ctx.send("Kid, the Dyson Centre store doesn't even sell this. Is that even legal?")
         else:
             await ctx.send("That item doesn't exist... have you been smoking the devil's lettuce again son?!")
 
@@ -231,9 +269,17 @@ def get_name_and_amount(string):
         name = " ".join(words)
     return name, amt
 
-def convert_seconds(seconds):
+def seconds_to_day(seconds):
+    return seconds // (24 * 60 * 60)
+
+def seconds_to_hms(seconds):
     seconds = int(seconds)
     h = seconds//(60*60)
     m = (seconds-h*60*60)//60
     s = seconds-(h*60*60)-(m*60)
     return h, m, s
+
+def get_time_to_shop_refresh():
+    seconds = time() % (24 * 60 * 60) # time since start of day
+    seconds = (24 * 60 * 60) - seconds # time to end of day
+    return seconds_to_hms(seconds)

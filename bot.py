@@ -20,7 +20,7 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
-    load_data(bot)
+    
 
 @bot.event
 async def on_command_error(ctx, error):
@@ -36,4 +36,6 @@ if __name__ == '__main__':
             except:
                 print(f'Failed to load extension {extension}.')
 
+
+load_data(bot)
 bot.run(TOKEN)
