@@ -17,10 +17,12 @@ class StudyCommands(commands.Cog,name="Study"):
         stdc = get_data(ctx.author.id, "sc", default_val=0)
         add_sc = random.randint(1,10)
         add_data(ctx.author.id, "sc", stdc+add_sc)
+
+        string = "You did a lab for {}`{}`!".format(sc_emoji,add_sc)
         tip = tips.get_random_tip(0.4)
         if tip:
-            await ctx.send(tip)
-        await ctx.send("You did a lab for {}`{}`!".format(sc_emoji,add_sc))
+            string = tip + "\n\n" + string
+        await ctx.send(string)
     
     @commands.command(name='trivia',help='Answer a question to get standard credit')
     async def trivia(self,ctx):

@@ -8,3 +8,4 @@ Type `dad lab` to get some <:stdc:696823503663530115> **Standard Credit**
 Type `dad shop` to browse what you can buy with <:stdc:696823503663530115> **Standard Credit**
 Type `dad shop` followed by the name of an item to get more information about it.
 Type `dad toggle` to toggle if Engi-Dad responds to buzzwords in your sentences.
+If what you want to buy isn't in the shop, wait a bit for it to restock!

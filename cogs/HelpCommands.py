@@ -1,12 +1,21 @@
-from discord.ext import commands
 import discord
+from discord.ext import commands
+
+import tips
 from constants import PREFIX
+
 
 class HelpCommands(commands.Cog,name="Help"):
     def __init__(self,bot):
         self.bot = bot
 
-    @commands.command(name="help")
+    @commands.command(name="tip", help="Gives you a helpful tip")
+    async def tip(self,ctx):
+        await ctx.send(tips.get_random_tip())
+
+
+
+    @commands.command(name="help", help="DMs you a message about what commands you can use")
     async def help(self,ctx,*cog):
         try:
             if not cog: 
