@@ -1,24 +1,14 @@
 # python3 bot.py
 
 import os
-import random
 import discord
-import json
-import datetime
-import time
-import asyncio
 
-from discord.utils import get
 from discord.ext import commands
 from dotenv import load_dotenv
 
 # same path modules
-import question
 from data import load_data, add_data, get_data, save_data
 from constants import PREFIX
-
-import constants
-PATH = constants.PATH
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -38,7 +28,7 @@ async def on_command_error(ctx, error):
     print(error)
 
 if __name__ == '__main__':
-    for extension in os.listdir(PATH+"cogs"):
+    for extension in os.listdir("cogs"):
         if (extension.endswith(".py")):
             try: 
                 bot.load_extension("cogs."+extension.replace('.py', ''))
