@@ -1,4 +1,5 @@
 PATH = ""
+DATA_PATH = "data/"
 PREFIX = "dad "
 
 sc = "<:stdc:696823503663530115>"
