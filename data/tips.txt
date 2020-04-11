@@ -1,0 +1,10 @@
+If you type any sentences that contain buzzwords, like 'oxford' or 'tripos', Engi-Dad will respond with a related message!
+Owning <:chunky:696810911029264485> **Kit Kat Chunky**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Electronics related.
+Owning <:slave:697519485204299808> **Egyptian Slave**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Structures related.
+Owning <:eigenvector:697128636175876156> **Eigenvector**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Maths related.
+Owning <:fbd_potato:696828105368535062> **Potato**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Mechanics related.
+Type `dad help` to recieve a DM about what commands you can use.
+Type `dad lab` to get some <:stdc:696823503663530115> **Standard Credit**
+Type `dad shop` to browse what you can buy with <:stdc:696823503663530115> **Standard Credit**
+Type `dad shop` followed by the name of an item to get more information about it.
+Type `dad toggle` to toggle if Engi-Dad responds to buzzwords in your sentences.
