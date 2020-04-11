@@ -9,7 +9,7 @@ def get_random_tip(probability = 1):
             return ""
     if not _tips:
         _import_tips()
-    return random.choice(_tips)
+    return "> *Tip: "+random.choice(_tips)+"*"
 
 def _import_tips():
     with open(DATA_PATH+"tips.txt", "r") as f:
