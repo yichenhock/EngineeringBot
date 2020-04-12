@@ -58,7 +58,8 @@ class Paginator:
                 for item in page:
                     if str(item.emoji) == self.emoji_selected:
                         i = item
-                await self.shop_commands.on_item_reacted(self.ctx, i)
+                if i:
+                    await self.shop_commands.on_item_reacted(self.ctx, i)
             
             self.emoji_selected = None
 
