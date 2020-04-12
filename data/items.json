@@ -95,6 +95,22 @@
     },
     {
         "aliases": [
+            "pills",
+            "anti-depressants",
+            "anti-depressant",
+            "anti depressant",
+            "anti depressants",
+            "pill"
+        ],
+        "cost": 100,
+        "description": "These anti-depressants are a must-have for certain modules.",
+        "emoji": "<:pills:698933964030607453>",
+        "name": "Pills",
+        "shop_item": true,
+        "type": "consumable"
+    },
+    {
+        "aliases": [
             "lego",
             "man"
         ],
