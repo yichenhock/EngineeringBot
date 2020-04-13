@@ -3,7 +3,10 @@
         "sc": 5
     },
     "160752511827968000": {
-        "sc": 13
+        "inv": {
+            "Egyptian Slave": 12
+        },
+        "sc": 4
     },
     "293340008507506698": {
         "inv": {
@@ -15,18 +18,22 @@
         "sc": 10
     },
     "414815229638213645": {
-        "sc": 1
+        "inv": {
+            "Egyptian Slave": 1
+        },
+        "sc": 0
     },
     "456153455820668928": {
-        "sc": 115
+        "sc": 140
     },
     "501077051017789451": {
         "inv": {
-            "Egyptian Slave": 46,
-            "Eigenvector": 1,
+            "Cafe Sandwich": 1,
+            "Egyptian Slave": 55,
+            "Eigenvector": 2,
             "Penny": 1
         },
-        "sc": 138
+        "sc": 25
     },
     "540583445395669014": {
         "sc": 25
@@ -34,15 +41,36 @@
     "540627345044799545": {
         "inv": {
             "DPO Anti-Bacterial Keyboard": 1,
-            "Egyptian Slave": 10,
-            "Eigenvector": 1
+            "Egyptian Slave": 19,
+            "Eigenvector": 2,
+            "Kit Kat Chunky": 1,
+            "Lego Man": 1,
+            "Potato": 1
         },
-        "sc": 93
+        "sc": 36
+    },
+    "607348761831800862": {
+        "sc": 4
     },
     "693853888058490910": {
         "inv": {
             "Egyptian Slave": 3
         },
         "sc": 13
+    },
+    "shop": {
+        "items": [
+            "Cafe Sandwich",
+            "Crib",
+            "DPO Anti-Bacterial Keyboard",
+            "Drawing Kit",
+            "Egyptian Slave",
+            "Eigenvector",
+            "Kit Kat Chunky",
+            "Lego Man",
+            "Potato",
+            "Wrench"
+        ],
+        "last_stock_change": 1586780667.0238008
     }
 }

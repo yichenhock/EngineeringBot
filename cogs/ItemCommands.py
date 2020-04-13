@@ -22,11 +22,11 @@ class ItemCommands(commands.Cog, name="Items"):
                 await self.item_use_func[item.name](ctx)
 
     async def use_kit_kat(self, ctx):
-        ctx.send("Who do you want to throw your Kit Kat Chunky to?")
-        ctx.send("Not currently implemented") # Use wait_for("message", check, timeout = 60) where check is a check function (look up the API)
+        await ctx.send("Who do you want to throw your Kit Kat Chunky to?")
+        await ctx.send("Not currently implemented") # Use wait_for("message", check, timeout = 60) where check is a check function (look up the API)
 
     async def use_penny(self, ctx):
-        ctx.send("Not currently implemented")
+        await ctx.send("Not currently implemented")
 
 def setup(bot):
     bot.add_cog(ItemCommands(bot))
