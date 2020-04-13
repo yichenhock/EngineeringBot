@@ -1,5 +1,5 @@
 from discord.ext import commands
-from data import add_data, get_data, save_data
+from data import add_data, get_data, save_data, get_lecturer_from_level
 from constants import XP_INCREASE_PER_LEVEL, XP_TO_LEVEL_UP
 import discord
 import random
@@ -23,6 +23,7 @@ class StudyCommands(commands.Cog,name="Study"):
         if tip:
             string = tip + "\n\n" + string
         await ctx.send(string)
+        await give_xp(ctx, ctx.author.id, 3)
     
     @commands.command(name='trivia',help='Answer a question to get standard credit')
     async def trivia(self,ctx):
@@ -41,6 +42,21 @@ class StudyCommands(commands.Cog,name="Study"):
         await ctx.send("Cam cribs: https://camcribs.com/")
 
 
+async def give_xp(ctx, p_id, amount):
+    level = int(get_data(p_id, "level", default_val=0))
+    current_xp = int(get_data(p_id, "xp", default_val=0))
+    new_xp = current_xp + amount
+    xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
+    while new_xp >= xp_required:
+        new_xp -= xp_required
+        level += 1
+        xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
+        await ctx.send(":tada:  **{} has Levelled Up to Level {}**  :tada:\n".format(ctx.author.mention, level))
+        await ctx.send("> Your new lecturer is {}".format(get_lecturer_from_level(level)["name"]))
+        await ctx.send("\n*Note: The level system is currently a WIP and your level will be reset when it is complete.*")
+    add_data(p_id, "level", level)
+    add_data(p_id, "xp", new_xp)
+
 def get_trivia_lecturer_message(user_level):
     """Get a message depending on who your lecturer currently is.
     Your lecturer changes depending on what level you are.
@@ -49,15 +65,3 @@ def get_trivia_lecturer_message(user_level):
 
 def setup(bot):
     bot.add_cog(StudyCommands(bot))
-
-def give_xp(p_id, amount):
-    level = get_data(p_id, "level", 0)
-    current_xp = get_data(p_id, "xp", 0)
-    new_xp = current_xp + amount
-    xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
-    if new_xp >= xp_required:
-        new_xp -= xp_required
-        level += 1
-        # Levelled up!
-    add_data(p_id, "level", level)
-    add_data(p_id, "xp". new_xp)
