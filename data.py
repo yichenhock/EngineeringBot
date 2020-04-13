@@ -5,6 +5,8 @@ import os
 DATA_PATH = "data/"
 
 data = {}
+_data_files = {}
+
 
 async def saveloop():
     while True:
@@ -60,11 +62,14 @@ def save_data():
 
 def _get_from_filename(filename, default = None):
     """Starts with an underscore to signify this should only be used in this file."""
-    if os.path.exists(DATA_PATH+filename+".json"):
-        with open(DATA_PATH+filename+".json", "r") as json_file: 
-            return json.load(json_file)
-    else:
-        return []
+    if not filename in _data_files:
+        if os.path.exists(DATA_PATH+filename+".json"):
+            with open(DATA_PATH+filename+".json", "r") as json_file: 
+                _data_files[filename] = json.load(json_file)
+        else:
+            _data_files[filename] = default
+    return _data_files[filename]
+
 
 def get_items():
     return _get_from_filename("items", [])
