@@ -54,8 +54,8 @@ def get_player_boost(player_id, category):
     for name, amount in data.get_data(player_id, "inv", default_val={}).items():
         item = get_by_name(name)
         if item.is_booster():
-            if item.boost.category == category:
-                boost += min(item.boost.bonus * amount, item.boost.max_bonus)
+            if item.boost_category == category:
+                boost += min(item.boost_bonus * amount, item.boost_max_bonus)
     return boost
 
 def get_player_boost_from_item(player_id, item):

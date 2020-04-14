@@ -19,6 +19,27 @@
     },
     {
         "aliases": [
+            "tau",
+            "shear",
+            "stress",
+            "stresses",
+            "taus",
+            "shears"
+        ],
+        "cost": 60,
+        "description": "Some of the stress applied on you during your course, in shear form!",
+        "emoji": "<:tau:699666726144573581>",
+        "name": "Shear Stress",
+        "shop_item": true,
+        "type": "booster",
+        "boost": {
+            "category": "materials",
+            "bonus": 0.02,
+            "max_bonus": 0.6
+        }
+    },
+    {
+        "aliases": [
             "fbd",
             "potatoes"
         ],
