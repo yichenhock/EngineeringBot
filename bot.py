@@ -35,7 +35,8 @@ if __name__ == '__main__':
             try: 
                 bot.load_extension("cogs."+extension.replace('.py', ''))
                 print(f'Loaded extension {extension}.')
-            except:
+            except Exception as e:
+                print(e)
                 print(f'Failed to load extension {extension}.')
 
 def initialise_data():
