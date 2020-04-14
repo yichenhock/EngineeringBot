@@ -3,6 +3,7 @@ Owning <:chunky:696810911029264485> **Kit Kat Chunky**s will grant you bonus <:s
 Owning <:slave:697519485204299808> **Egyptian Slave**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Structures related.
 Owning <:eigenvector:697128636175876156> **Eigenvector**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Maths related.
 Owning <:fbd_potato:696828105368535062> **Potato**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Mechanics related.
+Owning <:tau:699666726144573581> **Shear Stress**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Materials related.
 Type `dad help` to recieve a DM about what commands you can use.
 Type `dad lab` to get some <:stdc:696823503663530115> **Standard Credit**
 Type `dad shop` to browse what you can buy with <:stdc:696823503663530115> **Standard Credit**
