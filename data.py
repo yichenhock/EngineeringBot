@@ -1,6 +1,7 @@
 import asyncio
 import json
 import os
+from random import sample
 
 from constants import DATA_PATH, MAX_LECTURER_LEVEL
 
@@ -85,3 +86,7 @@ def get_main_questions():
 
 def get_trivia_questions():
     return _get_from_filename("trivia_questions", [])
+
+def get_labs_subset(n):
+    labs = get_labs()
+    return sample(labs, min(n, len(labs)))
