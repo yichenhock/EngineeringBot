@@ -88,7 +88,10 @@ class StudyCommands(commands.Cog,name="Study"):
     @lab.error
     async def lab_error(self,ctx,error):
         if isinstance(error,commands.CommandOnCooldown):
-            desc = "Your lab hasn't begun yet! Your demonstrator will be here in `{}` minutes, `{}` seconds".format(int(error.retry_after // 60), int(error.retry_after)%60)
+            hrs = int(error.retry_after // 3600)
+            mins = int((error.retry_after % 3600) // 60)
+            secs = int((error.retry_after%3600) % 60)
+            desc = "Your lab hasn't begun yet! Your demonstrator will be here in `{}` hrs, `{}` mins, `{}` secs".format(hrs, mins, secs)
             msg = discord.Embed(description=desc,
                                 colour=discord.Color.red())
             await ctx.send('',embed=msg)
