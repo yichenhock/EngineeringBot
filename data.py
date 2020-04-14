@@ -1,8 +1,8 @@
-import json
 import asyncio
+import json
 import os
 
-DATA_PATH = "data/"
+from constants import DATA_PATH, MAX_LECTURER_LEVEL
 
 data = {}
 _data_files = {}
@@ -81,6 +81,7 @@ def get_lecturers():
     return _get_from_filename("lecturers", [])
 
 def get_lecturer_from_level(level):
+    level = min(level, MAX_LECTURER_LEVEL)
     for lecturer in get_lecturers():
         if int(lecturer["level"]) == level:
             return lecturer
