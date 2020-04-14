@@ -57,11 +57,5 @@ async def give_xp(ctx, p_id, amount):
     add_data(p_id, "level", level)
     add_data(p_id, "xp", new_xp)
 
-def get_trivia_lecturer_message(user_level):
-    """Get a message depending on who your lecturer currently is.
-    Your lecturer changes depending on what level you are.
-    """
-    pass
-
 def setup(bot):
     bot.add_cog(StudyCommands(bot))

@@ -16,7 +16,6 @@ SHOP_SIZE = 10
 class ShopCommands(commands.Cog, name="Shop"):
     def __init__(self,bot):
         self.bot = bot
-        items.import_items()
         
 
         self.stock = None

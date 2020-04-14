@@ -80,12 +80,6 @@ def get_labs():
 def get_lecturers():
     return _get_from_filename("lecturers", [])
 
-def get_lecturer_from_level(level):
-    level = min(level, MAX_LECTURER_LEVEL)
-    for lecturer in get_lecturers():
-        if int(lecturer["level"]) == level:
-            return lecturer
-
 def get_main_questions():
     return _get_from_filename("main_questions", [])
 

@@ -8,6 +8,8 @@ from dotenv import load_dotenv
 
 # same path modules
 from data import load_data, add_data, get_data, save_data
+import items
+import lecturers
 from constants import PREFIX
 
 load_dotenv()
@@ -36,6 +38,10 @@ if __name__ == '__main__':
             except:
                 print(f'Failed to load extension {extension}.')
 
+def initialise_data():
+    load_data(bot)
+    items.import_items()
+    lecturers.import_lecturers()
 
-load_data(bot)
+initialise_data()
 bot.run(TOKEN)

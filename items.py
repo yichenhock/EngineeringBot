@@ -1,11 +1,11 @@
-import constants
 import json
 import os
+
 import data
+from constants import SC_EMOJI
 
 items = []
 
-DATA_PATH = "data/"
 
 class Item():
     def __init__(self, item_dict): 
@@ -30,7 +30,7 @@ class Item():
         return not self.boost_bonus is None
     
     def get_shop_string(self):
-        return '{} **{}** ─ {}{} \n{}\n\n'.format(self.emoji,self.name,constants.SC_EMOJI,self.cost,self.description)
+        return '{} **{}** ─ {}{} \n{}\n\n'.format(self.emoji,self.name,SC_EMOJI,self.cost,self.description)
 
 def import_items():
     global items
