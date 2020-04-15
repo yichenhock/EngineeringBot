@@ -179,7 +179,6 @@ async def give_xp(ctx, p_id, amount):
     current_xp = int(get_data(p_id, "xp", default_val=0))
     new_xp = current_xp + amount
     xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
-    await ctx.send("{} gets **`{}`<:xp:699934983074349086>**.".format(ctx.author.mention, amount))
     while new_xp >= xp_required:
         new_xp -= xp_required
         level += 1
@@ -193,6 +192,9 @@ async def give_xp(ctx, p_id, amount):
         #await ctx.send("\n*Note: The level system is currently a WIP and your level will be reset when it is complete.*")
     add_data(p_id, "level", level)
     add_data(p_id, "xp", new_xp)
+
+def get_xp_string(player, amount):
+    return "{} gets **`{}`<:xp:699934983074349086>**.".format(player.mention, amount)
 
 def setup(bot):
     bot.add_cog(StudyCommands(bot))
