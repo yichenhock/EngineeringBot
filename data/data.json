@@ -46,21 +46,19 @@
             "Egyptian Slave": 50,
             "Eigenvector": 2,
             "Penny": 1,
-            "Pills": 2,
+            "Pills": 1,
             "Potato": 1,
             "Shear Stress": 7
         },
-        "level": 2,
+        "level": 3,
         "questions_todo": [
             0,
-            5,
             4,
-            1,
             2,
-            3
+            1
         ],
-        "sc": 300,
-        "xp": 1
+        "sc": 389,
+        "xp": 24
     },
     "540583445395669014": {
         "inv": {
@@ -81,15 +79,17 @@
             "Eigenvector": 3,
             "Kit Kat Chunky": 1,
             "Lego Man": 1,
-            "Potato": 1,
+            "Potato": 8,
             "Shear Stress": 0
         },
-        "level": 2,
+        "level": 3,
         "questions_todo": [
-            0
+            4,
+            5,
+            3
         ],
-        "sc": 747,
-        "xp": 80
+        "sc": 583,
+        "xp": 59
     },
     "607348761831800862": {
         "sc": 4

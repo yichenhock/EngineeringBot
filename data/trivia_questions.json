@@ -72,6 +72,21 @@
     },
     {
         "answers": [
+            "Gets shorter by a factor of `E_w/E_s`",
+            "Doesn't change",
+            "Gets wider by a factor of `E_s/E_w`",
+            "Gets shorter by a factor of `E_s`",
+            "Gets shorter by a factor of `E_w`"
+        ],
+        "answer_message": "We take the bending stiffness `B=EI` to be constant for both wood and steel, where `I = (b*d^3)/12` for rectangular sections. By rearranging `E_w*I_w = E_s*I_s` you can find that the width of wood, for which `E_w<E_s` is reduced by a factor of `E_w/E_s` when transformed into steel. ",
+        "category": "structures",
+        "difficulty_score": 10,
+        "image_name": "",
+        "question_text": "When you transform wood (with modulus `E_w`) into steel (with modulus `E_s`) for analysis of composite beams made up of wood and steel, what happens to the width of the transformed section of wood?",
+        "source": "Part 1A Structures Handout 6: Stresses Elastic Beams"
+    },
+    {
+        "answers": [
             "The second derivative of the curvature in a beam is equal the negative of the deflection.",
             "The integral of the deflection in a beam is equal to the negative of the curvature.",
             "The integral of the curvature in a beam is equal to the bending moment."
