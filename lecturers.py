@@ -14,8 +14,8 @@ class Lecturer():
             setattr(self, key, value) # `key` is a string which is the name of the property being set.
             # so if key = 'name', value = 'jeff', the above does self.name = 'jeff'.
     
-    def get_random_trivia_message(self):
-        return random.choice(self.trivia_messages)
+    def get_trivia_message(self):
+        return "{}: \"{}\"".format(self.name, random.choice(self.trivia_messages))
 
 def import_lecturers():
     global lecturers
