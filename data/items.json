@@ -12,7 +12,7 @@
         "shop_item": true,
         "type": "booster",
         "boost": {
-            "category": "elecronics",
+            "category": "electronics",
             "bonus": 0.02,
             "max_bonus": 5
         }
