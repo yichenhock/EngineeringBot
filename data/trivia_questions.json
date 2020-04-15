@@ -87,9 +87,10 @@
     },
     {
         "answers": [
-            "The second derivative of the curvature in a beam is equal the negative of the deflection.",
-            "The integral of the deflection in a beam is equal to the negative of the curvature.",
-            "The integral of the curvature in a beam is equal to the bending moment."
+            "`κ = -d²v/dx²`",
+            "`∫v dx = -κ`",
+            "`dκ/dx = M`",
+            "`κ = -dΨ/dx`"
         ],
         "answer_message": "",
         "category": "structures",
