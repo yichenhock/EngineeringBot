@@ -97,10 +97,15 @@ class StudyCommands(commands.Cog,name="Study"):
         output = lecturers.get_by_level(user_level).get_trivia_message() + "\n\n"
 
         question = random.choice(get_trivia_questions())
-        answers = question["answers"]
+        answers = question["answers"].copy()
         correct_answer = answers[0]
         random.shuffle(answers)
-        output += "{}\n> *{}*".format(ctx.author.mention, question["question_text"])
+        source = question.get("source", "")
+        if source:
+            output += "{}\n> *Source: {}*\n{}\n".format(ctx.author.mention, source, question["question_text"])
+        else:
+            output += "{}\n{}".format(ctx.author.mention, question["question_text"])
+
         for i in range(len(answers)):
             output += "\n*{}) {}*".format(ascii_lowercase[i], answers[i])
         
@@ -110,8 +115,8 @@ class StudyCommands(commands.Cog,name="Study"):
         def check(m):
             return m.author == ctx.author and (m.content in ascii_lowercase[:len(answers)]) and len(m.content) == 1
         msg = await self.bot.wait_for('message', check=check)
-        answer = msg.content
-        pos = ascii_lowercase.index(answer, 0, len(answers))
+        letter = msg.content
+        pos = ascii_lowercase.index(letter, 0, len(answers))
         answer = answers[pos]
 
         if answer == correct_answer:
@@ -121,12 +126,13 @@ class StudyCommands(commands.Cog,name="Study"):
             sc_add = ceil(base_sc * (1+boost))
             player_sc = get_data(ctx.author.id, "sc", default_val=0)
             add_data(ctx.author.id, "sc", player_sc + sc_add)
-            output = "{}, **Correct!**\n\tYou earned {} **{}**.".format(ctx.author.mention, SC_EMOJI, sc_add)
+            output = "{}, **Correct!**\n{}\n\n\tYou earned {} **{}**.".format(ctx.author.mention, question["answer_message"], SC_EMOJI, sc_add)
             if boost > 0:
                 output += "\n_**{}%** boost from_ **{}** _items in your inventory._".format(boost*100, question["category"].title())
         else:
             xp = XP_TRIVIA_INCORRECT
-            output = "{}, **Incorrect.**\n\nThe correct answer was **{}**.".format(ctx.author.mention, correct_answer)
+            correct_letter = ascii_lowercase[answers.index(correct_answer)]
+            output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, correct_answer, question["answer_message"])
 
         await ctx.send(output)
         await give_xp(ctx, ctx.author.id, xp)
@@ -136,7 +142,7 @@ class StudyCommands(commands.Cog,name="Study"):
         if isinstance(error,commands.CommandOnCooldown):
             hrs = int(error.retry_after // 3600)
             mins = int((error.retry_after % 3600) // 60)
-            secs = int((error.retry_after%3600) % 60)
+            secs = ceil((error.retry_after%3600) % 60)
             desc = "Your lab hasn't begun yet! Your demonstrator will be here in `{}` hrs, `{}` mins, `{}` secs".format(hrs, mins, secs)
             msg = discord.Embed(description=desc,
                                 colour=discord.Color.red())
@@ -145,7 +151,7 @@ class StudyCommands(commands.Cog,name="Study"):
     @lecture.error
     async def lecture_error(self,ctx,error):
         if isinstance(error,commands.CommandOnCooldown):
-            desc = "Your next lecture is in `{}` minutes, `{}` seconds".format(int(error.retry_after // 60), int(error.retry_after)%60)
+            desc = "Your next lecture is in `{}` minutes, `{}` seconds".format(int(error.retry_after // 60), ceil(error.retry_after)%60)
             msg = discord.Embed(description=desc,
                                 colour=discord.Color.red())
             await ctx.send('',embed=msg)
@@ -153,7 +159,7 @@ class StudyCommands(commands.Cog,name="Study"):
     @trivia.error
     async def trivia_error(self,ctx,error):
         if isinstance(error,commands.CommandOnCooldown):
-            desc = "Your next question is in `{}` minutes, `{}` seconds".format(int(error.retry_after // 60), int(error.retry_after)%60)
+            desc = "Your next question is in `{}` minutes, `{}` seconds".format(int(error.retry_after // 60), ceil(error.retry_after)%60)
             msg = discord.Embed(description=desc,
                                 colour=discord.Color.red())
             await ctx.send('',embed=msg)
@@ -168,6 +174,7 @@ async def give_xp(ctx, p_id, amount):
     current_xp = int(get_data(p_id, "xp", default_val=0))
     new_xp = current_xp + amount
     xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
+    await ctx.send("{} gets **{} XP**.".format(ctx.author.mention, amount))
     while new_xp >= xp_required:
         new_xp -= xp_required
         level += 1
