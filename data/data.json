@@ -40,11 +40,11 @@
             "Egyptian Slave": 50,
             "Eigenvector": 2,
             "Penny": 1,
-            "Shear Stress": 0
+            "Shear Stress": 6
         },
-        "level": 0,
-        "sc": 236,
-        "xp": 52
+        "level": 1,
+        "sc": 447,
+        "xp": 32
     },
     "540583445395669014": {
         "inv": {
@@ -60,11 +60,11 @@
             "Kit Kat Chunky": 1,
             "Lego Man": 1,
             "Potato": 1,
-            "Shear Stress": 6
+            "Shear Stress": 0
         },
-        "level": 1,
-        "sc": 387,
-        "xp": 79
+        "level": 2,
+        "sc": 506,
+        "xp": 15
     },
     "607348761831800862": {
         "sc": 4
@@ -77,17 +77,17 @@
     },
     "shop": {
         "items": [
-            "Cafe Sandwich",
-            "Crib",
             "DPO Anti-Bacterial Keyboard",
             "Drawing Kit",
             "Egyptian Slave",
             "Eigenvector",
+            "Hard Hat",
             "Kit Kat Chunky",
             "Lego Man",
             "Penny",
-            "Wrench"
+            "Pills",
+            "Shear Stress"
         ],
-        "last_stock_change": 1586946378.0251095
+        "last_stock_change": 1586947316.6423094
     }
 }

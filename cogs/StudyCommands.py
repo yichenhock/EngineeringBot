@@ -24,6 +24,7 @@ class StudyCommands(commands.Cog,name="Study"):
     @commands.cooldown(1, 3600*3, commands.BucketType.user)
     async def lab(self,ctx): 
         labs_subset = get_labs_subset(LABS_OPTIONS)
+
         output = "Select a lab by typing what is in `this text`:"
         options = {}
         for lab in labs_subset:
@@ -33,7 +34,11 @@ class StudyCommands(commands.Cog,name="Study"):
         def check(m):
             return m.author == ctx.author and (m.content in options)
 
-        await ctx.send(output)
+        await ctx.send('',embed=discord.Embed(
+                            description=output,
+                            colour=discord.Color.greyple())
+                            )
+
         msg = await self.bot.wait_for('message', check=check, timeout=120)
         lab = options[msg.content]
         outcome = random.choice(lab["outcomes"])
@@ -81,7 +86,7 @@ class StudyCommands(commands.Cog,name="Study"):
         else:
             message += "\n\n> _Get items that boost **{}** in order to increase earnings._".format(lec.category.title())
 
-        await ctx.send(message)
+        await ctx.send('',embed=discord.Embed(description=message,colour=discord.Color.greyple()))
         await give_xp(ctx, ctx.author.id, XP_LECTURE)
 
     @commands.command(name='trivia', aliases = ["study", "question", "learn", "q"], help=
@@ -174,7 +179,7 @@ async def give_xp(ctx, p_id, amount):
     current_xp = int(get_data(p_id, "xp", default_val=0))
     new_xp = current_xp + amount
     xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
-    await ctx.send("{} gets **{} XP**.".format(ctx.author.mention, amount))
+    await ctx.send("{} gets **`{}`<:xp:699934983074349086>**.".format(ctx.author.mention, amount))
     while new_xp >= xp_required:
         new_xp -= xp_required
         level += 1
