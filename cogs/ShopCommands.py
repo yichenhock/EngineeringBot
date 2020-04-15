@@ -123,7 +123,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                                     colour=discord.Colour.gold())
                 item_disp.add_field(name='Description',value=i.description,inline=False)
                 if i.is_booster():
-                    text = "_Each gives a_ {}%  _bonus to_ **{}**_, up to a maximum of_ {}%.".format(i.boost_bonus*100, i.boost_category.title(), i.boost_max_bonus*100)
+                    text = "_Each gives a_ {:.1f}%  _bonus to_ **{}**_, up to a maximum of_ {}%.".format(i.boost_bonus*100, i.boost_category.title(), i.boost_max_bonus*100)
                     item_disp.add_field(name='Booster',value=text,inline=False)
 
                     

@@ -82,7 +82,7 @@ class StudyCommands(commands.Cog,name="Study"):
         add_data(ctx.author.id, "sc", player_sc + sc)
         message += "\n\nYou went to the lecture and earned {} **{}**.".format(SC_EMOJI, sc)
         if boost > 0:
-            message += "\n_**{}%** boost from_ **{}** _items in your inventory._".format(boost*100, lec.category.title())   
+            message += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, lec.category.title())   
         else:
             message += "\n\n> _Get items that boost **{}** in order to increase earnings._".format(lec.category.title())
         
@@ -179,7 +179,7 @@ class StudyCommands(commands.Cog,name="Study"):
             add_data(ctx.author.id, "sc", player_sc + sc_add)
             output = "{}, **Correct!**\n> {}\n\n\tYou earned {} **{}**.".format(ctx.author.mention, question["answer_message"], SC_EMOJI, sc_add)
             if boost > 0:
-                output += "\n_**{}%** boost from_ **{}** _items in your inventory._".format(boost*100, question["category"].title())
+                output += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, question["category"].title())
         else:
             xp = XP_TRIVIA_INCORRECT
             correct_letter = ascii_lowercase[answers.index(correct_answer)]
