@@ -1,5 +1,6 @@
 import random
 from math import ceil
+from string import ascii_lowercase
 
 import discord
 from discord.ext import commands
@@ -9,8 +10,10 @@ import lecturers
 import tips
 from constants import (LABS_OPTIONS, SC_EMOJI, SC_LAB, SC_LECTURE,
                        SC_LECTURE_INCREASE_PER_LEVEL, XP_INCREASE_PER_LEVEL,
-                       XP_LAB, XP_LECTURE, XP_TO_LEVEL_UP)
-from data import add_data, get_data, get_labs_subset, save_data
+                       XP_LAB, XP_LECTURE, XP_TO_LEVEL_UP, XP_TRIVIA_CORRECT,
+                       XP_TRIVIA_INCORRECT)
+from data import (add_data, get_data, get_labs_subset, get_trivia_questions,
+                  save_data)
 
 
 class StudyCommands(commands.Cog,name="Study"):
@@ -74,23 +77,72 @@ class StudyCommands(commands.Cog,name="Study"):
         add_data(ctx.author.id, "sc", player_sc + sc)
         message += "\n\nYou went to the lecture and earned {} **{}**.".format(SC_EMOJI, sc)
         if boost > 0:
-            message += "\n_**{}%** boost from_ **{}** _items in your inventory._".format(boost*100, lec.category.title())
+            message += "\n_**{}%** boost from_ **{}** _items in your inventory._".format(boost*100, lec.category.title())   
         else:
             message += "\n\n> _Get items that boost **{}** in order to increase earnings._".format(lec.category.title())
 
         await ctx.send(message)
         await give_xp(ctx, ctx.author.id, XP_LECTURE)
 
-    @commands.command(name='trivia',help='Answer a question to get standard credit')
+    @commands.command(name='trivia', aliases = ["study", "question", "learn", "q"], help=
+        """Answer a question to get standard credit.
+
+        You get {}**Standard Credit** for correct answers and XP for both correct and incorrect answers.
+
+        Aliases: study, question, learn, q
+        """.format(SC_EMOJI))
+    @commands.cooldown(1, 30, commands.BucketType.user)
     async def trivia(self,ctx):
         user_level = get_data(ctx.author.id, "level", default_val=1)
+        output = lecturers.get_by_level(user_level).get_trivia_message() + "\n\n"
+
+        question = random.choice(get_trivia_questions())
+        answers = question["answers"].copy()
+        correct_answer = answers[0]
+        random.shuffle(answers)
+        source = question.get("source", "")
+        if source:
+            output += "{}\n> *Source: {}*\n{}\n".format(ctx.author.mention, source, question["question_text"])
+        else:
+            output += "{}\n{}".format(ctx.author.mention, question["question_text"])
+
+        for i in range(len(answers)):
+            output += "\n*{}) {}*".format(ascii_lowercase[i], answers[i])
+        
+        output += "\n\nType in the character of the answer you think is correct!"
+        await ctx.send(output)
+
+        def check(m):
+            return m.author == ctx.author and (m.content in ascii_lowercase[:len(answers)]) and len(m.content) == 1
+        msg = await self.bot.wait_for('message', check=check)
+        letter = msg.content
+        pos = ascii_lowercase.index(letter, 0, len(answers))
+        answer = answers[pos]
+
+        if answer == correct_answer:
+            xp = XP_TRIVIA_CORRECT
+            base_sc = question["difficulty_score"]
+            boost = items.get_player_boost(ctx.author.id, question["category"])
+            sc_add = ceil(base_sc * (1+boost))
+            player_sc = get_data(ctx.author.id, "sc", default_val=0)
+            add_data(ctx.author.id, "sc", player_sc + sc_add)
+            output = "{}, **Correct!**\n{}\n\n\tYou earned {} **{}**.".format(ctx.author.mention, question["answer_message"], SC_EMOJI, sc_add)
+            if boost > 0:
+                output += "\n_**{}%** boost from_ **{}** _items in your inventory._".format(boost*100, question["category"].title())
+        else:
+            xp = XP_TRIVIA_INCORRECT
+            correct_letter = ascii_lowercase[answers.index(correct_answer)]
+            output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, correct_answer, question["answer_message"])
+
+        await ctx.send(output)
+        await give_xp(ctx, ctx.author.id, xp)
 
     @lab.error
     async def lab_error(self,ctx,error):
         if isinstance(error,commands.CommandOnCooldown):
             hrs = int(error.retry_after // 3600)
             mins = int((error.retry_after % 3600) // 60)
-            secs = int((error.retry_after%3600) % 60)
+            secs = ceil((error.retry_after%3600) % 60)
             desc = "Your lab hasn't begun yet! Your demonstrator will be here in `{}` hrs, `{}` mins, `{}` secs".format(hrs, mins, secs)
             msg = discord.Embed(description=desc,
                                 colour=discord.Color.red())
@@ -99,7 +151,15 @@ class StudyCommands(commands.Cog,name="Study"):
     @lecture.error
     async def lecture_error(self,ctx,error):
         if isinstance(error,commands.CommandOnCooldown):
-            desc = "Your next lecture is in `{}` minutes, `{}` seconds".format(int(error.retry_after // 60), int(error.retry_after)%60)
+            desc = "Your next lecture is in `{}` minutes, `{}` seconds".format(int(error.retry_after // 60), ceil(error.retry_after)%60)
+            msg = discord.Embed(description=desc,
+                                colour=discord.Color.red())
+            await ctx.send('',embed=msg)
+
+    @trivia.error
+    async def trivia_error(self,ctx,error):
+        if isinstance(error,commands.CommandOnCooldown):
+            desc = "Your next question is in `{}` minutes, `{}` seconds".format(int(error.retry_after // 60), ceil(error.retry_after)%60)
             msg = discord.Embed(description=desc,
                                 colour=discord.Color.red())
             await ctx.send('',embed=msg)
@@ -114,6 +174,7 @@ async def give_xp(ctx, p_id, amount):
     current_xp = int(get_data(p_id, "xp", default_val=0))
     new_xp = current_xp + amount
     xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
+    await ctx.send("{} gets **{} XP**.".format(ctx.author.mention, amount))
     while new_xp >= xp_required:
         new_xp -= xp_required
         level += 1

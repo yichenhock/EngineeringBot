@@ -9,42 +9,26 @@
             "be",
             "mixed"
         ],
-        "category": "category name",
+        "answer_message": "",
+        "category": "materials",
         "difficulty_score": 10,
         "image_name": "",
         "question_text": "Add question text here",
-        "question_title": "Title of question"
+        "source": ""
     },
     {
         "answers": [
-            "list",
-            "of",
-            "strings",
-            "that",
-            "will",
-            "be",
-            "mixed"
+            "L and \u03B1 can be manipulated, b and G are fixed.",
+            "L and b can be manipulated, G and \u03B1 are fixed.",
+            "G and \u03B1 can be manipulated, L and b are fixed.",
+            "L and G can be manipulated, b and \u03B1 are fixed.",
+            "G and b can be manipulated, L and \u03B1 are fixed."
         ],
-        "category": "category name",
-        "difficulty_score": 10,
+        "answer_message": "G = elastic shear modulus, b = Burgers vector (atomic spacing), L = obstacle spacing, \u03B1 = obstacle strength",
+        "category": "materials",
+        "difficulty_score": 4,
         "image_name": "",
-        "question_text": "Add question text here",
-        "question_title": "Title of question"
-    },
-    {
-        "answers": [
-            "list",
-            "of",
-            "strings",
-            "that",
-            "will",
-            "be",
-            "mixed"
-        ],
-        "category": "category name",
-        "difficulty_score": 10,
-        "image_name": "",
-        "question_text": "Add question text here",
-        "question_title": "Title of question"
+        "question_text": "The contribution to the yield stress due to **dislocation pinning** depends directly on G, b, L, and \u03B1.\nWhich of these properties can be manipulated by composition and processing and which are fixed parameters?",
+        "source": "Part 1A Materials Handout 4: Microstructure and Properties"
     }
 ]
