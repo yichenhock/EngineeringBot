@@ -22,12 +22,20 @@ bot.remove_command('help')
 @bot.event
 async def on_ready():
     print(f'{bot.user.name} has connected to Discord!')
-    
+
 
 @bot.event
 async def on_command_error(ctx, error):
     print("An error occured...")
     print(error)
+
+
+def initialise_data():
+    load_data(bot)
+    items.import_items()
+    lecturers.import_lecturers()
+
+initialise_data()
 
 if __name__ == '__main__':
     for extension in os.listdir("cogs"):
@@ -39,10 +47,4 @@ if __name__ == '__main__':
                 print(e)
                 print(f'Failed to load extension {extension}.')
 
-def initialise_data():
-    load_data(bot)
-    items.import_items()
-    lecturers.import_lecturers()
-
-initialise_data()
 bot.run(TOKEN)
