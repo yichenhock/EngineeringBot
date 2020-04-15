@@ -43,7 +43,7 @@ class MiscCommands(commands.Cog, name="Misc"):
         embed.set_image(url="attachment://"+image)
         await ctx.send(file=file,embed=embed)
 
-    @commands.command(name="meme",help="Shows you a meme")
+    @commands.command(name="meme",aliases=["memes"],help="Shows you a meme")
     async def meme(self,ctx):
         images = []
         for filename in os.listdir(DATA_PATH+"memes"):
