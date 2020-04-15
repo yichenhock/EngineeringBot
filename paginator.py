@@ -82,8 +82,7 @@ class Paginator:
     async def delete(self):
         """Delete the emojis. Session is terminated."""
         self.paginating = False
-        for emoji in EMOJIS + self.custom_emojis:
-            await self.message.remove_reaction(emoji, self.ctx.user)
+        await self.message.clear_reactions()
 
     def check(self, reaction, user):
         """Checks:
@@ -126,8 +125,7 @@ class Paginator:
                 )
             except asyncio.TimeoutError:
                 self.paginating = False
-                for emoji in EMOJIS + self.custom_emojis:
-                    await self.message.remove_reaction(emoji, self.bot.user)
+                await self.message.clear_reactions()
                 self.pages[self.index].set_footer(text=f"Paginator timed out")
                 await self.message.edit(embed=self.pages[self.index])
             else:
