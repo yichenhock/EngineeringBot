@@ -69,5 +69,18 @@
         "image_name": "",
         "question_text": "What is the convergence of  a fourier series of a function which is a series of delta functions?",
         "source": "Part 1A Lent Term Mathematics"
+    },
+    {
+        "answers": [
+            "The second derivative of the curvature in a beam is equal the negative of the deflection.",
+            "The integral of the deflection in a beam is equal to the negative of the curvature.",
+            "The integral of the curvature in a beam is equal to the bending moment."
+        ],
+        "answer_message": "",
+        "category": "structures",
+        "difficulty_score": 4,
+        "image_name": "",
+        "question_text": "Which of the below statements are correct?",
+        "source": ""
     }
 ]
