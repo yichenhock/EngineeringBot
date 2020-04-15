@@ -22,7 +22,7 @@
             "Does not converge"
         ],
         "answer_message": "",
-        "category": "mathematics",
+        "category": "maths",
         "difficulty_score": 4,
         "image_name": "",
         "question_text": "What is the convergence of  a fourier series of a function with a discontinuity in gradient (first derivative)?",
@@ -36,7 +36,7 @@
             "Does not converge"
         ],
         "answer_message": "",
-        "category": "mathematics",
+        "category": "maths",
         "difficulty_score": 4,
         "image_name": "",
         "question_text": "What is the convergence of  a fourier series of a function with a discontinuity in the second derivative?",
@@ -50,7 +50,7 @@
             "Does not converge"
         ],
         "answer_message": "",
-        "category": "mathematics",
+        "category": "maths",
         "difficulty_score": 4,
         "image_name": "",
         "question_text": "What is the convergence of  a fourier series of a function with a discontinuity in the value?",
@@ -64,7 +64,7 @@
             "1/(n^2)"
         ],
         "answer_message": "",
-        "category": "mathematics",
+        "category": "maths",
         "difficulty_score": 4,
         "image_name": "",
         "question_text": "What is the convergence of  a fourier series of a function which is a series of delta functions?",
