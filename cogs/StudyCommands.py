@@ -133,7 +133,8 @@ class StudyCommands(commands.Cog,name="Study"):
         # -- Shuffling answers (without affecting the originals) and getting the correct answer
         answers = question["answers"].copy()
         correct_answer = answers[0]
-        random.shuffle(answers)
+        if question.get("shuffle_answers", True):
+            random.shuffle(answers)
 
         # -- Outputting question
         lec = lecturers.get_by_level(user_level)
