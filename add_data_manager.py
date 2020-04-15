@@ -1,5 +1,7 @@
 """This is purely a utility file for adding entries to the .json files in the data folder. Don't call any functions from here."""
 
+# THIS FILE IS CURRENTLY OUTDATED, DON'T USE
+
 
 import json
 import os
