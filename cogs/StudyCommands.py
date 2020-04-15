@@ -96,7 +96,7 @@ class StudyCommands(commands.Cog,name="Study"):
         await give_xp(ctx, ctx.author.id, XP_LECTURE)
         
 
-    @commands.command(name='trivia', aliases = ["study", "question", "learn", "q"], help=
+    @commands.command(name='trivia', aliases = ["study", "question", "learn", "q","supo", "supervision"], help=
         """Answer a question to get standard credit.
 
         You get {}**Standard Credit** for correct answers and XP for both correct and incorrect answers.
@@ -126,18 +126,26 @@ class StudyCommands(commands.Cog,name="Study"):
         random.shuffle(answers)
 
         # -- Outputting question
+        lec = lecturers.get_by_level(user_level)
         output = lecturers.get_by_level(user_level).get_trivia_message() + "\n\n"
         source = question.get("source", "")
         if source:
-            output += "{}\n> *Source: {}*\n{}\n".format(ctx.author.mention, source, question["question_text"])
+            output += "> *Source: {}*\n{}\n".format(source, question["question_text"])
         else:
-            output += "{}\n{}".format(ctx.author.mention, question["question_text"])
+            output += "{}".format(question["question_text"])
 
         for i in range(len(answers)):
             output += "\n*{}) {}*".format(ascii_lowercase[i], answers[i])
         
-        output += "\n\nType in the character of the answer you think is correct!"
-        await ctx.send(output)
+        output += "\n\n**Type in the character of the answer you think is correct!**"
+
+        file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
+        trivia_disp=discord.Embed(description=output,
+                        colour=discord.Color.greyple())
+        trivia_disp.set_thumbnail(url="attachment://"+lec.image)
+        trivia_disp.set_author(name="Supervision with {}".lec.name,
+                            url='',icon_url=ctx.author.avatar_url)
+        await ctx.send(file=file,embed=trivia_disp)
 
         # -- Getting answer string
         def check(m):
@@ -170,7 +178,12 @@ class StudyCommands(commands.Cog,name="Study"):
         
         add_data(ctx.author.id, "questions_todo", questions_todo)
 
-        await ctx.send(output)
+        file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
+        trivia_disp=discord.Embed(description=output,
+                        colour=discord.Color.greyple())
+        trivia_disp.set_thumbnail(url="attachment://"+lec.image)
+        await ctx.send(file=file,embed=trivia_disp)
+        
         await give_xp(ctx, ctx.author.id, xp)
 
     @lab.error
@@ -219,9 +232,6 @@ async def give_xp(ctx, p_id, amount):
         message += ":tada: Your new lecturer is: **{}**! :tada:".format(lec.name)
         message += "\n\n_Get items that boost **{}** in order to increase lecture earnings._".format(lec.category.title())
         
-        
-        #await ctx.send("\n*Note: The level system is currently a WIP and your level will be reset when it is complete.*")
-  
         file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
 
         levelup_disp=discord.Embed(description=message,
