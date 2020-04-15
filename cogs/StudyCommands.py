@@ -99,12 +99,27 @@ class StudyCommands(commands.Cog,name="Study"):
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def trivia(self,ctx):
         user_level = get_data(ctx.author.id, "level", default_val=1)
-        output = lecturers.get_by_level(user_level).get_trivia_message() + "\n\n"
+        
+        # -- Picking question
+        questions = get_trivia_questions()
+        questions_todo = get_data(ctx.author.id, "questions_todo", default_val=[])
 
-        question = random.choice(get_trivia_questions())
+        if not questions_todo:
+            questions_todo = list(range(len(questions)))
+            random.shuffle(questions_todo)
+            add_data(ctx.author.id, "questions_todo", questions_todo)
+        
+        question_index = questions_todo[0]
+        question = questions[question_index]
+        
+
+        # -- Shuffling answers (without affecting the originals) and getting the correct answer
         answers = question["answers"].copy()
         correct_answer = answers[0]
         random.shuffle(answers)
+
+        # -- Outputting question
+        output = lecturers.get_by_level(user_level).get_trivia_message() + "\n\n"
         source = question.get("source", "")
         if source:
             output += "{}\n> *Source: {}*\n{}\n".format(ctx.author.mention, source, question["question_text"])
@@ -117,6 +132,7 @@ class StudyCommands(commands.Cog,name="Study"):
         output += "\n\nType in the character of the answer you think is correct!"
         await ctx.send(output)
 
+        # -- Getting answer string
         def check(m):
             return m.author == ctx.author and (m.content in ascii_lowercase[:len(answers)]) and len(m.content) == 1
         msg = await self.bot.wait_for('message', check=check)
@@ -124,6 +140,10 @@ class StudyCommands(commands.Cog,name="Study"):
         pos = ascii_lowercase.index(letter, 0, len(answers))
         answer = answers[pos]
 
+        # Remove question_index from questions_todo
+        questions_todo.remove(question_index)
+
+        # -- Acting depending on if answer is correct or not
         if answer == correct_answer:
             xp = XP_TRIVIA_CORRECT
             base_sc = question["difficulty_score"]
@@ -138,6 +158,10 @@ class StudyCommands(commands.Cog,name="Study"):
             xp = XP_TRIVIA_INCORRECT
             correct_letter = ascii_lowercase[answers.index(correct_answer)]
             output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, correct_answer, question["answer_message"])
+            # Add the question back in so you do it again
+            questions_todo.insert(4, question_index)
+        
+        add_data(ctx.author.id, "questions_todo", questions_todo)
 
         await ctx.send(output)
         await give_xp(ctx, ctx.author.id, xp)
