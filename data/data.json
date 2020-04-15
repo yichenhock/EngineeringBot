@@ -1,4 +1,10 @@
 {
+    "132128418987900928": {
+        "inv": {
+            "Egyptian Slave": 5
+        },
+        "sc": 18
+    },
     "142829230864990208": {
         "sc": 5
     },
@@ -21,33 +27,44 @@
         "inv": {
             "Egyptian Slave": 1
         },
-        "sc": 0
+        "level": 0,
+        "sc": 40,
+        "xp": 8
     },
     "456153455820668928": {
-        "sc": 140
+        "sc": 152
     },
     "501077051017789451": {
         "inv": {
             "Cafe Sandwich": 1,
-            "Egyptian Slave": 55,
+            "Egyptian Slave": 50,
             "Eigenvector": 2,
-            "Penny": 1
+            "Penny": 1,
+            "Shear Stress": 0
         },
-        "sc": 25
+        "level": 0,
+        "sc": 236,
+        "xp": 52
     },
     "540583445395669014": {
+        "inv": {
+            "Shear Stress": 1
+        },
         "sc": 25
     },
     "540627345044799545": {
         "inv": {
             "DPO Anti-Bacterial Keyboard": 1,
-            "Egyptian Slave": 19,
-            "Eigenvector": 2,
+            "Egyptian Slave": 41,
+            "Eigenvector": 3,
             "Kit Kat Chunky": 1,
             "Lego Man": 1,
-            "Potato": 1
+            "Potato": 1,
+            "Shear Stress": 6
         },
-        "sc": 36
+        "level": 1,
+        "sc": 387,
+        "xp": 79
     },
     "607348761831800862": {
         "sc": 4
@@ -68,9 +85,9 @@
             "Eigenvector",
             "Kit Kat Chunky",
             "Lego Man",
-            "Potato",
+            "Penny",
             "Wrench"
         ],
-        "last_stock_change": 1586780667.0238008
+        "last_stock_change": 1586946378.0251095
     }
 }
