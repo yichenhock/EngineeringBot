@@ -41,23 +41,33 @@
     },
     "501077051017789451": {
         "inv": {
-            "Cafe Sandwich": 1,
+            "Cafe Sandwich": 2,
+            "DPO Anti-Bacterial Keyboard": 1,
             "Egyptian Slave": 50,
             "Eigenvector": 2,
             "Penny": 1,
-            "Pills": 1,
-            "Shear Stress": 6
+            "Pills": 2,
+            "Potato": 1,
+            "Shear Stress": 7
         },
         "level": 1,
-        "questions_todo": [],
-        "sc": 1492,
-        "xp": 45
+        "questions_todo": [
+            1
+        ],
+        "sc": 294,
+        "xp": 77
     },
     "540583445395669014": {
         "inv": {
             "Shear Stress": 1
         },
-        "sc": 25
+        "level": 0,
+        "questions_todo": [
+            0,
+            1
+        ],
+        "sc": 25,
+        "xp": 2
     },
     "540627345044799545": {
         "inv": {

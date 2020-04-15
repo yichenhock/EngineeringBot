@@ -43,5 +43,17 @@ class MiscCommands(commands.Cog, name="Misc"):
         embed.set_image(url="attachment://"+image)
         await ctx.send(file=file,embed=embed)
 
+    @commands.command(name="meme",help="Shows you a meme")
+    async def meme(self,ctx):
+        images = []
+        for filename in os.listdir(DATA_PATH+"memes"):
+            if (filename.endswith(".jpg")) or (filename.endswith(".png")):
+                images.append(filename)
+        image = random.choice(images)
+        file = discord.File(DATA_PATH+"memes/"+image, filename=image)
+        embed = discord.Embed()
+        embed.set_image(url="attachment://"+image)
+        await ctx.send(file=file,embed=embed)
+
 def setup(bot):
     bot.add_cog(MiscCommands(bot))
