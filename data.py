@@ -65,7 +65,7 @@ def _get_from_filename(filename, default = None, cached=True):
     """Starts with an underscore to signify this should only be used in this file."""
     if not filename in _data_files or not cached:
         if os.path.exists(DATA_PATH+filename+".json"):
-            with open(DATA_PATH+filename+".json", "r") as json_file: 
+            with open(DATA_PATH+filename+".json", "r", encoding='utf-8') as json_file: 
                 _data_files[filename] = json.load(json_file)
         else:
             _data_files[filename] = default
