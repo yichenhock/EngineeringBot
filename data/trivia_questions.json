@@ -1,22 +1,5 @@
 [
-    {
-        "answers": [
-            "list",
-            "of",
-            "strings",
-            "that",
-            "will",
-            "be",
-            "mixed"
-        ],
-        "answer_message": "",
-        "category": "materials",
-        "difficulty_score": 10,
-        "image_name": "",
-        "question_text": "Add question text here",
-        "source": ""
-    },
-    {
+        {
         "answers": [
             "L and \u03B1 can be manipulated, b and G are fixed.",
             "L and b can be manipulated, G and \u03B1 are fixed.",
@@ -30,5 +13,61 @@
         "image_name": "",
         "question_text": "The contribution to the yield stress due to **dislocation pinning** depends directly on G, b, L, and \u03B1.\nWhich of these properties can be manipulated by composition and processing and which are fixed parameters?",
         "source": "Part 1A Materials Handout 4: Microstructure and Properties"
+    },
+    {
+        "answers": [
+            "1/(n^2)",
+            "1/(n^3)",
+            "1/n",
+            "Does not converge"
+        ],
+        "answer_message": "",
+        "category": "mathematics",
+        "difficulty_score": 4,
+        "image_name": "",
+        "question_text": "What is the convergence of  a fourier series of a function with a discontinuity in gradient (first derivative)?",
+        "source": "Part 1A Lent Term Mathematics"
+    },
+    {
+        "answers": [
+            "1/(n^3)",
+            "1/(n^2)",
+            "1/n",
+            "Does not converge"
+        ],
+        "answer_message": "",
+        "category": "mathematics",
+        "difficulty_score": 4,
+        "image_name": "",
+        "question_text": "What is the convergence of  a fourier series of a function with a discontinuity in the second derivative?",
+        "source": "Part 1A Lent Term Mathematics"
+    },
+    {
+        "answers": [
+            "1/n",
+            "1/(n^3)",
+            "1/(n^2)",
+            "Does not converge"
+        ],
+        "answer_message": "",
+        "category": "mathematics",
+        "difficulty_score": 4,
+        "image_name": "",
+        "question_text": "What is the convergence of  a fourier series of a function with a discontinuity in the value?",
+        "source": "Part 1A Lent Term Mathematics"
+    },
+    {
+        "answers": [
+            "Does not converge",
+            "1/n",
+            "1/(n^3)",
+            "1/(n^2)"
+        ],
+        "answer_message": "",
+        "category": "mathematics",
+        "difficulty_score": 4,
+        "image_name": "",
+        "question_text": "What is the convergence of  a fourier series of a function which is a series of delta functions?",
+        "source": "Part 1A Lent Term Mathematics"
     }
 ]
