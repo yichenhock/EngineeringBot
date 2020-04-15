@@ -98,10 +98,9 @@ class StudyCommands(commands.Cog,name="Study"):
 
     @commands.command(name='trivia', aliases = ["study", "question", "learn", "q","supo", "supervision"], help=
         """Answer a question to get standard credit.
-
         You get {}**Standard Credit** for correct answers and XP for both correct and incorrect answers.
 
-        Aliases: study, question, learn, q, supo, supervision
+        Aliases: `study`, `question`, `learn`, `q`, `supo`, `supervision`
         """.format(SC_EMOJI))
     @commands.cooldown(1, 30, commands.BucketType.user)
     async def trivia(self,ctx):
