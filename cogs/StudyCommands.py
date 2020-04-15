@@ -85,9 +85,16 @@ class StudyCommands(commands.Cog,name="Study"):
             message += "\n_**{}%** boost from_ **{}** _items in your inventory._".format(boost*100, lec.category.title())   
         else:
             message += "\n\n> _Get items that boost **{}** in order to increase earnings._".format(lec.category.title())
+        
+        message += "\n\nYou get **`{}`<:xp:699934983074349086>**.".format(XP_LECTURE)
 
-        await ctx.send('',embed=discord.Embed(description=message,colour=discord.Color.greyple()))
+        file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
+        lecture_disp=discord.Embed(description=message,colour=discord.Color.greyple())
+        lecture_disp.set_thumbnail(url="attachment://"+lec.image)
+        await ctx.send(file=file,embed=lecture_disp)
+
         await give_xp(ctx, ctx.author.id, XP_LECTURE)
+        
 
     @commands.command(name='trivia', aliases = ["study", "question", "learn", "q"], help=
         """Answer a question to get standard credit.
@@ -183,18 +190,28 @@ async def give_xp(ctx, p_id, amount):
         new_xp -= xp_required
         level += 1
         xp_required = XP_TO_LEVEL_UP + XP_INCREASE_PER_LEVEL * level
-        message = ":tada:  **{} has Levelled Up to Level {}**  :tada:\n".format(ctx.author.mention, level)
+        message = ""
         lec = lecturers.get_by_level(level)
-        message += "\nYour new lecturer is \n\t\t\t\t:tada: **{}**! :tada:".format(lec.name)
-        message += "\n> _Get items that boost **{}** in order to increase lecture earnings._".format(lec.category.title())
-        await ctx.send(message)
+        message += ":tada: Your new lecturer is: **{}**! :tada:".format(lec.name)
+        message += "\n\n_Get items that boost **{}** in order to increase lecture earnings._".format(lec.category.title())
+        
         
         #await ctx.send("\n*Note: The level system is currently a WIP and your level will be reset when it is complete.*")
+  
+        file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
+
+        levelup_disp=discord.Embed(description=message,
+                        colour=discord.Color.greyple())
+        levelup_disp.set_author(name="Level Up to Level {}!".format(level),
+                            url='',icon_url=ctx.author.avatar_url)
+        levelup_disp.set_thumbnail(url="attachment://"+lec.image)
+        await ctx.send(file=file,embed=levelup_disp)
+
     add_data(p_id, "level", level)
     add_data(p_id, "xp", new_xp)
 
 def get_xp_string(player, amount):
-    return "{} gets **`{}`<:xp:699934983074349086>**.".format(player.mention, amount)
+    return "You get **`{}`<:xp:699934983074349086>**.".format(amount)
 
 def setup(bot):
     bot.add_cog(StudyCommands(bot))

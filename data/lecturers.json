@@ -8,7 +8,7 @@
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
         ],
-        "image": ".jpg"
+        "image": "allwood2.png"
     },
     {
         "category": "mechanics",
@@ -19,7 +19,7 @@
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
         ],
-        "image": ".jpg"
+        "image": "torebutlin.jpg"
     },
     {
         "category": "mechanics",
@@ -30,7 +30,7 @@
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
         ],
-        "image": ".jpg"
+        "image": "atkins.jpg"
     },
     {
         "category": "mathematics",
@@ -41,7 +41,7 @@
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
         ],
-        "image": ".jpg"
+        "image": "prager.jpg"
     },
     {
         "category": "electronics",
@@ -52,7 +52,7 @@
             "I'll say one of these things randomly before giving you a trivia question.",
             "Can you do this trivia question?"
         ],
-        "image": ".jpg"
+        "image": "joyce.jpg"
     },
     {
         "category": "electronics",
@@ -64,7 +64,7 @@
             "Use your brain Power™ for this one.",
             "Answer this one for me."
         ],
-        "image": ".jpg"
+        "image": "udrea.jpg"
     },
     {
         "category": "mathematics",
@@ -76,7 +76,7 @@
             "See if you can dimensionally analyse this conundrum.",
             "Ready for a question?"
         ],
-        "image": ".jpg"
+        "image": "longley.jpg"
     },
     {
         "category": "electronics",
@@ -90,7 +90,7 @@
             "Hope you don't get much resistance with this. But if you wanted some, I'd always recommend 1 M Ohm.",
             "You're gonna have to work at getting here on time, folks. I've had this question ready for 7 minutes."
         ],
-        "image": ".jpg"
+        "image": "wilkinson.jpg"
     },
     {
         "category": "electronics",
@@ -101,7 +101,7 @@
             "Oh if you can't really read the question, I'll write it smaller so you can see it better.",
             "Hey, you wannabe CompSci, up for a question?"
         ],
-        "image": ".jpg"
+        "image": "hasan.png"
     },
     {
         "category": "mechanics",
@@ -111,7 +111,8 @@
         "trivia_messages": [
             "Stop. Being. So. Rude. Let me ask you this question, okay?",
             "I'm too old to get annoyed, at least in public anyway, so you better get this one right."
-        ]
+        ],
+        "image": "langley.jpg"
     },
     {
         "category": "maths",
@@ -122,7 +123,8 @@
             "I... (hate myself) ... am going to ask you a question.",
             "Were you listening carefully in the lecture? Because I probably forgot to show you an entire topic.",
             "Why is life so depressing."
-        ]
+        ],
+        "image": "tucker.jpg"
     },
     {
         "category": "materials",
@@ -134,7 +136,7 @@
             "TEcHNIcal knOWLeDGE iS NECessarY bUT NOT SufficiEnt.",
             "You didn't show up to any of my lectures, so let's see how you handle this question."
         ],
-        "image": ".jpg"
+        "image": "kumar.jpg"
     },
     {
         "category": "materials",
@@ -148,6 +150,6 @@
             "Hush please! Do this question and get it right first time. It's easy.",
             "This question is basic material."
         ],
-        "image": ".jpg"
+        "image": "shercliff.png"
     }
 ]
