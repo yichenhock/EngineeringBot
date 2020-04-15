@@ -3,8 +3,7 @@ import discord
 import random 
 import os
 
-import constants
-PATH = constants.PATH
+from constants import DATA_PATH
 
 def txt2emoji(txt): 
     alphabet = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
@@ -35,11 +34,11 @@ class MiscCommands(commands.Cog, name="Misc"):
     @commands.command(name="nsfw",help="You know it :^)")
     async def nsfw(self,ctx):
         images = []
-        for filename in os.listdir(PATH+"nsfw"):
+        for filename in os.listdir(DATA_PATH+"nsfw"):
             if (filename.endswith(".jpg")) or (filename.endswith(".png")):
                 images.append(filename)
         image = random.choice(images)
-        file = discord.File(PATH+"nsfw/"+image, filename=image)
+        file = discord.File(DATA_PATH+"nsfw/"+image, filename=image)
         embed = discord.Embed()
         embed.set_image(url="attachment://"+image)
         await ctx.send(file=file,embed=embed)

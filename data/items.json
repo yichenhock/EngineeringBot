@@ -75,6 +75,26 @@
     },
     {
         "aliases": [
+            "convertible",
+            "convertable",
+            "car",
+            "'54",
+            "54"
+        ],
+        "cost": 2000,
+        "description": "Santa baby, lower that car into my smoke stack with a crane.",
+        "emoji": "<:convertible:700044368924508180>",
+        "name": "'54 Convertible",
+        "shop_item": true,
+        "type": "booster",
+        "boost": {
+            "category": "structures",
+            "bonus": 1,
+            "max_bonus": 5
+        }
+    },
+    {
+        "aliases": [
             "vector",
             "eigen",
             "evector"

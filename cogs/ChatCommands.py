@@ -4,8 +4,7 @@ from discord.ext import commands
 import os
 import re
 
-import constants
-PATH = constants.PATH
+from constants import DATA_PATH
 
 class ChatCommands(commands.Cog, name= "Chat"):
     def __init__(self,bot):
@@ -35,7 +34,7 @@ class ChatCommands(commands.Cog, name= "Chat"):
     @commands.command(name="hmu",help="When you need someone to spice up your life, I'm here for it;)")
     async def hmu(self,ctx):
         hmu_txt = []
-        with open(PATH+"hmu.txt", "r") as a_file:
+        with open(DATA_PATH+"hmu.txt", "r") as a_file:
             for line in a_file:
                 hmu_txt.append(line.strip())
         await ctx.message.add_reaction("💦")

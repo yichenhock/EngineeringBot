@@ -8,7 +8,7 @@ from discord.ext import commands
 import items
 import lecturers
 import tips
-from constants import (LABS_OPTIONS, SC_EMOJI, SC_LAB, SC_LECTURE,
+from constants import (DATA_PATH, LABS_OPTIONS, SC_EMOJI, SC_LAB, SC_LECTURE,
                        SC_LECTURE_INCREASE_PER_LEVEL, XP_INCREASE_PER_LEVEL,
                        XP_LAB, XP_LECTURE, XP_TO_LEVEL_UP, XP_TRIVIA_CORRECT,
                        XP_TRIVIA_INCORRECT)
@@ -88,7 +88,7 @@ class StudyCommands(commands.Cog,name="Study"):
         
         message += "\n\nYou get **`{}`<:xp:699934983074349086>**.".format(XP_LECTURE)
 
-        file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
+        file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
         lecture_disp=discord.Embed(description=message,colour=discord.Color.greyple())
         lecture_disp.set_thumbnail(url="attachment://"+lec.image)
         await ctx.send(file=file,embed=lecture_disp)
@@ -149,7 +149,7 @@ class StudyCommands(commands.Cog,name="Study"):
         
         output += "\n\n**Type in the character of the answer you think is correct!**"
 
-        file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
+        file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
         trivia_disp=discord.Embed(description=output,
                         colour=discord.Color.greyple())
         trivia_disp.set_thumbnail(url="attachment://"+lec.image)
@@ -188,7 +188,7 @@ class StudyCommands(commands.Cog,name="Study"):
         
         add_data(ctx.author.id, "questions_todo", questions_todo)
 
-        file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
+        file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
         trivia_disp=discord.Embed(description=output,
                         colour=discord.Color.greyple())
         trivia_disp.set_thumbnail(url="attachment://"+lec.image)
@@ -248,7 +248,7 @@ async def show_level_up(ctx, level):
     message += ":tada: Your new lecturer is: **{}**! :tada:".format(lec.name)
     message += "\n\n_Get items that boost **{}** in order to increase lecture earnings._".format(lec.category.title())
     
-    file = discord.File("lecturer_img/"+lec.image, filename=lec.image)
+    file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
 
     levelup_disp=discord.Embed(description=message,
                     colour=discord.Color.greyple())
