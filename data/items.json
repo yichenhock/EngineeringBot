@@ -13,8 +13,8 @@
         "type": "booster",
         "boost": {
             "category": "elecronics",
-            "bonus": 0.01,
-            "max_bonus": 0.6
+            "bonus": 0.02,
+            "max_bonus": 5
         }
     },
     {
@@ -34,8 +34,8 @@
         "type": "booster",
         "boost": {
             "category": "materials",
-            "bonus": 0.02,
-            "max_bonus": 0.6
+            "bonus": 0.04,
+            "max_bonus": 5
         }
     },
     {
@@ -51,8 +51,8 @@
         "type": "booster",
         "boost": {
             "category": "mechanics",
-            "bonus": 0.02,
-            "max_bonus": 0.6
+            "bonus": 0.04,
+            "max_bonus": 5
         }
     },
     {
@@ -69,8 +69,8 @@
         "type": "booster",
         "boost": {
             "category": "structures",
-            "bonus": 0.001,
-            "max_bonus": 0.6
+            "bonus": 0.002,
+            "max_bonus": 5
         }
     },
     {
@@ -87,8 +87,8 @@
         "type": "booster",
         "boost": {
             "category": "maths",
-            "bonus": 0.01,
-            "max_bonus": 0.6
+            "bonus": 0.02,
+            "max_bonus": 5
         }
     },
     {
