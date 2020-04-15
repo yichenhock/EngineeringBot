@@ -143,7 +143,7 @@ class StudyCommands(commands.Cog,name="Study"):
         trivia_disp=discord.Embed(description=output,
                         colour=discord.Color.greyple())
         trivia_disp.set_thumbnail(url="attachment://"+lec.image)
-        trivia_disp.set_author(name="Supervision with {}".lec.name,
+        trivia_disp.set_author(name="Supervision with {}".format(lec.name),
                             url='',icon_url=ctx.author.avatar_url)
         await ctx.send(file=file,embed=trivia_disp)
 
