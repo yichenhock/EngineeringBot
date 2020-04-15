@@ -130,7 +130,7 @@ class StudyCommands(commands.Cog,name="Study"):
         output = lecturers.get_by_level(user_level).get_trivia_message() + "\n\n"
         source = question.get("source", "")
         if source:
-            output += "> *Source: {}*\n{}\n".format(source, question["question_text"])
+            output += "> Source: *{}*\n{}\n".format(source, question["question_text"])
         else:
             output += "{}".format(question["question_text"])
 
