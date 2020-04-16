@@ -1,3 +1,4 @@
+import asyncio
 import random
 from math import ceil
 from string import ascii_lowercase
@@ -150,52 +151,65 @@ class StudyCommands(commands.Cog,name="Study"):
         
         output += "\n\n**Type in the character of the answer you think is correct!**"
 
-        file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
+
+        thumbnail_file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
         trivia_disp=discord.Embed(description=output,
                         colour=discord.Color.greyple())
         trivia_disp.set_thumbnail(url="attachment://"+lec.image)
         trivia_disp.set_author(name="Supervision with {}".format(lec.name),
                             url='',icon_url=ctx.author.avatar_url)
-        await ctx.send(file=file,embed=trivia_disp)
+
+        image_name = question.get("image", "")
+        if image_name:
+            image_file =discord.File(DATA_PATH+"trivia_img/"+image_name, filename=image_name)
+            trivia_disp.set_image(url="attachment://"+image_name)
+            await ctx.send(files=(thumbnail_file, image_file), embed=trivia_disp)
+        else:
+            await ctx.send(file=thumbnail_file,embed=trivia_disp)
 
         # -- Getting answer string
         def check(m):
             return m.author == ctx.author and (m.content in ascii_lowercase[:len(answers)]) and len(m.content) == 1
-        msg = await self.bot.wait_for('message', check=check)
-        letter = msg.content
-        pos = ascii_lowercase.index(letter, 0, len(answers))
-        answer = answers[pos]
 
-        # Remove question_index from questions_todo
-        questions_todo.remove(question_index)
-
-        # -- Acting depending on if answer is correct or not
-        if answer == correct_answer:
-            xp = XP_TRIVIA_CORRECT
-            base_sc = question["difficulty_score"]
-            boost = items.get_player_boost(ctx.author.id, question["category"])
-            sc_add = ceil(base_sc * (1+boost))
-            player_sc = get_data(ctx.author.id, "sc", default_val=0)
-            add_data(ctx.author.id, "sc", player_sc + sc_add)
-            output = "{}, **Correct!**\n{}\n\n\tYou earned {} **{}**.".format(ctx.author.mention, question["answer_message"], SC_EMOJI, sc_add)
-            if boost > 0:
-                output += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, question["category"].title())
+        try:
+            msg = await self.bot.wait_for('message', check=check, timeout=1800)
+        except asyncio.TimeoutError:
+            await ctx.send("{}, your trivia question timed out.".format(ctx.author.mention))
         else:
-            xp = XP_TRIVIA_INCORRECT
-            correct_letter = ascii_lowercase[answers.index(correct_answer)]
-            output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, correct_answer, question["answer_message"])
-            # Add the question back in so you do it again
-            questions_todo.insert(4, question_index)
-        
-        add_data(ctx.author.id, "questions_todo", questions_todo)
+            letter = msg.content
+            pos = ascii_lowercase.index(letter, 0, len(answers))
+            answer = answers[pos]
 
-        file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
-        trivia_disp=discord.Embed(description=output,
-                        colour=discord.Color.greyple())
-        trivia_disp.set_thumbnail(url="attachment://"+lec.image)
-        await ctx.send(file=file,embed=trivia_disp)
-        
-        await give_xp(ctx, ctx.author.id, xp)
+            # Remove question_index from questions_todo
+            questions_todo.remove(question_index)
+
+            # -- Acting depending on if answer is correct or not
+            if answer == correct_answer:
+                xp = XP_TRIVIA_CORRECT
+                base_sc = question["difficulty_score"]
+                boost = items.get_player_boost(ctx.author.id, question["category"])
+                sc_add = ceil(base_sc * (1+boost))
+                player_sc = get_data(ctx.author.id, "sc", default_val=0)
+                add_data(ctx.author.id, "sc", player_sc + sc_add)
+                output = "{}, **Correct!**\n{}\n\n\tYou earned {} **{}**.".format(ctx.author.mention, question["answer_message"], SC_EMOJI, sc_add)
+                if boost > 0:
+                    output += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, question["category"].title())
+            else:
+                xp = XP_TRIVIA_INCORRECT
+                correct_letter = ascii_lowercase[answers.index(correct_answer)]
+                output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, correct_answer, question["answer_message"])
+                # Add the question back in so you do it again
+                questions_todo.insert(4, question_index)
+            
+            add_data(ctx.author.id, "questions_todo", questions_todo)
+
+            file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
+            trivia_disp=discord.Embed(description=output,
+                            colour=discord.Color.greyple())
+            trivia_disp.set_thumbnail(url="attachment://"+lec.image)
+            await ctx.send(file=file,embed=trivia_disp)
+            
+            await give_xp(ctx, ctx.author.id, xp)
 
     @lab.error
     async def lab_error(self,ctx,error):
