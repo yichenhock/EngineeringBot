@@ -19,6 +19,19 @@
         "sc": 40,
         "xp": 9
     },
+    "242231873282113536": {
+        "level": 0,
+        "questions_todo": [
+            2,
+            1,
+            4,
+            0,
+            3,
+            5
+        ],
+        "sc": 4,
+        "xp": 2
+    },
     "293340008507506698": {
         "inv": {
             "Egyptian Slave": 1
@@ -43,18 +56,20 @@
         "inv": {
             "Cafe Sandwich": 2,
             "DPO Anti-Bacterial Keyboard": 1,
-            "Egyptian Slave": 50,
+            "Egyptian Slave": 150,
             "Eigenvector": 2,
             "Lego Man": 1,
-            "Penny": 2,
+            "Penny": 3,
             "Pills": 1,
             "Potato": 2,
-            "Shear Stress": 7
+            "Shear Stress": 8
         },
         "level": 3,
-        "questions_todo": [],
-        "sc": 118,
-        "xp": 40
+        "questions_todo": [
+            3
+        ],
+        "sc": 17,
+        "xp": 101
     },
     "540583445395669014": {
         "inv": {
@@ -73,18 +88,20 @@
             "DPO Anti-Bacterial Keyboard": 1,
             "Egyptian Slave": 41,
             "Eigenvector": 3,
-            "Kit Kat Chunky": 1,
+            "Kit Kat Chunky": 11,
             "Lego Man": 1,
             "Potato": 8,
-            "Shear Stress": 0
+            "Shear Stress": 3,
+            "Wrench": 1
         },
         "level": 4,
         "questions_todo": [
-            2,
-            3
+            1,
+            6,
+            0
         ],
-        "sc": 853,
-        "xp": 12
+        "sc": 372,
+        "xp": 141
     },
     "607348761831800862": {
         "sc": 4
@@ -97,17 +114,17 @@
     },
     "shop": {
         "items": [
-            "Cafe Sandwich",
-            "Crib",
+            "'54 Convertible",
             "DPO Anti-Bacterial Keyboard",
+            "Egyptian Slave",
+            "Eigenvector",
             "Hard Hat",
+            "Kit Kat Chunky",
             "Lego Man",
             "Penny",
-            "Pills",
             "Potato",
-            "Shear Stress",
-            "Wrench"
+            "Shear Stress"
         ],
-        "last_stock_change": 1586953949.8977575
+        "last_stock_change": 1587037494.0720642
     }
 }
