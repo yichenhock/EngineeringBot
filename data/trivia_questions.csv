@@ -1,3 +1,18 @@
-﻿category,difficulty_score,question,image,source,answers,answer_message
+﻿category,sc_reward,question_text,image,source,answers,answer_message
+structures,4,"testing, this, thing?
+This question has multiple lines κκκκ ooo",,,Cool;;Answer;;Bro,"this is the answer message, haha"
+materials,3,next question,,,Answers;;Are;;Cool,very nice friend
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
+,,,,,,
 ,,,,,,
 ,,,,,,
