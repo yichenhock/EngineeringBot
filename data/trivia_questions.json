@@ -9,7 +9,7 @@
         ],
         "answer_message": "G = elastic shear modulus, b = Burgers vector (atomic spacing), L = obstacle spacing, \u03B1 = obstacle strength",
         "category": "materials",
-        "difficulty_score": 4,
+        "sc_reward": 4,
         "image": "",
         "question_text": "The contribution to the yield stress due to **dislocation pinning** depends directly on G, b, L, and \u03B1.\nWhich of these properties can be manipulated by composition and processing and which are fixed parameters?",
         "source": "Part 1A Materials Handout 4: Microstructure and Properties"
@@ -23,7 +23,7 @@
         ],
         "answer_message": "",
         "category": "maths",
-        "difficulty_score": 4,
+        "sc_reward": 4,
         "image": "",
         "question_text": "What is the convergence of a fourier series of a function with a discontinuity in gradient (first derivative)?",
         "source": "Part 1A Lent Term Mathematics"
@@ -37,7 +37,7 @@
         ],
         "answer_message": "",
         "category": "maths",
-        "difficulty_score": 4,
+        "sc_reward": 4,
         "image": "",
         "question_text": "What is the convergence of a fourier series of a function with a discontinuity in the second derivative?",
         "source": "Part 1A Lent Term Mathematics"
@@ -51,7 +51,7 @@
         ],
         "answer_message": "",
         "category": "maths",
-        "difficulty_score": 4,
+        "sc_reward": 4,
         "image": "",
         "question_text": "What is the convergence of a fourier series of a function with a discontinuity in the value?",
         "source": "Part 1A Lent Term Mathematics"
@@ -65,7 +65,7 @@
         ],
         "answer_message": "",
         "category": "maths",
-        "difficulty_score": 4,
+        "sc_reward": 4,
         "image": "",
         "question_text": "What is the convergence of a fourier series of a function which is a series of delta functions?",
         "source": "Part 1A Lent Term Mathematics"
@@ -80,7 +80,7 @@
         ],
         "answer_message": "We take the bending stiffness `B=EI` to be constant for both wood and steel, where `I = (b*d^3)/12` for rectangular sections. By rearranging `E_w*I_w = E_s*I_s` you can find that the width of wood, for which `E_w<E_s` is reduced by a factor of `E_w/E_s` when transformed into steel. ",
         "category": "structures",
-        "difficulty_score": 10,
+        "sc_reward": 10,
         "image": "",
         "question_text": "When you transform wood (with modulus `E_w`) into steel (with modulus `E_s`) for analysis of composite beams made up of wood and steel, what happens to the width of the transformed section of wood?",
         "source": "Part 1A Structures Handout 6: Stresses Elastic Beams"
@@ -94,7 +94,7 @@
         ],
         "answer_message": "",
         "category": "structures",
-        "difficulty_score": 4,
+        "sc_reward": 4,
         "image": "",
         "question_text": "Which of the below statements are correct?",
         "source": ""
@@ -110,7 +110,7 @@
         ],
         "answer_message": "",
         "category": "structures",
-        "difficulty_score": 6,
+        "sc_reward": 6,
         "image": "simply_supported_beam_0.png",
         "question_text": "A light, simply supported beam is subject to a point load at its centre, of magnitude `p`. What is the minimum shear force in the beam?",
         "source": "2009 1A P2 Q5"

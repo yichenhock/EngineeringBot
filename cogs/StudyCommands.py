@@ -185,7 +185,7 @@ class StudyCommands(commands.Cog,name="Study"):
             # -- Acting depending on if answer is correct or not
             if answer == correct_answer:
                 xp = XP_TRIVIA_CORRECT
-                base_sc = question.difficulty_score
+                base_sc = question.sc_reward
                 boost = items.get_player_boost(ctx.author.id, question.category)
                 sc_add = ceil(base_sc * (1+boost))
                 player_sc = get_data(ctx.author.id, "sc", default_val=0)

@@ -51,7 +51,7 @@ def get_question_dict():
         "question_title" : "Title of question",
         "question_text" : "Add question text here",
         "answers" : ['list', 'of', 'strings', 'that', 'will', 'be', 'mixed'],
-        "difficulty_score" : 10,
+        "sc_reward" : 10,
         "category" : "category name",
         "image_name" : ""
     }
