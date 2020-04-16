@@ -84,7 +84,7 @@ def get_lecturers():
 def get_main_questions():
     return _get_from_filename("main_questions", [], cached=False)
 
-def get_trivia_questions():
+def get_trivia_questions_data():
     return _get_from_filename("trivia_questions", [], cached=False)
 
 def get_labs_subset(n):
