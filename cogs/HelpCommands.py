@@ -1,36 +1,41 @@
-from discord.ext import commands
 import discord
+from discord.ext import commands
 
-prefix = "dad "
-left='◀️'
-right='▶️'
+import tips
+from constants import PREFIX
 
-class HelpCommands(commands.Cog):
+
+class HelpCommands(commands.Cog,name="Help"):
     def __init__(self,bot):
         self.bot = bot
 
-    @commands.command(name="help")
+    @commands.command(name="tip", help="Gives you a helpful tip")
+    async def tip(self,ctx):
+        await ctx.send(tips.get_random_tip())
+
+
+
+    @commands.command(name="help", help="DMs you a message about what commands you can use")
     async def help(self,ctx,*cog):
-        try: 
+        try:
             if not cog: 
                 """ Lists cogs """
                 halp=discord.Embed(title='Command Category Listing and General Commands',
-                               description='Use `'+ prefix +'help *category*` to find out more about them!',
-                               colour=discord.Color.red())
+                                description='Use `{}help *category*` to find out more about them!'.format(PREFIX),
+                                colour=discord.Color.red())
                 cogs_desc = ''
                 for x in self.bot.cogs:
-                    cogs_desc += ('{}'.format(x)+'\n') #self.bot.cogs[x].__doc__
+                    cogs_desc += ('{}\n'.format(x)) #self.bot.cogs[x].__doc__
                 halp.add_field(name='Categories',value=cogs_desc[0:len(cogs_desc)-1],inline=False)
                 cmds_desc = ''
                 for y in self.bot.walk_commands():
                     if not y.cog_name and not y.hidden:
-                        cmds_desc += ('{} - {}'.format(y.name,y.help)+'\n')
-                halp.add_field(name='General Commands',value=cmds_desc[0:len(cmds_desc)-1],inline=False)
+                        cmds_desc += ('{} - {}\n'.format(y.name,y.help))
+                print(cmds_desc)
+                if cmds_desc !='':
+                    halp.add_field(name='General Commands',value=cmds_desc[0:len(cmds_desc)-1],inline=False)
                 await ctx.message.add_reaction(emoji='✉')
-                msg = await ctx.message.author.send('',embed=halp)
-                await msg.add_reaction("◀️")
-                await msg.add_reaction("▶️")
-                await msg.remove_reaction(left)
+                await ctx.message.author.send(embed=halp)
             else: 
                 """Command listing within a cog."""
                 found = False
@@ -49,14 +54,9 @@ class HelpCommands(commands.Cog):
                     halp = discord.Embed(title='Bruh!',description='How do you even use "'+cog[0]+'"?',color=discord.Color.red())
                 else:
                     await ctx.message.add_reaction(emoji='✉')
-                msg = await ctx.message.author.send('',embed=halp)
-                await msg.add_reaction("◀️")
-                await msg.add_reaction("▶️")
-                await msg.remove_reaction(left)
+                    await ctx.message.author.send('',embed=halp)
         except:
             await ctx.send("Excuse me, I can't send embeds.")
-        
-        await ctx.send("Yes, you need help.")
 
 def setup(bot):
     bot.add_cog(HelpCommands(bot))

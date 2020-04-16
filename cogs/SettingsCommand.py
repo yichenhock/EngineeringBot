@@ -3,8 +3,7 @@ import os
 import random 
 import re
 
-import parameters
-PATH = parameters.PATH
+from constants import DATA_PATH
 
 class SettingsCommands(commands.Cog, name="Settings"):
     def __init__(self,bot):
@@ -17,13 +16,13 @@ class SettingsCommands(commands.Cog, name="Settings"):
             return
         elif (self._respond):
             """ Send random responses to buzzwords """
-            for filename in os.listdir(PATH+"RandomResponses"):
+            for filename in os.listdir(DATA_PATH+"RandomResponses"):
                 r = []
                 f = os.path.splitext(filename)[0]
                 words = re.findall(r'\w+', message.content)
                 for word in words: 
                     if word.lower() == f:
-                        with open(PATH+"RandomResponses/"+filename, "r") as a_file:
+                        with open(DATA_PATH+"RandomResponses/"+filename, "r") as a_file:
                             for line in a_file:
                                 r.append(line.strip())
                         await message.channel.send(random.choice(r))

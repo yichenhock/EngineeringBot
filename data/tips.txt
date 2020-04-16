@@ -1,0 +1,16 @@
+If you type any sentences that contain buzzwords, like 'oxford' or 'tripos', Engi-Dad will respond with a related message!
+Owning <:chunky:696810911029264485> **Kit Kat Chunky**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Electronics related.
+Owning <:slave:697519485204299808> **Egyptian Slave**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Structures related.
+Owning <:eigenvector:697128636175876156> **Eigenvector**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Maths related.
+Owning <:fbd_potato:696828105368535062> **Potato**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Mechanics related.
+Owning <:tau:699666726144573581> **Shear Stress**s will grant you bonus <:stdc:696823503663530115> **Standard Credit** when doing anything Materials related.
+Type `dad help` to recieve a DM about what commands you can use.
+Type `dad lab` to do a lab and get some <:stdc:696823503663530115> **Standard Credit**
+Type `dad lecture` to go to a lecture and get some <:stdc:696823503663530115> **Standard Credit**.
+Type `dad shop` to browse what you can buy with <:stdc:696823503663530115> **Standard Credit**
+Type `dad shop` followed by the name of an item to get more information about it.
+Type `dad toggle` to toggle if Engi-Dad responds to buzzwords in your sentences.
+Some labs have higher risks and higher rewards than others. Try them all!
+If what you want to buy isn't in the shop, wait a bit for it to restock!
+Do questions, labs and lectures to get XP and unlock new lecturers!
+Man, Tucker sure is a depressed lecturer. Maybe if you went to one of his lectures with something that could help...

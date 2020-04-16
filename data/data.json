@@ -1,18 +1,113 @@
 {
-    "501077051017789451": {
-        "Egyptian Slave": 2,
+    "132128418987900928": {
         "inv": {
-            "Egyptian Slave": 4,
-            "Eigenvector": 1,
-            "Penny": 1
+            "Egyptian Slave": 5
         },
-        "sc": 443
+        "sc": 18
+    },
+    "142829230864990208": {
+        "sc": 5
+    },
+    "160752511827968000": {
+        "inv": {
+            "Egyptian Slave": 12
+        },
+        "sc": 4
+    },
+    "175631586748792832": {
+        "level": 0,
+        "sc": 40,
+        "xp": 9
+    },
+    "293340008507506698": {
+        "inv": {
+            "Egyptian Slave": 1
+        },
+        "sc": 20
+    },
+    "343104825266929675": {
+        "sc": 10
+    },
+    "414815229638213645": {
+        "inv": {
+            "Egyptian Slave": 1
+        },
+        "level": 0,
+        "sc": 40,
+        "xp": 8
+    },
+    "456153455820668928": {
+        "sc": 152
+    },
+    "501077051017789451": {
+        "inv": {
+            "Cafe Sandwich": 2,
+            "DPO Anti-Bacterial Keyboard": 1,
+            "Egyptian Slave": 50,
+            "Eigenvector": 2,
+            "Lego Man": 1,
+            "Penny": 2,
+            "Pills": 1,
+            "Potato": 2,
+            "Shear Stress": 7
+        },
+        "level": 3,
+        "questions_todo": [],
+        "sc": 118,
+        "xp": 40
+    },
+    "540583445395669014": {
+        "inv": {
+            "Shear Stress": 1
+        },
+        "level": 0,
+        "questions_todo": [
+            0,
+            1
+        ],
+        "sc": 25,
+        "xp": 2
     },
     "540627345044799545": {
         "inv": {
             "DPO Anti-Bacterial Keyboard": 1,
+            "Egyptian Slave": 41,
+            "Eigenvector": 3,
+            "Kit Kat Chunky": 1,
+            "Lego Man": 1,
+            "Potato": 8,
+            "Shear Stress": 0
+        },
+        "level": 4,
+        "questions_todo": [
+            2,
+            3
+        ],
+        "sc": 853,
+        "xp": 12
+    },
+    "607348761831800862": {
+        "sc": 4
+    },
+    "693853888058490910": {
+        "inv": {
             "Egyptian Slave": 3
         },
-        "sc": 103
+        "sc": 13
+    },
+    "shop": {
+        "items": [
+            "Cafe Sandwich",
+            "Crib",
+            "DPO Anti-Bacterial Keyboard",
+            "Hard Hat",
+            "Lego Man",
+            "Penny",
+            "Pills",
+            "Potato",
+            "Shear Stress",
+            "Wrench"
+        ],
+        "last_stock_change": 1586953949.8977575
     }
 }

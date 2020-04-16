@@ -1,5 +1,7 @@
 """This is purely a utility file for adding entries to the .json files in the data folder. Don't call any functions from here."""
 
+# THIS FILE IS CURRENTLY OUTDATED, DON'T USE
+
 
 import json
 import os
@@ -56,16 +58,24 @@ def get_question_dict():
     return data
 
 def get_item_dict():
-    shop_item = input("Is it a shop item? (y/n): ").lower()
+    
     data = {
         "name" : "Item name",
         "emoji" : "",
         "cost" : 100,
         "description" : "Item description",
-        "aliases": ["name1","name2","name3"]
+        "aliases": ["name1","name2","name3"],
+        "type":"standard"
     }
-    if shop_item == "y":
+    if input("Is it a shop item? (y/n): ").lower() == "y":
         data["shop_item"] = True
+    if input("Is it a booster? (y/n): ").lower() == "y":
+        data["boost"] = {
+            "category": "mechanics",
+            "bonus": 0.01,
+            "max_bonus": 0.1
+        }
+    
     return data
 
 def get_len_of_list_in_file(name):

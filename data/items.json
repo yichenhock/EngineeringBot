@@ -5,16 +5,37 @@
             "chonky",
             "kit kat"
         ],
-        "cost": 150,
+        "cost": 40,
         "description": "Throw these to your friends if they have been good!",
         "emoji": "<:chunky:696810911029264485>",
-        "name": "Kit kat Chunky",
+        "name": "Kit Kat Chunky",
         "shop_item": true,
-        "type": "",
+        "type": "booster",
         "boost": {
-            "category": "elecronics",
+            "category": "electronics",
+            "bonus": 0.02,
+            "max_bonus": 5
+        }
+    },
+    {
+        "aliases": [
+            "tau",
+            "shear",
+            "stress",
+            "stresses",
+            "taus",
+            "shears"
+        ],
+        "cost": 60,
+        "description": "Some of the stress applied on you during your course, in shear form!",
+        "emoji": "<:tau:699666726144573581>",
+        "name": "Shear Stress",
+        "shop_item": true,
+        "type": "booster",
+        "boost": {
+            "category": "materials",
             "bonus": 0.04,
-            "max_bonus": 0.6
+            "max_bonus": 5
         }
     },
     {
@@ -22,16 +43,16 @@
             "fbd",
             "potatoes"
         ],
-        "cost": 100,
+        "cost": 80,
         "description": "This bad boy can model so many impulses.",
         "emoji": "<:fbd_potato:696828105368535062>",
         "name": "Potato",
         "shop_item": true,
-        "type": "",
+        "type": "booster",
         "boost": {
             "category": "mechanics",
-            "bonus": 0.03,
-            "max_bonus": 0.6
+            "bonus": 0.04,
+            "max_bonus": 5
         }
     },
     {
@@ -45,11 +66,31 @@
         "emoji": "<:slave:697519485204299808>",
         "name": "Egyptian Slave",
         "shop_item": true,
-        "type": "",
+        "type": "booster",
         "boost": {
             "category": "structures",
-            "bonus": 0.001,
-            "max_bonus": 0.6
+            "bonus": 0.002,
+            "max_bonus": 5
+        }
+    },
+    {
+        "aliases": [
+            "convertible",
+            "convertable",
+            "car",
+            "'54",
+            "54"
+        ],
+        "cost": 2000,
+        "description": "Santa baby, lower that car into my smoke stack with a crane.",
+        "emoji": "<:convertible:700044368924508180>",
+        "name": "'54 Convertible",
+        "shop_item": true,
+        "type": "booster",
+        "boost": {
+            "category": "structures",
+            "bonus": 1,
+            "max_bonus": 5
         }
     },
     {
@@ -63,11 +104,11 @@
         "emoji": "<:eigenvector:697128636175876156>",
         "name": "Eigenvector",
         "shop_item": true,
-        "type": "",
+        "type": "booster",
         "boost": {
             "category": "maths",
-            "bonus": 0.01,
-            "max_bonus": 0.6
+            "bonus": 0.02,
+            "max_bonus": 5
         }
     },
     {
@@ -79,7 +120,7 @@
         "emoji": "<:penny:697534600599175198>",
         "name": "Penny",
         "shop_item": true,
-        "type": ""
+        "type": "standard"
     },
     {
         "aliases": [
@@ -91,7 +132,23 @@
         "emoji": "<:engi_compass:697551030887645255>",
         "name": "Drawing Kit",
         "shop_item": true,
-        "type": ""
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "pills",
+            "anti-depressants",
+            "anti-depressant",
+            "anti depressant",
+            "anti depressants",
+            "pill"
+        ],
+        "cost": 100,
+        "description": "These anti-depressants are a must-have for certain modules.",
+        "emoji": "<:pills:698933964030607453>",
+        "name": "Pills",
+        "shop_item": true,
+        "type": "consumable"
     },
     {
         "aliases": [
@@ -103,7 +160,7 @@
         "emoji": "<:legoman:697133587157483611>",
         "name": "Lego Man",
         "shop_item": true,
-        "type": ""
+        "type": "standard"
     },
     {
         "aliases": [
@@ -121,6 +178,65 @@
         "emoji": "<:dpo_keyboard:697130187174969445>",
         "name": "DPO Anti-Bacterial Keyboard",
         "shop_item": true,
-        "type": ""
+        "type": "utility"
+    },
+    {
+        "aliases": [
+            "hard",
+            "hat"
+        ],
+        "cost": 10000,
+        "description": "The best thing you can ever own. Allwood wore one of these once.",
+        "emoji": "<:eng:695053368728617020>",
+        "name": "Hard Hat",
+        "shop_item": true,
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "sandwich",
+            "cafe"
+        ],
+        "cost": 100,
+        "description": "A snacc.",
+        "emoji": "<:cafe_sandwich:697880116503773226>",
+        "name": "Cafe Sandwich",
+        "shop_item": true,
+        "type": "consumable"
+    },
+    {
+        "aliases": [
+            "spanner"
+        ],
+        "cost": 500,
+        "description": "Need to fix your life up a bit? Look no further!",
+        "emoji": "<:engi_wrench:696830128369434716>",
+        "name": "Wrench",
+        "shop_item": true,
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "cribs"
+        ],
+        "cost": 700,
+        "description": "Everyday essentials.",
+        "emoji": "<:crib:697877290989650010>",
+        "name": "Crib",
+        "shop_item": true,
+        "type": "standard"
+    },
+    {
+        "aliases": [
+            "engineering pennies",
+            "engi penny",
+            "engi pennies"
+        ],
+        "cost": 80,
+        "description": "The penny in its true form.",
+        "emoji": "<:engi_penny:697532027313848430>",
+        "name": "Engineering Penny",
+        "shop_item": false,
+        "type": "valuable"
     }
 ]

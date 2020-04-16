@@ -2,6 +2,7 @@
     {
         "description": "Andrew Gee says this is the best lab you'll ever do in Engineering!",
         "name": "Lego Mindstorms",
+        "option": "lego",
         "outcomes": [
             {
                 "description": "Wow your totally original never-seen-before lego project completely blew the demonstrator's mind's away!",
@@ -26,23 +27,24 @@
         ]
     },
     {
-        "description": "Structural Design Project (SDP)",
-        "name": "Your objective is to build a truss/bridge. Take your pick!",
+        "description": "Your objective is to build a truss/bridge. Take your pick!",
+        "name": "Structural Design Project (SDP)",
+        "option": "sdp",
         "outcomes": [
             {
-                "description": "Description",
-                "max_sc": 10,
-                "min_sc": 0
+                "description": "Your structure handles the load with ease, even with the weight of your mum on it!",
+                "max_sc": 1.8,
+                "min_sc": 1.2
             },
             {
-                "description": "Description",
-                "max_sc": 10,
-                "min_sc": 0
+                "description": "Your structure doesn't handle the full load, but at least its cost efficient. Well done.",
+                "max_sc": 1.2,
+                "min_sc": 1.0
             },
             {
-                "description": "Description",
-                "max_sc": 10,
-                "min_sc": 0
+                "description": "You showed up without any drawings, dummy. Luckily your lab partner pulled their weight, unlike you (and your structure).",
+                "max_sc": 0.5,
+                "min_sc": 0.7
             }
         ]
     }

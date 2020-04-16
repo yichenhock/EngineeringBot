@@ -1,10 +1,13 @@
-import json
 import asyncio
+import json
 import os
+from random import sample
 
-DATA_PATH = "data/"
+from constants import DATA_PATH, MAX_LECTURER_LEVEL
 
 data = {}
+_data_files = {}
+
 
 async def saveloop():
     while True:
@@ -58,25 +61,32 @@ def save_data():
     with open(DATA_PATH+'data.json', 'w') as outfile:
         json.dump(data, outfile, sort_keys=True, indent=4)
 
-def _get_from_filename(filename, default = None):
+def _get_from_filename(filename, default = None, cached=True):
     """Starts with an underscore to signify this should only be used in this file."""
-    if os.path.exists(DATA_PATH+filename+".json"):
-        with open(DATA_PATH+filename+".json", "r") as json_file: 
-            return json.load(json_file)
-    else:
-        return []
+    if not filename in _data_files or not cached:
+        if os.path.exists(DATA_PATH+filename+".json"):
+            with open(DATA_PATH+filename+".json", "r", encoding='utf-8') as json_file: 
+                _data_files[filename] = json.load(json_file)
+        else:
+            _data_files[filename] = default
+    return _data_files[filename]
+
 
 def get_items():
     return _get_from_filename("items", [])
 
 def get_labs():
-    return _get_from_filename("labs", [])
+    return _get_from_filename("labs", [], cached=False)
 
 def get_lecturers():
     return _get_from_filename("lecturers", [])
 
 def get_main_questions():
-    return _get_from_filename("main_questions", [])
+    return _get_from_filename("main_questions", [], cached=False)
 
 def get_trivia_questions():
-    return _get_from_filename("trivia_questions", [])
+    return _get_from_filename("trivia_questions", [], cached=False)
+
+def get_labs_subset(n):
+    labs = get_labs()
+    return sample(labs, min(n, len(labs)))
