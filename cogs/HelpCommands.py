@@ -31,7 +31,7 @@ class HelpCommands(commands.Cog,name="Help"):
                 for y in self.bot.walk_commands():
                     if not y.cog_name and not y.hidden:
                         cmds_desc += ('{} - {}\n'.format(y.name,y.help))
-                print(cmds_desc)
+                #print(cmds_desc)
                 if cmds_desc !='':
                     halp.add_field(name='General Commands',value=cmds_desc[0:len(cmds_desc)-1],inline=False)
                 await ctx.message.add_reaction(emoji='✉')
