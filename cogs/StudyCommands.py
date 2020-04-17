@@ -13,9 +13,9 @@ from constants import (DATA_PATH, LABS_OPTIONS, SC_EMOJI, SC_LAB, SC_LECTURE,
                        SC_LECTURE_INCREASE_PER_LEVEL, XP_INCREASE_PER_LEVEL,
                        XP_LAB, XP_LECTURE, XP_TO_LEVEL_UP, XP_TRIVIA_CORRECT,
                        XP_TRIVIA_INCORRECT)
-from data import (add_data, get_data, get_labs_subset, get_trivia_questions,
+from data import (add_data, get_data, get_labs_subset,
                   save_data)
-
+from trivia_questions import get_trivia_questions
 
 class StudyCommands(commands.Cog,name="Study"):
     def __init__(self,bot):
@@ -136,19 +136,18 @@ class StudyCommands(commands.Cog,name="Study"):
         
 
         # -- Shuffling answers (without affecting the originals) and getting the correct answer
-        answers = question["answers"].copy()
+        answers = question.answers.copy()
         correct_answer = answers[0]
-        if question.get("shuffle_answers", True):
-            random.shuffle(answers)
+        random.shuffle(answers)
 
         # -- Outputting question
         lec = lecturers.get_by_level(user_level)
         output = lecturers.get_by_level(user_level).get_trivia_message() + "\n\n"
-        source = question.get("source", "")
+        source = question.source
         if source:
-            output += "> Source: *{}*\n{}\n".format(source, question["question_text"])
+            output += "> Source: *{}*\n{}\n".format(source, question.question_text)
         else:
-            output += "{}".format(question["question_text"])
+            output += "{}".format(question.question_text)
 
         for i in range(len(answers)):
             output += "\n*{}) {}*".format(ascii_lowercase[i], answers[i])
@@ -163,7 +162,7 @@ class StudyCommands(commands.Cog,name="Study"):
         trivia_disp.set_author(name="Supervision with {}".format(lec.name),
                             url='',icon_url=ctx.author.avatar_url)
 
-        image_name = question.get("image", "")
+        image_name = question.image
         if image_name:
             image_file =discord.File(DATA_PATH+"trivia_img/"+image_name, filename=image_name)
             trivia_disp.set_image(url="attachment://"+image_name)
@@ -190,18 +189,18 @@ class StudyCommands(commands.Cog,name="Study"):
             # -- Acting depending on if answer is correct or not
             if answer == correct_answer:
                 xp = XP_TRIVIA_CORRECT
-                base_sc = question["difficulty_score"]
-                boost = items.get_player_boost(ctx.author.id, question["category"])
+                base_sc = question.sc_reward
+                boost = items.get_player_boost(ctx.author.id, question.category)
                 sc_add = ceil(base_sc * (1+boost))
                 player_sc = get_data(ctx.author.id, "sc", default_val=0)
                 add_data(ctx.author.id, "sc", player_sc + sc_add)
-                output = "{}, **Correct!**\n{}\nYou earned {} **{}**.".format(ctx.author.mention, question["answer_message"], SC_EMOJI, sc_add)
+                output = "{}, **Correct!**\n{}\nYou earned {} **{}**.".format(ctx.author.mention, question.answer_message, SC_EMOJI, sc_add)
                 if boost > 0:
-                    output += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, question["category"].title())
+                    output += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, question.category.title())
             else:
                 xp = XP_TRIVIA_INCORRECT
                 correct_letter = ascii_lowercase[answers.index(correct_answer)]
-                output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, correct_answer, question["answer_message"])
+                output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, correct_answer, question.answer_message)
                 # Add the question back in so you do it again
                 questions_todo.insert(4, question_index)
             

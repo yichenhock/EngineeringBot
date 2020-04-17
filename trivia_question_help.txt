@@ -1,0 +1,11 @@
+Hello!
+
+To add more questions, go to data/trivia_questions.xlsx.
+Use ALT+ENTER to add new lines in a cell.
+To separate answers, you can use a combination of new lines or ;;.
+
+You can save the excel spreadsheet whenever you like, it doesn't affect the bot.
+
+When you want to push your changes to the bot, use Save As to save the file as trivia_questions.csv, making use to USE THE FORMAT "CSV UTF-8 (Comma Delimited)".
+
+Once you have saved as a .csv, make sure you switch back to the .xlsx before making changes.
