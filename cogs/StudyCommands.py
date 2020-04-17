@@ -133,12 +133,13 @@ class StudyCommands(commands.Cog,name="Study"):
         
         question_index = questions_todo[0]
         question = questions[question_index]
-        
 
-        # -- Shuffling answers (without affecting the originals) and getting the correct answer
-        answers = question.answers.copy()
-        correct_answer = answers[0]
-        random.shuffle(answers)
+
+        # -- Getting answers
+        if question.is_multiple_choice:
+            answers = random.sample(question.answers, len(question.answers))
+        else:
+            answers = question.answers
 
         # -- Outputting question
         lec = lecturers.get_by_level(user_level)
@@ -147,13 +148,19 @@ class StudyCommands(commands.Cog,name="Study"):
         if source:
             output += "> Source: *{}*\n{}\n".format(source, question.question_text)
         else:
-            output += "{}".format(question.question_text)
+            output += "{}\n".format(question.question_text)
 
-        for i in range(len(answers)):
-            output += "\n*{}) {}*".format(ascii_lowercase[i], answers[i])
-        
-        output += "\n\n**Type in the character of the answer you think is correct!**"
-
+        if question.is_multiple_choice:
+            for i in range(len(answers)):
+                output += "\n*{}) {}*".format(ascii_lowercase[i], answers[i])
+            
+            output += "\n\n**Type in the character of the answer you think is correct!**"
+            def check(m):
+                return m.author == ctx.author and (m.content in ascii_lowercase[:len(answers)]) and len(m.content) == 1
+        else:
+            output += "\n**Type in `answer` followed by what you think the answer is!**"
+            def check(m):
+                return m.author == ctx.author and len(m.content.split(maxsplit=1)) == 2 and (m.content.split(maxsplit=1)[0].lower() == "answer")
 
         thumbnail_file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
         trivia_disp=discord.Embed(description=output,
@@ -170,24 +177,23 @@ class StudyCommands(commands.Cog,name="Study"):
         else:
             await ctx.send(file=thumbnail_file,embed=trivia_disp)
 
-        # -- Getting answer string
-        def check(m):
-            return m.author == ctx.author and (m.content in ascii_lowercase[:len(answers)]) and len(m.content) == 1
-
         try:
             msg = await self.bot.wait_for('message', check=check, timeout=1800)
         except asyncio.TimeoutError:
             await ctx.send("{}, your trivia question timed out.".format(ctx.author.mention))
         else:
-            letter = msg.content
-            pos = ascii_lowercase.index(letter, 0, len(answers))
-            answer = answers[pos]
+            if question.is_multiple_choice:
+                letter = msg.content
+                pos = ascii_lowercase.index(letter, 0, len(answers))
+                answer = answers[pos]
+            else:
+                answer = msg.content.split(maxsplit=1)[1]
 
             # Remove question_index from questions_todo
             questions_todo.remove(question_index)
 
             # -- Acting depending on if answer is correct or not
-            if answer == correct_answer:
+            if question.is_correct(answer):
                 xp = XP_TRIVIA_CORRECT
                 # Get boosts and give
                 base_sc = question.sc_reward
@@ -209,8 +215,11 @@ class StudyCommands(commands.Cog,name="Study"):
                     output += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, boost_s)
             else:
                 xp = XP_TRIVIA_INCORRECT
-                correct_letter = ascii_lowercase[answers.index(correct_answer)]
-                output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, correct_answer, question.answer_message)
+                if question.is_multiple_choice:
+                    correct_letter = ascii_lowercase[answers.index(question.correct_answer)]
+                    output = "{}, **Incorrect.**\n\nThe correct answer was **{}) {}**\n{}".format(ctx.author.mention, correct_letter, question.correct_answer, question.answer_message)
+                else:
+                    output = "{}, **Incorrect.**\n\nA correct answer was **{}**\n{}".format(ctx.author.mention, question.answers[0], question.answer_message)
                 # Add the question back in so you do it again
                 questions_todo.insert(4, question_index)
             
