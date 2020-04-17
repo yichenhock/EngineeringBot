@@ -16,7 +16,7 @@ Gets shorter by a factor of `E_s`
 Gets shorter by a factor of `E_w`","We take the bending stiffness `B=EI` to be constant for both wood and steel, where `I = (b*d^3)/12` for rectangular sections. By rearranging `E_w*I_w = E_s*I_s` you can find that the width of wood, for which `E_w<E_s` is reduced by a factor of `E_w/E_s` when transformed into steel. "
 structures,4,,Which of the below statements are correct?,,`κ = -d²v/dx²`;;`∫v dx = -κ`;;`dκ/dx = M`;;`κ = -dΨ/dx`,
 structures,6,2009 1A P2 Q5,"A light, simply supported beam is subject to a point load at its centre, of magnitude `p`. What is the minimum shear force in the beam?",simply_supported_beam_0.png,`-p/2`;;`0`;;`p`;;`-p²`;;`-2p`;;`-p`,
-,,,,,,
+thermo,3,,"What are the types of transition from T1 to T2, T2 to T3, and T3 to T1?",p-v_diagram_0.png,"isochoric, isothermal, isobaric;;isochoric, isobaric, isothermal;;isobaric, isothermal, isochoric;;isobaric, isochoric, isothermal","**Isochoric** means **volume** is constant, **isothermal** means **temperature** is constant, and **isobaric** means **pressure** is constant."
 ,,,,,,
 ,,,,,,
 ,,,,,,
