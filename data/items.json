@@ -224,7 +224,12 @@
         "emoji": "<:crib:697877290989650010>",
         "name": "Crib",
         "shop_item": true,
-        "type": "standard"
+        "type": "standard",
+        "boost": {
+            "category": "supervisions",
+            "bonus": 0.4,
+            "max_bonus": 5
+        }
     },
     {
         "aliases": [
