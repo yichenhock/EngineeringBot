@@ -43,7 +43,7 @@ class StudyCommands(commands.Cog,name="Study"):
         msg = await self.bot.wait_for('message', check=check, timeout=120)
         lab = options[msg.content]
         outcome = random.choice(lab["outcomes"])
-        output = "{}: {}".format(ctx.author.mention, outcome["description"])
+        output = "*{}*".format(outcome["description"])
         
         base_sc = SC_LAB
         multiplier = random.uniform(outcome["min_sc"], outcome["max_sc"])
@@ -51,8 +51,12 @@ class StudyCommands(commands.Cog,name="Study"):
         player_sc = get_data(ctx.author.id, "sc", default_val=0)
         add_data(ctx.author.id, "sc", player_sc + sc_add)
 
-        output += "\nYour demonstrator gave you {} **{}**.".format(SC_EMOJI, sc_add)
-        await ctx.send(output)
+        output += "\n\nYour demonstrator gave you {} **{}**.".format(SC_EMOJI, sc_add)
+        lab_disp = discord.Embed(description=output,
+                            colour = discord.Color.greyple())
+        lab_disp.set_author(name=lab["name"],
+                            url='',icon_url=ctx.author.avatar_url)
+        await ctx.send('',embed=lab_disp)
         await give_xp(ctx, ctx.author.id, XP_LAB)
 
         # stdc = get_data(ctx.author.id, "sc", default_val=0)
@@ -207,7 +211,7 @@ class StudyCommands(commands.Cog,name="Study"):
             trivia_disp=discord.Embed(description=output,
                             colour=discord.Color.greyple())
             trivia_disp.set_thumbnail(url="attachment://"+lec.image)
-            trivia_disp.set_footer(text="Got an issue with this question, or want to add your own? Message @Chen or go to https://github.com/yichenhock/EngineeringBot")
+            trivia_disp.set_footer(text="Got an issue with this question, or want to add your own? \nMessage @Chen or go to https://github.com/yichenhock/EngineeringBot")
             await ctx.send(file=file,embed=trivia_disp)
             
             await give_xp(ctx, ctx.author.id, xp)
