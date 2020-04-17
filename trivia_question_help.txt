@@ -1,5 +1,12 @@
 Hello!
 
+--- Question types ---
+There are currently two question types, --standard-- and --multiple choice--.
+Any question with the value "n" in the is_multiple_choice column in the spreadsheet is STANDARD, otherwise the question is MULTIPLE CHOICE.
+
+For --multiple choice questions--, the answers column is a list of possible choices, with the first being the correct one.
+
+For --standard questions--, the answers column is a list of possible correct answers that the player could type.
 
 --- Editing ---
 To add more questions, go to data/trivia_questions.xlsx.

@@ -8,6 +8,7 @@ class TriviaQuestion:
             setattr(self, key, val)
         self.answers = self.answers.replace("\n", ";;").split(";;")
         self.sc_reward = int(self.sc_reward)
+        self.is_multiple_choice = not (self.is_multiple_choice == "n")
 
 
 trivia_questions = None
