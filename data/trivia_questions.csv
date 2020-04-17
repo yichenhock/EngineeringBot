@@ -1,13 +1,21 @@
-﻿category,sc_reward,question_text,image,source,answers,answer_message
-structures,4,"testing, this, thing?
-This question has multiple lines κκκκ ooo",,,Cool;;Answer;;Bro,"this is the answer message, haha"
-materials,3,next question,,,Answers;;Are;;Cool,very nice friend
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
-,,,,,,
+﻿category,sc_reward,source,question_text,image,answers,answer_message
+materials,4,Part 1A Materials Handout 4: Microstructure and Properties,"The contribution to the yield stress due to **dislocation pinning** depends directly on G, b, L, and α.
+Which of these properties can be manipulated by composition and processing and which are fixed parameters?",,"L and α can be manipulated, b and G are fixed.
+L and b can be manipulated, G and α are fixed.
+G and α can be manipulated, L and b are fixed.
+L and G can be manipulated, b and α are fixed.
+G and b can be manipulated, L and α are fixed.","G = elastic shear modulus, b = Burgers vector (atomic spacing), L = obstacle spacing, α = obstacle strength"
+maths,4,Part 1A Lent Term Mathematics,What is the convergence of a fourier series of a function with a discontinuity in gradient (first derivative)?,,1/(n^2);;1/(n^3);;1/n;;Does not converge,
+maths,4,Part 1A Lent Term Mathematics,What is the convergence of a fourier series of a function with a discontinuity in the second derivative?,,1/(n^3);;1/(n^2);;1/n;;Does not converge,
+maths,4,Part 1A Lent Term Mathematics,What is the convergence of a fourier series of a function with a discontinuity in the value?,,1/n;;1/(n^3);;1/(n^2);;Does not converge,
+maths,4,Part 1A Lent Term Mathematics,What is the convergence of a fourier series of a function which is a series of delta functions?,,Does not converge;;1/n;;1/(n^3);;1/(n^2),
+structures,10,Part 1A Structures Handout 6: Stresses Elastic Beams,"When you transform wood (with modulus `E_w`) into steel (with modulus `E_s`) for analysis of composite beams made up of wood and steel, what happens to the width of the transformed section of wood?",,"Gets shorter by a factor of `E_w/E_s`
+Doesn't change
+Gets wider by a factor of `E_s/E_w`
+Gets shorter by a factor of `E_s`
+Gets shorter by a factor of `E_w`","We take the bending stiffness `B=EI` to be constant for both wood and steel, where `I = (b*d^3)/12` for rectangular sections. By rearranging `E_w*I_w = E_s*I_s` you can find that the width of wood, for which `E_w<E_s` is reduced by a factor of `E_w/E_s` when transformed into steel. "
+structures,4,,Which of the below statements are correct?,,`κ = -d²v/dx²`;;`∫v dx = -κ`;;`dκ/dx = M`;;`κ = -dΨ/dx`,
+structures,6,2009 1A P2 Q5,"A light, simply supported beam is subject to a point load at its centre, of magnitude `p`. What is the minimum shear force in the beam?",simply_supported_beam_0.png,`-p/2`;;`0`;;`p`;;`-p²`;;`-2p`;;`-p`,
 ,,,,,,
 ,,,,,,
 ,,,,,,
