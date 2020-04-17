@@ -1,6 +1,21 @@
 [
     {
         "aliases": [
+        ],
+        "cost": 60,
+        "description": "This bad boy can fully resist so many expansions.",
+        "emoji": "<:piston:700737494450307092>",
+        "name": "Piston",
+        "shop_item": true,
+        "type": "booster",
+        "boost": {
+            "category": "thermo",
+            "bonus": 0.04,
+            "max_bonus": 5
+        }
+    },
+    {
+        "aliases": [
             "chunky",
             "chonky",
             "kit kat"
@@ -26,7 +41,7 @@
             "taus",
             "shears"
         ],
-        "cost": 60,
+        "cost": 50,
         "description": "Some of the stress applied on you during your course, in shear form!",
         "emoji": "<:tau:699666726144573581>",
         "name": "Shear Stress",
@@ -224,7 +239,12 @@
         "emoji": "<:crib:697877290989650010>",
         "name": "Crib",
         "shop_item": true,
-        "type": "standard"
+        "type": "standard",
+        "boost": {
+            "category": "supervisions",
+            "bonus": 0.4,
+            "max_bonus": 5
+        }
     },
     {
         "aliases": [

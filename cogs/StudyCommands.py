@@ -189,14 +189,24 @@ class StudyCommands(commands.Cog,name="Study"):
             # -- Acting depending on if answer is correct or not
             if answer == correct_answer:
                 xp = XP_TRIVIA_CORRECT
+                # Get boosts and give
                 base_sc = question.sc_reward
-                boost = items.get_player_boost(ctx.author.id, question.category)
+                category_boost = items.get_player_boost(ctx.author.id, question.category)
+                supo_boost = items.get_player_boost(ctx.author.id, "supervisions")
+                boost = category_boost + supo_boost
                 sc_add = ceil(base_sc * (1+boost))
                 player_sc = get_data(ctx.author.id, "sc", default_val=0)
                 add_data(ctx.author.id, "sc", player_sc + sc_add)
+                # Output message
                 output = "{}, **Correct!**\n{}\nYou earned {} **{}**.".format(ctx.author.mention, question.answer_message, SC_EMOJI, sc_add)
                 if boost > 0:
-                    output += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, question.category.title())
+                    if category_boost and supo_boost:
+                        boost_s = "{} and Supervisions".format(question.category.title())
+                    elif category_boost:
+                        boost_s = "{}".format(question.category.title())
+                    elif supo_boost:
+                        boost_s = "Supervisions"
+                    output += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, boost_s)
             else:
                 xp = XP_TRIVIA_INCORRECT
                 correct_letter = ascii_lowercase[answers.index(correct_answer)]

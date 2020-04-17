@@ -39,6 +39,7 @@ def import_items():
     for i in items_data:
         items.append(Item(i))
 
+
 def get_by_name(name):
     global items
     for i in items:
@@ -46,7 +47,8 @@ def get_by_name(name):
             return i
     return None
 
-def get_player_boost(player_id, category):
+
+def get_player_boost(player_id, *categories):
     """Get a player boost for a specific category.
     An output of 0 means a 0% bonus, 1 means an 100% boost.
     """
@@ -54,9 +56,18 @@ def get_player_boost(player_id, category):
     for name, amount in data.get_data(player_id, "inv", default_val={}).items():
         item = get_by_name(name)
         if item.is_booster():
-            if item.boost_category == category:
-                boost += min(item.boost_bonus * amount, item.boost_max_bonus)
+            if item.boost_category in categories:
+                boost += get_boost_from_item_amount(item, amount)
     return boost
+
+
+def get_boost_from_item_amount(item, amount):
+    """Get the amount of boost a player gets from a specific item."""
+    if not item.is_booster():
+        return 0
+    boost = min(amount * item.boost_bonus, item.boost_max_bonus)
+    return boost
+
 
 def get_player_boost_from_item(player_id, item):
     """Get the amount of boost a player gets from a specific item."""
