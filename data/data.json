@@ -74,8 +74,8 @@
             5,
             7
         ],
-        "sc": 620,
-        "xp": 43
+        "sc": 680,
+        "xp": 51
     },
     "540583445395669014": {
         "inv": {
@@ -100,14 +100,16 @@
             "Shear Stress": 3,
             "Wrench": 1
         },
-        "level": 4,
+        "level": 5,
         "questions_todo": [
-            1,
+            4,
+            2,
+            0,
             6,
-            0
+            1
         ],
-        "sc": 372,
-        "xp": 141
+        "sc": 904,
+        "xp": 77
     },
     "607348761831800862": {
         "sc": 4
@@ -120,17 +122,17 @@
     },
     "shop": {
         "items": [
-            "'54 Convertible",
             "DPO Anti-Bacterial Keyboard",
+            "Drawing Kit",
             "Egyptian Slave",
             "Eigenvector",
-            "Hard Hat",
             "Kit Kat Chunky",
-            "Lego Man",
             "Penny",
+            "Pills",
             "Potato",
-            "Shear Stress"
+            "Shear Stress",
+            "Wrench"
         ],
-        "last_stock_change": 1587037494.0720642
+        "last_stock_change": 1587114451.3235574
     }
 }
