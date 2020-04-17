@@ -1,6 +1,8 @@
 Hello!
 
 To add more questions, go to data/trivia_questions.xlsx.
+Use ALT+ENTER to add new lines in a cell.
+To separate answers, you can use a combination of new lines or ;;.
 
 You can save the excel spreadsheet whenever you like, it doesn't affect the bot.
 

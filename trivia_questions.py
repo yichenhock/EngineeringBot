@@ -6,7 +6,7 @@ class TriviaQuestion:
     def __init__(self, data):
         for key, val in data.items():
             setattr(self, key, val)
-        self.answers = self.answers.split(";;")
+        self.answers = self.answers.replace("\n", ";;").split(";;")
         self.sc_reward = int(self.sc_reward)
 
 
