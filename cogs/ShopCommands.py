@@ -107,7 +107,7 @@ class ShopCommands(commands.Cog, name="Shop"):
             menu = Paginator(self.bot,ctx,pages, page_items, self, timeout=60)
             tip = tips.get_random_tip(0.2)
             if tip:
-                ctx.send(tip)
+                await ctx.send(tip)
             await menu.run()
 
         else: 
@@ -148,7 +148,7 @@ class ShopCommands(commands.Cog, name="Shop"):
         await self.buy_item(ctx, i, amt)
         tip = tips.get_random_tip(0.4)
         if tip:
-            ctx.send(tip)
+            await ctx.send(tip)
 
 
     @commands.command(name='balance',aliases=['bal'],help="Check the standard credits that you or someone else owns.")
@@ -158,7 +158,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
         tip = tips.get_random_tip(0.2)
         if tip:
-            ctx.send(tip)
+            await ctx.send(tip)
 
         sc = get_data(member.id, "sc", default_val=0)
         bal_disp = discord.Embed(title="{}'s balance".format(member.name),
@@ -174,7 +174,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
         tip = tips.get_random_tip(0.2)
         if tip:
-            ctx.send(tip)
+            await ctx.send(tip)
 
         sc = get_data(member.id, "sc", default_val=0)
 
