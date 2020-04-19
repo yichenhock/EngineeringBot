@@ -105,7 +105,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                 pages[-1].add_field(name='Items',value=s,inline=False)
 
             menu = Paginator(self.bot,ctx,pages, page_items, self, timeout=60)
-            tip = tips.get_random_tip(0.3)
+            tip = tips.get_random_tip(0.2)
             if tip:
                 ctx.send(tip)
             await menu.run()
@@ -114,10 +114,6 @@ class ShopCommands(commands.Cog, name="Shop"):
             item = " ".join(args)
             i = items.get_by_name(item)
             if i is not None:
-                tip = tips.get_random_tip(0.3)
-                if tip:
-                    ctx.send(tip)
-                
                 if i.can_be_in_shop(): # If has shop_item in data
                     desc = '**COST: {} {}**'.format(SC_EMOJI,i.cost)
                     if not i in self.stock:
