@@ -26,7 +26,7 @@ class StudyCommands(commands.Cog,name="Study"):
     async def lab(self,ctx): 
         tip = tips.get_random_tip(0.4)
         if tip:
-            ctx.send(tip)
+            await ctx.send(tip)
 
         labs_subset = get_labs_subset(LABS_OPTIONS)
 
@@ -84,7 +84,7 @@ class StudyCommands(commands.Cog,name="Study"):
     async def lecture(self,ctx):
         tip = tips.get_random_tip(0.4)
         if tip:
-            ctx.send(tip)
+            await ctx.send(tip)
 
         player_level = get_data(ctx.author.id, "level", default_val=0)
         lec = lecturers.get_by_level(player_level)
