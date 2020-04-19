@@ -1,6 +1,7 @@
 [
     {
         "aliases": [
+            "pistons"
         ],
         "cost": 60,
         "description": "This bad boy can fully resist so many expansions.",
@@ -221,14 +222,21 @@
     },
     {
         "aliases": [
-            "spanner"
+            "spanner",
+            "spanners",
+            "wrenches"
         ],
         "cost": 500,
         "description": "Need to fix your life up a bit? Look no further!",
         "emoji": "<:engi_wrench:696830128369434716>",
         "name": "Wrench",
         "shop_item": true,
-        "type": "standard"
+        "type": "booster",
+        "boost": {
+            "category": "labs",
+            "bonus": 0.5,
+            "max_bonus": 5
+        }
     },
     {
         "aliases": [

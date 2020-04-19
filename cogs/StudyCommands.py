@@ -47,11 +47,14 @@ class StudyCommands(commands.Cog,name="Study"):
         
         base_sc = SC_LAB
         multiplier = random.uniform(outcome["min_sc"], outcome["max_sc"])
-        sc_add = round(base_sc * multiplier)
+        item_boost = items.get_player_boost(ctx.author.id, "labs")
+        sc_add = round(base_sc * multiplier * (1+item_boost))
         player_sc = get_data(ctx.author.id, "sc", default_val=0)
         add_data(ctx.author.id, "sc", player_sc + sc_add)
 
         output += "\n\nYour demonstrator gave you {} **{}**.".format(SC_EMOJI, sc_add)
+        if item_boost:
+            output += "\n_**{:.1f}%** boost from_ **Labs** _items in your inventory._".format(item_boost*100)   
         lab_disp = discord.Embed(description=output,
                             colour = discord.Color.greyple())
         lab_disp.set_author(name=lab["name"],
