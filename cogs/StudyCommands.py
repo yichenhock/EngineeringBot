@@ -55,6 +55,7 @@ class StudyCommands(commands.Cog,name="Study"):
         output += "\n\nYour demonstrator gave you {} **{}**.".format(SC_EMOJI, sc_add)
         if item_boost:
             output += "\n_**{:.1f}%** boost from_ **Labs** _items in your inventory._".format(item_boost*100)   
+        output += "\n\nYou get **`{}`<:xp:699934983074349086>**.".format(XP_LAB)
         lab_disp = discord.Embed(description=output,
                             colour = discord.Color.greyple())
         lab_disp.set_author(name=lab["name"],
@@ -227,6 +228,8 @@ class StudyCommands(commands.Cog,name="Study"):
                 questions_todo.insert(4, question_index)
             
             add_data(ctx.author.id, "questions_todo", questions_todo)
+
+            output += "\n\nYou get **`{}`<:xp:699934983074349086>**.".format(xp)
 
             file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
             trivia_disp=discord.Embed(description=output,
