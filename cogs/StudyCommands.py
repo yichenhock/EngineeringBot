@@ -267,7 +267,7 @@ class StudyCommands(commands.Cog,name="Study"):
                                 colour=discord.Color.red())
             await ctx.send('',embed=msg)
 
-    @commands.command(name='cribs', help='Link to Cam Cribs')
+    @commands.command(name='cribs', aliases=["crib"],help='Link to Cam Cribs')
     async def cribs(self,ctx):
         await ctx.send("Cam cribs: https://camcribs.com/")
 
