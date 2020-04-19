@@ -105,9 +105,6 @@ class ShopCommands(commands.Cog, name="Shop"):
                 pages[-1].add_field(name='Items',value=s,inline=False)
 
             menu = Paginator(self.bot,ctx,pages, page_items, self, timeout=60)
-            tip = tips.get_random_tip(0.2)
-            if tip:
-                await ctx.send(tip)
             await menu.run()
 
         else: 
