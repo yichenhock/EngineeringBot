@@ -7,6 +7,7 @@ import discord
 from discord.ext import commands
 
 import items
+import tips
 from constants import PREFIX, SC_EMOJI
 from data import add_data, get_data, save_data
 from paginator import Paginator
@@ -104,12 +105,19 @@ class ShopCommands(commands.Cog, name="Shop"):
                 pages[-1].add_field(name='Items',value=s,inline=False)
 
             menu = Paginator(self.bot,ctx,pages, page_items, self, timeout=60)
+            tip = tips.get_random_tip(0.3)
+            if tip:
+                ctx.send(tip)
             await menu.run()
 
         else: 
             item = " ".join(args)
             i = items.get_by_name(item)
             if i is not None:
+                tip = tips.get_random_tip(0.3)
+                if tip:
+                    ctx.send(tip)
+                
                 if i.can_be_in_shop(): # If has shop_item in data
                     desc = '**COST: {} {}**'.format(SC_EMOJI,i.cost)
                     if not i in self.stock:
@@ -142,12 +150,19 @@ class ShopCommands(commands.Cog, name="Shop"):
 
         i = items.get_by_name(name)
         await self.buy_item(ctx, i, amt)
+        tip = tips.get_random_tip(0.4)
+        if tip:
+            ctx.send(tip)
 
 
     @commands.command(name='balance',aliases=['bal'],help="Check the standard credits that you or someone else owns.")
     async def balance(self,ctx,member:discord.Member=None):
         if member == None:
             member = ctx.author
+
+        tip = tips.get_random_tip(0.2)
+        if tip:
+            ctx.send(tip)
 
         sc = get_data(member.id, "sc", default_val=0)
         bal_disp = discord.Embed(title="{}'s balance".format(member.name),
@@ -160,6 +175,10 @@ class ShopCommands(commands.Cog, name="Shop"):
     async def inv(self,ctx,member:discord.Member=None):
         if member == None:
             member = ctx.author
+
+        tip = tips.get_random_tip(0.2)
+        if tip:
+            ctx.send(tip)
 
         sc = get_data(member.id, "sc", default_val=0)
 

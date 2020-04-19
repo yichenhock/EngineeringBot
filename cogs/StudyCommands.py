@@ -24,6 +24,10 @@ class StudyCommands(commands.Cog,name="Study"):
     @commands.command(name='lab',help="Do a lab for {}**Standard Credit**.".format(SC_EMOJI))
     @commands.cooldown(1, 3600*3, commands.BucketType.user)
     async def lab(self,ctx): 
+        tip = tips.get_random_tip(0.4)
+        if tip:
+            ctx.send(tip)
+
         labs_subset = get_labs_subset(LABS_OPTIONS)
 
         output = "Select a lab by typing what is in `this text`:"
@@ -78,6 +82,10 @@ class StudyCommands(commands.Cog,name="Study"):
     @commands.command(name='lecture',help="Go to a lecture for {}**Standard Credit**.".format(SC_EMOJI))
     @commands.cooldown(1, 3600, commands.BucketType.user)
     async def lecture(self,ctx):
+        tip = tips.get_random_tip(0.4)
+        if tip:
+            ctx.send(tip)
+
         player_level = get_data(ctx.author.id, "level", default_val=0)
         lec = lecturers.get_by_level(player_level)
         
