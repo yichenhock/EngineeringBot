@@ -33,7 +33,7 @@
         "image": "atkins.jpg"
     },
     {
-        "category": "mathematics",
+        "category": "maths",
         "level": 9,
         "name": "Prof. Richard Prager",
         "subject": "Mathematics",
@@ -67,7 +67,7 @@
         "image": "udrea.jpg"
     },
     {
-        "category": "mathematics",
+        "category": "maths",
         "level": 6,
         "name": "Dr John Longley",
         "subject": "Dimensional Analysis",
