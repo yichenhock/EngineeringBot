@@ -132,7 +132,7 @@ class StudyCommands(commands.Cog,name="Study"):
         """.format(SC_EMOJI))
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def trivia(self,ctx):
-        user_level = get_data(ctx.author.id, "level", default_val=1)
+        user_level = get_data(ctx.author.id, "level", default_val=0)
         
         # -- Picking question
         questions = get_trivia_questions()
