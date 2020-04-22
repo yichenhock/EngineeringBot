@@ -243,7 +243,7 @@ class StudyCommands(commands.Cog,name="Study"):
             trivia_disp=discord.Embed(description=output,
                             colour=discord.Color.greyple())
             trivia_disp.set_thumbnail(url="attachment://"+lec.image)
-            trivia_disp.set_footer(text="Got an issue with this question, or want to add your own? \nMessage @Chen or go to https://github.com/yichenhock/EngineeringBot")
+            trivia_disp.set_footer(text="Got an issue with this question, or want to add your own? \nMessage @Chen or go to https://forms.gle/dnxpaXPVUxEqoNpk9")
             await ctx.send(file=file,embed=trivia_disp)
             
             await give_xp(ctx, ctx.author.id, xp)
