@@ -8,8 +8,6 @@
     "142327174601375744": {
         "level": 0,
         "questions_todo": [
-            1,
-            4,
             7,
             2,
             0,
@@ -19,8 +17,8 @@
             9,
             3
         ],
-        "sc": 10,
-        "xp": 3
+        "sc": 18,
+        "xp": 7
     },
     "142829230864990208": {
         "sc": 5
@@ -35,6 +33,21 @@
         "level": 0,
         "sc": 40,
         "xp": 9
+    },
+    "182899975535984640": {
+        "questions_todo": [
+            3,
+            6,
+            5,
+            2,
+            10,
+            7,
+            0,
+            4,
+            9,
+            8,
+            1
+        ]
     },
     "242231873282113536": {
         "level": 0,
@@ -83,15 +96,11 @@
         },
         "level": 4,
         "questions_todo": [
-            3,
-            1,
-            4,
-            0,
             5,
             7
         ],
-        "sc": 963,
-        "xp": 93
+        "sc": 984,
+        "xp": 101
     },
     "540583445395669014": {
         "inv": {
@@ -111,31 +120,30 @@
             "DPO Anti-Bacterial Keyboard": 1,
             "Egyptian Slave": 41,
             "Eigenvector": 8,
-            "Kit Kat Chunky": 12,
+            "Kit Kat Chunky": 18,
             "Lego Man": 1,
             "Penny": 2,
             "Piston": 6,
             "Potato": 8,
             "Shear Stress": 7,
-            "Wrench": 2
+            "Wrench": 4
         },
-        "level": 6,
+        "level": 7,
         "questions_todo": [
-            10,
+            7,
             9,
-            2,
-            0,
-            8,
-            5,
-            1,
-            6,
-            4
+            1
         ],
-        "sc": 362,
-        "xp": 232
+        "sc": 561,
+        "xp": 114
     },
     "607348761831800862": {
         "sc": 4
+    },
+    "620211492674863104": {
+        "level": 0,
+        "sc": 90,
+        "xp": 16
     },
     "693853888058490910": {
         "inv": {
@@ -145,17 +153,17 @@
     },
     "shop": {
         "items": [
-            "'54 Convertible",
             "Cafe Sandwich",
             "Crib",
+            "DPO Anti-Bacterial Keyboard",
+            "Drawing Kit",
+            "Egyptian Slave",
             "Eigenvector",
+            "Hard Hat",
             "Kit Kat Chunky",
-            "Lego Man",
             "Penny",
-            "Pills",
-            "Piston",
             "Shear Stress"
         ],
-        "last_stock_change": 1587573565.0375464
+        "last_stock_change": 1587982089.1470814
     }
 }
