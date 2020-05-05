@@ -132,7 +132,7 @@ class StudyCommands(commands.Cog,name="Study"):
         """.format(SC_EMOJI))
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def trivia(self,ctx):
-        user_level = get_data(ctx.author.id, "level", default_val=1)
+        user_level = get_data(ctx.author.id, "level", default_val=0)
         
         # -- Picking question
         questions = get_trivia_questions()
@@ -243,7 +243,7 @@ class StudyCommands(commands.Cog,name="Study"):
             trivia_disp=discord.Embed(description=output,
                             colour=discord.Color.greyple())
             trivia_disp.set_thumbnail(url="attachment://"+lec.image)
-            trivia_disp.set_footer(text="Got an issue with this question, or want to add your own? \nMessage @Chen or go to https://github.com/yichenhock/EngineeringBot")
+            trivia_disp.set_footer(text="Got an issue with this question, or want to add your own? \nMessage @Chen or go to https://forms.gle/dnxpaXPVUxEqoNpk9")
             await ctx.send(file=file,embed=trivia_disp)
             
             await give_xp(ctx, ctx.author.id, xp)
