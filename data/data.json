@@ -153,17 +153,17 @@
     },
     "shop": {
         "items": [
+            "'54 Convertible",
             "Cafe Sandwich",
             "Crib",
-            "DPO Anti-Bacterial Keyboard",
             "Drawing Kit",
-            "Egyptian Slave",
             "Eigenvector",
-            "Hard Hat",
             "Kit Kat Chunky",
-            "Penny",
-            "Shear Stress"
+            "Pills",
+            "Piston",
+            "Potato",
+            "Wrench"
         ],
-        "last_stock_change": 1587982089.1470814
+        "last_stock_change": 1588690056.860732
     }
 }
