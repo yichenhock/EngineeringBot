@@ -29,6 +29,25 @@
         },
         "sc": 4
     },
+    "173108137392472064": {
+        "inv": {
+            "Egyptian Slave": 67
+        },
+        "level": 0,
+        "questions_todo": [
+            6,
+            1,
+            4,
+            3,
+            8,
+            10,
+            2,
+            7,
+            0
+        ],
+        "sc": 2,
+        "xp": 29
+    },
     "175631586748792832": {
         "level": 0,
         "sc": 40,
@@ -86,7 +105,7 @@
         "inv": {
             "Cafe Sandwich": 2,
             "DPO Anti-Bacterial Keyboard": 1,
-            "Egyptian Slave": 150,
+            "Egyptian Slave": 151,
             "Eigenvector": 2,
             "Lego Man": 1,
             "Penny": 3,
@@ -95,12 +114,9 @@
             "Shear Stress": 8
         },
         "level": 4,
-        "questions_todo": [
-            5,
-            7
-        ],
-        "sc": 984,
-        "xp": 101
+        "questions_todo": [],
+        "sc": 1263,
+        "xp": 137
     },
     "540583445395669014": {
         "inv": {
@@ -118,24 +134,29 @@
         "inv": {
             "Crib": 3,
             "DPO Anti-Bacterial Keyboard": 1,
-            "Egyptian Slave": 41,
+            "Egyptian Slave": 101,
             "Eigenvector": 8,
-            "Kit Kat Chunky": 18,
+            "Kit Kat Chunky": 20,
             "Lego Man": 1,
             "Penny": 2,
             "Piston": 6,
             "Potato": 8,
             "Shear Stress": 7,
-            "Wrench": 4
+            "Wrench": 5
         },
         "level": 7,
         "questions_todo": [
+            6,
+            5,
             7,
-            9,
-            1
+            0,
+            10,
+            2,
+            1,
+            8
         ],
-        "sc": 561,
-        "xp": 114
+        "sc": 572,
+        "xp": 166
     },
     "607348761831800862": {
         "sc": 4
@@ -154,16 +175,16 @@
     "shop": {
         "items": [
             "Cafe Sandwich",
-            "Crib",
             "DPO Anti-Bacterial Keyboard",
             "Drawing Kit",
             "Egyptian Slave",
             "Eigenvector",
-            "Hard Hat",
             "Kit Kat Chunky",
-            "Penny",
-            "Shear Stress"
+            "Pills",
+            "Potato",
+            "Shear Stress",
+            "Wrench"
         ],
-        "last_stock_change": 1587982089.1470814
+        "last_stock_change": 1599609851.356065
     }
 }
