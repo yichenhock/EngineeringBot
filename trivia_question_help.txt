@@ -12,7 +12,7 @@ The first answer is the one shown when the player gets the question wrong.
 --- Editing ---
 To add more questions, go to data/trivia_questions.xlsx.
 Use ALT+ENTER to add new lines in a cell.
-To separate answers, you can use a combination of new lines or ;;.
+To separate answers, the code sees new lines or ";;" as dividers between the different answers.
 
 Put images in the data/trivia_img folder
 
