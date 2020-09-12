@@ -50,9 +50,9 @@ class RoleCommands(commands.Cog, name="Role"):
             if message.channel.id == 753064188036776036: # role-assignment channel
                 role_name = ""
                 for k, v in colleges.items():
-                    if message.content == k: 
+                    if message.content.lower() == k: 
                         role_name = k
-                    elif message.content in v: 
+                    elif message.content.lower() in v: 
                         role_name = k
 
                 if role_name != "": 
