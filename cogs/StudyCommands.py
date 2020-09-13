@@ -23,7 +23,7 @@ class StudyCommands(commands.Cog,name="Study"):
 
     @commands.command(name='lab',help="Do a lab for {}**Standard Credit**.".format(SC_EMOJI))
     @commands.cooldown(1, 3600*3, commands.BucketType.user)
-    async def lab(self,ctx): 
+    async def lab(self,ctx):
         tip = tips.get_random_tip(0.4)
         if tip:
             await ctx.send(tip)
@@ -48,7 +48,7 @@ class StudyCommands(commands.Cog,name="Study"):
         lab = options[msg.content]
         outcome = random.choice(lab["outcomes"])
         output = "*{}*".format(outcome["description"])
-        
+
         base_sc = SC_LAB
         multiplier = random.uniform(outcome["min_sc"], outcome["max_sc"])
         item_boost = items.get_player_boost(ctx.author.id, "labs")
@@ -58,7 +58,7 @@ class StudyCommands(commands.Cog,name="Study"):
 
         output += "\n\nYour demonstrator gave you {} **{}**.".format(SC_EMOJI, sc_add)
         if item_boost:
-            output += "\n_**{:.1f}%** boost from_ **Labs** _items in your inventory._".format(item_boost*100)   
+            output += "\n_**{:.1f}%** boost from_ **Labs** _items in your inventory._".format(item_boost*100)
         output += "\n\nYou get **`{}`<:xp:699934983074349086>**.".format(XP_LAB)
         lab_disp = discord.Embed(description=output,
                             colour = discord.Color.greyple())
@@ -88,7 +88,7 @@ class StudyCommands(commands.Cog,name="Study"):
 
         player_level = get_data(ctx.author.id, "level", default_val=0)
         lec = lecturers.get_by_level(player_level)
-        
+
         message = "Your current lecture series is **{}** by **{}**.".format(lec.subject, lec.name)
 
         base_sc = SC_LECTURE + SC_LECTURE_INCREASE_PER_LEVEL * player_level
@@ -99,10 +99,10 @@ class StudyCommands(commands.Cog,name="Study"):
         add_data(ctx.author.id, "sc", player_sc + sc)
         message += "\n\nYou went to the lecture and earned {} **{}**.".format(SC_EMOJI, sc)
         if boost > 0:
-            message += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, lec.category.title())   
+            message += "\n_**{:.1f}%** boost from_ **{}** _items in your inventory._".format(boost*100, lec.category.title())
         else:
             message += "\n\n> _Get items that boost **{}** in order to increase earnings._".format(lec.category.title())
-        
+
         message += "\n\nYou get **`{}`<:xp:699934983074349086>**.".format(XP_LECTURE)
 
         file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
@@ -122,7 +122,7 @@ class StudyCommands(commands.Cog,name="Study"):
             await show_level_up(ctx, player_level + 1)
             return
         await give_xp(ctx, ctx.author.id, XP_LECTURE)
-        
+
 
     @commands.command(name='trivia', aliases = ["study", "question", "learn", "q","supo", "supervision"], help=
         """Answer a question to get standard credit.
@@ -133,16 +133,16 @@ class StudyCommands(commands.Cog,name="Study"):
     @commands.cooldown(1, 10, commands.BucketType.user)
     async def trivia(self,ctx):
         user_level = get_data(ctx.author.id, "level", default_val=0)
-        
+
         # -- Picking question
         questions = get_trivia_questions()
         questions_todo = get_data(ctx.author.id, "questions_todo", default_val=[])
 
-        if not questions_todo:
+        if not questions_todo or max(questions_todo) >= len(questions):
             questions_todo = list(range(len(questions)))
             random.shuffle(questions_todo)
             add_data(ctx.author.id, "questions_todo", questions_todo)
-        
+
         question_index = questions_todo[0]
         question = questions[question_index]
 
@@ -165,7 +165,7 @@ class StudyCommands(commands.Cog,name="Study"):
         if question.is_multiple_choice:
             for i in range(len(answers)):
                 output += "\n*{}) {}*".format(ascii_lowercase[i], answers[i])
-            
+
             output += "\n\n**Type in the character of the answer you think is correct!**"
             def check(m):
                 return m.author == ctx.author and (m.content in ascii_lowercase[:len(answers)]) and len(m.content) == 1
@@ -234,7 +234,7 @@ class StudyCommands(commands.Cog,name="Study"):
                     output = "{}, **Incorrect.**\n\nA correct answer was **{}**\n{}".format(ctx.author.mention, question.answers[0], question.answer_message)
                 # Add the question back in so you do it again
                 questions_todo.insert(4, question_index)
-            
+
             add_data(ctx.author.id, "questions_todo", questions_todo)
 
             output += "\n\nYou get **`{}`<:xp:699934983074349086>**.".format(xp)
@@ -245,7 +245,7 @@ class StudyCommands(commands.Cog,name="Study"):
             trivia_disp.set_thumbnail(url="attachment://"+lec.image)
             trivia_disp.set_footer(text="Got an issue with this question, or want to add your own? \nMessage @Chen or go to https://forms.gle/dnxpaXPVUxEqoNpk9")
             await ctx.send(file=file,embed=trivia_disp)
-            
+
             await give_xp(ctx, ctx.author.id, xp)
 
     @lab.error
@@ -299,7 +299,7 @@ async def show_level_up(ctx, level):
     lec = lecturers.get_by_level(level)
     message += ":tada: Your new lecturer is: **{}**! :tada:".format(lec.name)
     message += "\n\n_Get items that boost **{}** in order to increase lecture earnings._".format(lec.category.title())
-    
+
     file = discord.File(DATA_PATH+"lecturer_img/"+lec.image, filename=lec.image)
 
     levelup_disp=discord.Embed(description=message,
