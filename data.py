@@ -94,6 +94,7 @@ def add_data(*keys):
     key = str(keys[-1])
     if isinstance(current_dict, dict):
         current_dict[key] = value
+    save_data()
 
 def get_data(*keys, default_val=None):
     """Get a data entry."""
