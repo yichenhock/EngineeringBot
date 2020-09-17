@@ -29,6 +29,10 @@ async def on_command_error(ctx, error):
     print("An error occured...")
     print(error)
 
+@bot.event
+async def on_member_join(member): 
+    channel = bot.get_channel(695042957757382737)
+    await channel.send(f"Welcome {member.mention}, I'm **Engi-Dad**. Check out #info-and-rules and give yourself a role in #role-assignment by typing the name of your college! Type `dad help` more commands. ")
 
 def initialise_data():
     load_data(bot)
