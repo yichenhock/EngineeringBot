@@ -24,9 +24,6 @@ class StudyCommands(commands.Cog,name="Study"):
     @commands.command(name='lab',help="Do a lab for {}**Standard Credit**.".format(SC_EMOJI))
     @commands.cooldown(1, 3600*3, commands.BucketType.user)
     async def lab(self,ctx): 
-        tip = tips.get_random_tip(0.4)
-        if tip:
-            await ctx.send(tip)
 
         labs_subset = get_labs_subset(LABS_OPTIONS)
 
@@ -67,6 +64,8 @@ class StudyCommands(commands.Cog,name="Study"):
         await ctx.send('',embed=lab_disp)
         await give_xp(ctx, ctx.author.id, XP_LAB)
 
+        await ctx.send(tips.get_random_tip())
+
         # stdc = get_data(ctx.author.id, "sc", default_val=0)
         # add_sc = random.randint(1,10)
         # add_data(ctx.author.id, "sc", stdc+add_sc)
@@ -82,7 +81,7 @@ class StudyCommands(commands.Cog,name="Study"):
     @commands.command(name='lecture',help="Go to a lecture for {}**Standard Credit**.".format(SC_EMOJI))
     @commands.cooldown(1, 3600, commands.BucketType.user)
     async def lecture(self,ctx):
-        tip = tips.get_random_tip(0.4)
+        tip = tips.get_random_tip()
         if tip:
             await ctx.send(tip)
 

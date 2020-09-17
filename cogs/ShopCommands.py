@@ -143,7 +143,7 @@ class ShopCommands(commands.Cog, name="Shop"):
 
         i = items.get_by_name(name)
         await self.buy_item(ctx, i, amt)
-        tip = tips.get_random_tip(0.4)
+        tip = tips.get_random_tip(0.5)
         if tip:
             await ctx.send(tip)
 
@@ -153,7 +153,7 @@ class ShopCommands(commands.Cog, name="Shop"):
         if member == None:
             member = ctx.author
 
-        tip = tips.get_random_tip(0.2)
+        tip = tips.get_random_tip(0.5)
         if tip:
             await ctx.send(tip)
 
@@ -169,7 +169,7 @@ class ShopCommands(commands.Cog, name="Shop"):
         if member == None:
             member = ctx.author
 
-        tip = tips.get_random_tip(0.2)
+        tip = tips.get_random_tip(0.5)
         if tip:
             await ctx.send(tip)
 
