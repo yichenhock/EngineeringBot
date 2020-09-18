@@ -98,7 +98,7 @@ class ShopCommands(commands.Cog, name="Shop"):
                     h, m, _ = get_time_to_shop_refresh()
                     reset_message = f"*The store will change its stock in {h:02}h {m:02}m*"
                     pages.append(discord.Embed(title='Dyson Centre Store',
-                                description="Yo, welcome kiddos! Come spend your {} **Standard Credits**!\nUse the **arrow reactors** below to browse the store.\n**Click on an emoji** to buy one of that item, or use\n`dad buy <item> <amount>`\n`dad shop <item>` for more info on that item.\n".format(SC_EMOJI)+reset_message,
+                                description="Yo, welcome kiddos! Come spend your {} **Standard Credits**!\n`dad buy <item> <amount>` to buy items.\n`dad shop <item>` for more info on an item.\n\n".format(SC_EMOJI)+reset_message,
                                 colour=discord.Color.gold()))
                 else:
                     pages.append(discord.Embed(colour=discord.Color.gold()))
