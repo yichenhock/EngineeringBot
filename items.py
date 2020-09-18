@@ -2,7 +2,7 @@ import json
 import os
 
 import data
-from constants import SC_EMOJI
+from constants import SC_EMOJI, UP_ARROW_EMOJI
 
 items = []
 
@@ -30,7 +30,12 @@ class Item():
         return not self.boost_bonus is None
     
     def get_shop_string(self):
-        return '{} **{}** ─ {}{} \n{}\n\n'.format(self.emoji,self.name,SC_EMOJI,self.cost,self.description)
+        # Brackets combine the strings into one string
+        return (
+            f'{self.emoji} **{self.name}** ─ {SC_EMOJI}{self.cost}'
+            f' ─ {UP_ARROW_EMOJI}**{self.boost_category.capitalize()}**' if self.boost_category else ''
+            f'\n{self.description}\n\n'
+        )
 
 def import_items():
     global items
