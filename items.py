@@ -30,10 +30,10 @@ class Item():
         return not self.boost_bonus is None
     
     def get_shop_string(self):
-        # Brackets combine the strings into one string
+        # Brackets combine the multiple lines into one
         return (
-            f'{self.emoji} **{self.name}** ─ {SC_EMOJI}{self.cost}' +
-            f' ─ {UP_ARROW_EMOJI}**{self.boost_category.capitalize()}**' if self.boost_category else ''
+            f'{self.emoji} **{self.name}** ─ {SC_EMOJI}{self.cost}' + 
+            (f' ─ {UP_ARROW_EMOJI}**{self.boost_category.capitalize()}**' if self.boost_category else '') + 
             f'\n{self.description}\n\n'
         )
 
