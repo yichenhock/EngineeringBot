@@ -32,7 +32,7 @@ class Item():
     def get_shop_string(self):
         # Brackets combine the strings into one string
         return (
-            f'{self.emoji} **{self.name}** ─ {SC_EMOJI}{self.cost}'
+            f'{self.emoji} **{self.name}** ─ {SC_EMOJI}{self.cost}' +
             f' ─ {UP_ARROW_EMOJI}**{self.boost_category.capitalize()}**' if self.boost_category else ''
             f'\n{self.description}\n\n'
         )
