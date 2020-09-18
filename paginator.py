@@ -132,7 +132,7 @@ class Paginator:
                 await self.handle_reaction()
                 if self.paginating:
                     self.pages[self.index].set_footer(
-                        text=f"Page {self.index + 1}/{len(self.pages)}\nClick the arrows below to **change page**, and click on an item emoji to **buy that item**."
+                        text=f"Page {self.index + 1}/{len(self.pages)}. Click the arrows below to **change page**, and click on an item emoji to **buy that item**."
                     )
                     await self.message.edit(embed=self.pages[self.index])
                 else:
