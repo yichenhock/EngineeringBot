@@ -35,7 +35,7 @@ class TriviaQuestion:
             setattr(self, key, val)
         self.answers = self.answers.replace("\n", ";;").split(";;")
         self.sc_reward = int(self.sc_reward)
-        self.is_multiple_choice = not (self.is_multiple_choice.lower() == "n")
+        #self.is_multiple_choice = not (self.is_multiple_choice.lower() == "n")
         if self.is_multiple_choice:
             self.correct_answer = self.answers[0]
 
@@ -124,16 +124,18 @@ def get_trivia_questions_data():
         if not rough.get("SC Value"):
             continue
         question = {}
-        question["category"] = rough['Pick the category that your question fits best!'].replace(" (dynamics or fluids)", "").replace(" (or Electrical)", "").lower()
+        question["category"] = rough['Category'].replace(" (dynamics or fluids)", "").replace(" (or Electrical)", "").lower()
         question["sc_reward"] = float(rough["SC Value"])
-        question["source"] = rough["Does your question have a source? If so, put it here. (optional)"]
-        question["question_text"] = rough['Put your question here!']
+        question["source"] = rough["Source"]
+        question["question_text"] = rough['Question']
         # print("Getting image")
-        question["image"] = get_question_img(rough["Upload an image that goes with the question. (optional)"])
+        question["image"] = get_question_img(rough["Image"])
         # print("Got image")
-        question["is_multiple_choice"] = 'y' if rough['How do players answer your question?'] == "Multiple choice" else 'n'
-        question["answers"] = rough.get('What is the correct answer to your question?', '') + rough.get('Type in some correct answers to your question, with each one on a new line.', '') + '\n' +  rough.get('Add a few incorrect answers. (put each one on a new line)', '')
-        question["answer_message"] = rough['Add some text that shows up after the player answers the question. (optional)']
+        question["is_multiple_choice"] = (rough['Question Type'] == "Multiple choice")
+        #question["is_multiple_choice"] = 'y' if rough['Question Type'] == "Multiple choice" else 'n'
+        #question["answers"] = rough.get('What is the correct answer to your question?', '') + rough.get('Type in some correct answers to your question, with each one on a new line.', '') + '\n' +  rough.get('Add a few incorrect answers. (put each one on a new line)', '')
+        question["answers"] = rough['Answers']
+        question["answer_message"] = rough['End text']
         data.append(question)
 
     return data
